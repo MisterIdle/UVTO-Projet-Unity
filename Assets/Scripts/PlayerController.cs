@@ -49,6 +49,14 @@ public class PlayerController : MonoBehaviour
                 _uiManager.SetInteractionText(_isGrabbing ? "(E) Drop" : "(E) Grab");
                 return;
             }
+
+            Interactive targetInteractive = hit.collider.GetComponent<Interactive>();
+            if (targetInteractive != null)
+            {
+                _uiManager.SetCrosshair(true);
+                _uiManager.SetInteractionText("(E) Interact");
+                return;
+            }
         }
         
         _uiManager.SetCrosshair(false);
@@ -80,9 +88,18 @@ public class PlayerController : MonoBehaviour
                 {
                     GrabGrabbable(targetGrabbable);
                 }
+                return;
+            }
+
+            Interactive targetInteractive = hit.collider.GetComponent<Interactive>();
+            if (targetInteractive != null)
+            {
+                InteractWith(targetInteractive);
+                return;
             }
         }
-        else if (_isGrabbing)
+
+        if (_isGrabbing)
         {
             ReleaseGrabbable();
         }
@@ -99,6 +116,11 @@ public class PlayerController : MonoBehaviour
         _grabbable.Release();
         _grabbable = null;
         _isGrabbing = false;
+    }
+
+    private void InteractWith(Interactive targetInteractive)
+    {
+        targetInteractive.Interact();
     }
 
     public void OnMove(InputAction.CallbackContext context)
