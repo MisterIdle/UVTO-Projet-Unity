@@ -4,12 +4,17 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _acceleration = 10f;
+    [SerializeField] private float _deceleration = 10f;
     [SerializeField] private Transform _cameraTransform;
     [SerializeField] private Transform _grabPoint;
+    [SerializeField] private float _grabDistance = 2f;
+    [SerializeField] private float _interactionDistance = 5f;
 
     private UIManager _uiManager;
     private Rigidbody _rigidbody;
     private Vector2 _movementInput;
+    private Vector3 _velocity;
     private Grabbable _grabbable;
     private bool _isGrabbing;
 
@@ -23,6 +28,11 @@ public class PlayerController : MonoBehaviour
         Cursor.visible = false;
     }
 
+    private void FixedUpdate()
+    {
+        MovePlayer();
+    }
+
     private void LateUpdate()
     {        
         UpdateInteractionUI();
@@ -31,16 +41,36 @@ public class PlayerController : MonoBehaviour
         {
             _grabbable.Grab(_grabPoint);
         }
+
+        if (_isGrabbing)
+        {
+            float distance = Vector3.Distance(_grabPoint.position, _grabbable.transform.position);
+            Debug.Log(distance);
+
+            if (distance > _grabDistance)
+            {
+                ReleaseGrabbable();
+            }
+        }
     }
 
-    private void FixedUpdate()
+    private void MovePlayer()
     {
-        MovePlayer();
+        Vector3 direction = new Vector3(_movementInput.x, 0f, _movementInput.y);
+        direction = Vector3.ClampMagnitude(direction, 1f);
+
+        Vector3 targetVelocity = direction * _speed;
+        _velocity = Vector3.Lerp(_velocity, targetVelocity, Time.deltaTime * (_velocity == Vector3.zero ? _acceleration : _deceleration));
+
+        Vector3 moveDirection = _cameraTransform.TransformDirection(_velocity);
+        moveDirection.y = 0f;
+
+        _rigidbody.linearVelocity = moveDirection;
     }
 
     private void UpdateInteractionUI()
     {
-        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, 5f))
+        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, _interactionDistance))
         {
             Grabbable targetGrabbable = hit.collider.GetComponent<Grabbable>();
             if (targetGrabbable != null)
@@ -63,19 +93,9 @@ public class PlayerController : MonoBehaviour
         _uiManager.SetInteractionText("");
     }
 
-    private void MovePlayer()
-    {
-        Vector3 movement = new Vector3(_movementInput.x, 0f, _movementInput.y);
-        Vector3 moveDirection = _cameraTransform.TransformDirection(movement);
-        moveDirection.y = 0f;
-
-        Vector3 targetPosition = _rigidbody.position + moveDirection * (_speed * Time.fixedDeltaTime);
-        _rigidbody.MovePosition(Vector3.Lerp(_rigidbody.position, targetPosition, 0.1f));
-    }
-
     private void Interact()
     {
-        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, 5f))
+        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, _interactionDistance))
         {
             Grabbable targetGrabbable = hit.collider.GetComponent<Grabbable>();
             if (targetGrabbable != null)
