@@ -1,17 +1,19 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor;
 
 [System.Serializable]
 public class SpawnableObjects
 {
     public GameObject Prefab;
+    public int Score;
     public bool IsUnique;
     public bool IsMandatory;
-    public bool IsBorrowable;
 
-    [Range(0, 100)]
-    public int BorrowableChance = 50;
-    public bool IsListedInUI = true;
+    // Inutile si IsManadatory est à true
+    public bool CanBeBorrowed;
+    // Inutile si IsUnique est à true
+    [Range(0, 100)] public int BorrowedChance;
 }
 
 

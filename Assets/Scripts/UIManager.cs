@@ -11,6 +11,8 @@ public class UIManager : MonoBehaviour
 
     public TMP_Text InteractionText;
 
+    public TMP_Text ScoreText;
+
     public void SetCrosshair(bool isInteracting)
     {
         BaseCrosshair.sprite = isInteracting ? CrosshairsInteract : CrosshairsNormal;
@@ -19,5 +21,10 @@ public class UIManager : MonoBehaviour
     public void SetInteractionText(string text)
     {
         InteractionText.text = text;
+    }
+
+    public void SetScoreText(int score)
+    {
+        ScoreText.text = "Score: " + score;
     }
 }

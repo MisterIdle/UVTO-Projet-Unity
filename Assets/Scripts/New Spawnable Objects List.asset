@@ -14,12 +14,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   items:
   - Prefab: {fileID: 7832920215176359147, guid: 48ac0a2d7ef9b5a49a935debf59d33e7, type: 3}
-    IsUnique: 1
-    IsMandatory: 0
-    IsBorrowable: 1
-    BorrowableChance: 50
-  - Prefab: {fileID: 8362647615033348057, guid: ddc79e43cb55e6d4c9719e98240e7782, type: 3}
+    Score: 100
     IsUnique: 0
     IsMandatory: 0
-    IsBorrowable: 0
-    BorrowableChance: 50
+    CanBeBorrowed: 1
+    BorrowedChance: 100
+  - Prefab: {fileID: 8362647615033348057, guid: ddc79e43cb55e6d4c9719e98240e7782, type: 3}
+    Score: 1000
+    IsUnique: 1
+    IsMandatory: 1
+    CanBeBorrowed: 0
+    BorrowedChance: 0

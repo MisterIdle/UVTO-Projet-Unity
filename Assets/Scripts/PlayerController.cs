@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _grabDistance = 2f;
     [SerializeField] private float _interactionDistance = 5f;
 
+    public int Score;
+
     private UIManager _uiManager;
     private Rigidbody _rigidbody;
     private Vector2 _movementInput;
@@ -31,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+        _uiManager.SetScoreText(Score);
     }
 
     private void LateUpdate()
@@ -75,9 +78,9 @@ public class PlayerController : MonoBehaviour
             {
                 _uiManager.SetCrosshair(true);
                 
-                if(targetGrabbable.IsBorrowable && targetGrabbable.IsListedInUI)
+                if(targetGrabbable.CanBeBorrowed)
                 {
-                    _uiManager.SetInteractionText("(E) Borrow");
+                    _uiManager.SetInteractionText("(E) Borrow : " + targetGrabbable.name);
                 }
                 else
                 {
@@ -105,15 +108,23 @@ public class PlayerController : MonoBehaviour
         {
             Grabbable targetGrabbable = hit.collider.GetComponent<Grabbable>();
             if (targetGrabbable != null)
-            {
+            {               
+                if (targetGrabbable.CanBeBorrowed)
+                {
+                    targetGrabbable.Borrow();
+                    return;
+                }
+
                 if (_isGrabbing && _grabbable == targetGrabbable)
                 {
                     ReleaseGrabbable();
                 }
+                
                 else if (!_isGrabbing)
                 {
                     GrabGrabbable(targetGrabbable);
                 }
+
                 return;
             }
 
