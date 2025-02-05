@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
-        _cameraTransform = Camera.main.transform;
+
         _uiManager = FindFirstObjectByType<UIManager>();
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MovePlayer();
+
         _uiManager.SetScoreText(Score);
     }
 

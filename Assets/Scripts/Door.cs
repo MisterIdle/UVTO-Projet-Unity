@@ -1,64 +1,64 @@
 using UnityEngine;
 using System.Collections;
 
+[RequireComponent(typeof(MeshCollider))]
 public class Door : Interactive
 {
-    public GameObject frame;
-    public float openDuration = 1.0f;
-    public float moveDistance = 0.5f; // Distance to move the door when opening/closing
+    public float OpenDuration = 1.0f;
+    public float MoveDistance = 0f;
+    public float OpenAngle = 90f;
+    public bool OpenToRight = true;
 
-    private bool isOpen = false;
-    private bool isAnimating = false;
-    private Quaternion closedRotation;
-    private Quaternion openRotation;
-    private Vector3 closedPosition;
-    private Vector3 openPosition;
-    private Coroutine currentCoroutine;
+    private bool _isOpen = false;
+    private bool _isAnimating = false;
+    private Coroutine _currentCoroutine;
+    private Quaternion _initialLocalRotation;
+    private Vector3 _initialLocalPosition;
 
     private void Start()
     {
-        closedRotation = frame.transform.rotation;
-        openRotation = closedRotation * Quaternion.Euler(0, 90, 0);
-        closedPosition = frame.transform.position;
-        openPosition = closedPosition + frame.transform.right * moveDistance;
+        _initialLocalRotation = transform.localRotation;
+        _initialLocalPosition = transform.localPosition;
     }
 
     public override void Interact()
     {
-        if (isAnimating)
+        if (_isAnimating)
         {
-            StopCoroutine(currentCoroutine);
-            isAnimating = false;
+            StopCoroutine(_currentCoroutine);
+            _isAnimating = false;
         }
 
-        if (isOpen)
-        {
-            currentCoroutine = StartCoroutine(MoveAndRotateDoor(closedRotation, closedPosition));
-        }
-        else
-        {
-            currentCoroutine = StartCoroutine(MoveAndRotateDoor(openRotation, openPosition));
-        }
-        isOpen = !isOpen;
+        Quaternion targetRotation = _isOpen 
+            ? _initialLocalRotation 
+            : _initialLocalRotation * Quaternion.Euler(0, OpenToRight ? OpenAngle : -OpenAngle, 0);
+        
+        Vector3 targetPosition = _isOpen 
+            ? _initialLocalPosition 
+            : _initialLocalPosition + (OpenToRight ? transform.right : -transform.right) * MoveDistance;
+        
+        _currentCoroutine = StartCoroutine(MoveAndRotateDoor(targetRotation, targetPosition));
+        _isOpen = !_isOpen;
     }
 
     private IEnumerator MoveAndRotateDoor(Quaternion targetRotation, Vector3 targetPosition)
     {
-        isAnimating = true;
-        Quaternion startRotation = frame.transform.rotation;
-        Vector3 startPosition = frame.transform.position;
-        float elapsedTime = 0;
+        _isAnimating = true;
+        Quaternion startRotation = transform.localRotation;
+        Vector3 startPosition = transform.localPosition;
+        float elapsedTime = 0f;
 
-        while (elapsedTime < openDuration)
+        while (elapsedTime < OpenDuration)
         {
-            frame.transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime / openDuration);
-            frame.transform.position = Vector3.Lerp(startPosition, targetPosition, elapsedTime / openDuration);
+            float t = elapsedTime / OpenDuration;
+            transform.localRotation = Quaternion.Slerp(startRotation, targetRotation, t);
+            transform.localPosition = Vector3.Lerp(startPosition, targetPosition, t);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        frame.transform.rotation = targetRotation;
-        frame.transform.position = targetPosition;
-        isAnimating = false;
+        transform.localRotation = targetRotation;
+        transform.localPosition = targetPosition;
+        _isAnimating = false;
     }
 }
