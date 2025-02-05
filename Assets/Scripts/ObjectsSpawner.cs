@@ -56,6 +56,7 @@ public class ObjectsSpawner : MonoBehaviour
         if (obj.TryGetComponent(out Grabbable grabbable))
         {
             grabbable.IsBorrowable = item.IsBorrowable && Random.value < (item.BorrowableChance / 100f);
+            grabbable.IsListedInUI = grabbable.IsBorrowable && item.IsListedInUI;
         }
 
         if (item.IsUnique)

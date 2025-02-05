@@ -7,6 +7,7 @@ public class Grabbable : MonoBehaviour
     private Transform _grabPoint;
 
     public bool IsBorrowable;
+    public bool IsListedInUI;
 
     [SerializeField] private float _lerpSpeed = 5f;
 

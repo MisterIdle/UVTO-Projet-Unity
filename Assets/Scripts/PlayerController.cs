@@ -74,7 +74,16 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.TryGetComponent(out Grabbable targetGrabbable))
             {
                 _uiManager.SetCrosshair(true);
-                _uiManager.SetInteractionText(_isGrabbing ? "(E) Drop" : "(E) Grab");
+                
+                if(targetGrabbable.IsBorrowable && targetGrabbable.IsListedInUI)
+                {
+                    _uiManager.SetInteractionText("(E) Borrow");
+                }
+                else
+                {
+                    _uiManager.SetInteractionText("(E) Grab");
+                }
+
                 return;
             }
 

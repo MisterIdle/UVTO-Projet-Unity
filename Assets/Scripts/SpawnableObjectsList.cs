@@ -11,6 +11,7 @@ public class SpawnableObjects
 
     [Range(0, 100)]
     public int BorrowableChance = 50;
+    public bool IsListedInUI = true;
 }
 
 
