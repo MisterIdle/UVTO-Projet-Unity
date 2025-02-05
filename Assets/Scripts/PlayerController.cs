@@ -45,7 +45,6 @@ public class PlayerController : MonoBehaviour
         if (_isGrabbing)
         {
             float distance = Vector3.Distance(_grabPoint.position, _grabbable.transform.position);
-            Debug.Log(distance);
 
             if (distance > _grabDistance)
             {
@@ -72,16 +71,14 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, _interactionDistance))
         {
-            Grabbable targetGrabbable = hit.collider.GetComponent<Grabbable>();
-            if (targetGrabbable != null)
+            if (hit.collider.TryGetComponent(out Grabbable targetGrabbable))
             {
                 _uiManager.SetCrosshair(true);
                 _uiManager.SetInteractionText(_isGrabbing ? "(E) Drop" : "(E) Grab");
                 return;
             }
 
-            Interactive targetInteractive = hit.collider.GetComponent<Interactive>();
-            if (targetInteractive != null)
+            if (hit.collider.TryGetComponent(out Interactive targetInteractive))
             {
                 _uiManager.SetCrosshair(true);
                 _uiManager.SetInteractionText("(E) Interact");

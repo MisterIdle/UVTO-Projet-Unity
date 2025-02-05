@@ -10,12 +10,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bb6ef969983d9974da5481456b3de95b, type: 3}
-  m_Name: Basic
+  m_Name: New Spawnable Objects List
   m_EditorClassIdentifier: 
   items:
-  - itemPrefab: {fileID: 8362647615033348057, guid: ddc79e43cb55e6d4c9719e98240e7782, type: 3}
-    spawnChance: 50
-    isUnique: 1
-  - itemPrefab: {fileID: 7832920215176359147, guid: 48ac0a2d7ef9b5a49a935debf59d33e7, type: 3}
-    spawnChance: 100
-    isUnique: 0
+  - Prefab: {fileID: 7832920215176359147, guid: 48ac0a2d7ef9b5a49a935debf59d33e7, type: 3}
+    IsUnique: 1
+    IsMandatory: 0
+    IsBorrowable: 1
+    BorrowableChance: 50
+  - Prefab: {fileID: 8362647615033348057, guid: ddc79e43cb55e6d4c9719e98240e7782, type: 3}
+    IsUnique: 0
+    IsMandatory: 0
+    IsBorrowable: 0
+    BorrowableChance: 50

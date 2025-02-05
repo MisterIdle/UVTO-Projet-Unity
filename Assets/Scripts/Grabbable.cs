@@ -5,6 +5,9 @@ public class Grabbable : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     private Transform _grabPoint;
+
+    public bool IsBorrowable;
+
     [SerializeField] private float _lerpSpeed = 5f;
 
     private void Start()
