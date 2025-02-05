@@ -29,13 +29,8 @@ public class Door : Interactive
             _isAnimating = false;
         }
 
-        Quaternion targetRotation = _isOpen 
-            ? _initialLocalRotation 
-            : _initialLocalRotation * Quaternion.Euler(0, OpenToRight ? OpenAngle : -OpenAngle, 0);
-        
-        Vector3 targetPosition = _isOpen 
-            ? _initialLocalPosition 
-            : _initialLocalPosition + (OpenToRight ? transform.right : -transform.right) * MoveDistance;
+        Quaternion targetRotation = _isOpen ? _initialLocalRotation : _initialLocalRotation * Quaternion.Euler(0, OpenToRight ? OpenAngle : -OpenAngle, 0);
+        Vector3 targetPosition = _isOpen ? _initialLocalPosition : _initialLocalPosition + (OpenToRight ? transform.right : -transform.right) * MoveDistance;
         
         _currentCoroutine = StartCoroutine(MoveAndRotateDoor(targetRotation, targetPosition));
         _isOpen = !_isOpen;

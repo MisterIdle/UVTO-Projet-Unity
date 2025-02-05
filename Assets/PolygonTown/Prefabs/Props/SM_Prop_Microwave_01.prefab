@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4927011392531472}
   - component: {fileID: 33441323155019500}
   - component: {fileID: 23333506580426802}
+  - component: {fileID: 4611036174428202164}
+  - component: {fileID: 8977071803264451444}
   m_Layer: 0
   m_Name: SM_Prop_Microwave_Door_01
   m_TagString: Untagged
@@ -87,6 +89,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!64 &4611036174428202164
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422337456353496}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: a31df0bed32bd1a40a8ed911b3b0d06e, type: 3}
+--- !u!114 &8977071803264451444
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422337456353496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72af09f1cf7a66647935f95ec91dc8f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OpenDuration: 1
+  MoveDistance: 0
+  OpenAngle: 90
+  OpenToRight: 1
 --- !u!1 &1996138439020052
 GameObject:
   m_ObjectHideFlags: 0
@@ -223,9 +263,9 @@ Rigidbody:
   m_ImplicitTensor: 1
   m_UseGravity: 1
   m_IsKinematic: 0
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!114 &6334390431914981754
 MonoBehaviour:
   m_ObjectHideFlags: 0

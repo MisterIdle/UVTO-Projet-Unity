@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 4281391753927736}
   - component: {fileID: 33411513366328064}
   - component: {fileID: 23472194259422666}
-  - component: {fileID: 65319153270886598}
   - component: {fileID: 5373139849529714922}
+  - component: {fileID: 6028684306921677143}
   m_Layer: 0
   m_Name: SM_Bld_House_Door
   m_TagString: Untagged
@@ -88,8 +88,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &65319153270886598
-BoxCollider:
+--- !u!114 &5373139849529714922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1581464140701654}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72af09f1cf7a66647935f95ec91dc8f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  OpenDuration: 1
+  MoveDistance: -0.1
+  OpenAngle: 90
+  OpenToRight: 1
+--- !u!64 &6028684306921677143
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -106,24 +122,10 @@ BoxCollider:
   m_IsTrigger: 0
   m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0447855, y: 2.2243478, z: 0.23754603}
-  m_Center: {x: -0.52239263, y: 1.1121739, z: 0.04999995}
---- !u!114 &5373139849529714922
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1581464140701654}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72af09f1cf7a66647935f95ec91dc8f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  frame: {fileID: 1581464140701654}
-  openDuration: 1
-  moveDistance: -0.1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: b7b2e98bb7ded31409cfa2a2ad18c706, type: 3}
 --- !u!1 &1608245415786108
 GameObject:
   m_ObjectHideFlags: 0

@@ -74,6 +74,13 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateInteractionUI()
     {
+        if (_isGrabbing)
+        {
+            _uiManager.SetCrosshair(true);
+            _uiManager.SetInteractionText("(E) Drop");
+            return;
+        }
+
         if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, _interactionDistance))
         {
             if (hit.collider.TryGetComponent(out Grabbable targetGrabbable))
@@ -106,27 +113,24 @@ public class PlayerController : MonoBehaviour
 
     private void Interact()
     {
+        if (_isGrabbing)
+        {
+            ReleaseGrabbable();
+            return;
+        }
+
         if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, _interactionDistance))
         {
             Grabbable targetGrabbable = hit.collider.GetComponent<Grabbable>();
             if (targetGrabbable != null)
-            {               
+            {
                 if (targetGrabbable.CanBeBorrowed)
                 {
                     targetGrabbable.Borrow();
                     return;
                 }
 
-                if (_isGrabbing && _grabbable == targetGrabbable)
-                {
-                    ReleaseGrabbable();
-                }
-                
-                else if (!_isGrabbing)
-                {
-                    GrabGrabbable(targetGrabbable);
-                }
-
+                GrabGrabbable(targetGrabbable);
                 return;
             }
 
@@ -136,11 +140,6 @@ public class PlayerController : MonoBehaviour
                 InteractWith(targetInteractive);
                 return;
             }
-        }
-
-        if (_isGrabbing)
-        {
-            ReleaseGrabbable();
         }
     }
 
