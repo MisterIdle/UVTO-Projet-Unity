@@ -1659,6 +1659,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3330225873748801797, guid: 4314b04c3aa496841ae32de675a6fbd1, type: 3}
+      propertyPath: m_VertexColorAlwaysGammaSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3330225873748801797, guid: 4314b04c3aa496841ae32de675a6fbd1, type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4782878480683937488, guid: 4314b04c3aa496841ae32de675a6fbd1, type: 3}
       propertyPath: m_Pivot.x
       value: 0

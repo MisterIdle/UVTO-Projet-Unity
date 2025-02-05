@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb6ef969983d9974da5481456b3de95b, type: 3}
+  m_Name: Spawnable Objects List
+  m_EditorClassIdentifier: 
+  items:
+  - Prefab: {fileID: 7832920215176359147, guid: 48ac0a2d7ef9b5a49a935debf59d33e7, type: 3}
+    Score: 100
+    IsUnique: 0
+    IsMandatory: 0
+    CanBeBorrowed: 1
+    BorrowedChance: 100
+  - Prefab: {fileID: 8362647615033348057, guid: ddc79e43cb55e6d4c9719e98240e7782, type: 3}
+    Score: 1000
+    IsUnique: 1
+    IsMandatory: 1
+    CanBeBorrowed: 0
+    BorrowedChance: 0
