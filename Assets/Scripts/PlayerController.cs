@@ -60,15 +60,16 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 direction = new Vector3(_movementInput.x, 0f, _movementInput.y);
         direction = Vector3.ClampMagnitude(direction, 1f);
-
+    
         Vector3 targetVelocity = direction * _speed;
         _velocity = Vector3.Lerp(_velocity, targetVelocity, Time.deltaTime * (_velocity == Vector3.zero ? _acceleration : _deceleration));
-
+    
         Vector3 moveDirection = _cameraTransform.TransformDirection(_velocity);
-        moveDirection.y = 0f;
-
-        _rigidbody.linearVelocity = moveDirection;
+        moveDirection.y = _rigidbody.linearVelocity.y;
+    
+        _rigidbody.linearVelocity = moveDirection; 
     }
+
 
     private void UpdateInteractionUI()
     {
