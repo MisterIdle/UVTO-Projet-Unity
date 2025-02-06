@@ -234,8 +234,9 @@ MonoBehaviour:
   _deceleration: 10
   _cameraTransform: {fileID: 0}
   _grabPoint: {fileID: 5140290207059585389}
-  _grabDistance: 2
+  _grabDistance: 1
   _interactionDistance: 2
+  Score: 0
 --- !u!114 &667941840773981846
 MonoBehaviour:
   m_ObjectHideFlags: 0

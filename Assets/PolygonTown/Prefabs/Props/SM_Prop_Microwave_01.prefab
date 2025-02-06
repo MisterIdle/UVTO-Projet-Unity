@@ -281,4 +281,4 @@ MonoBehaviour:
   CanBeBorrowed: 0
   IsMandatory: 0
   Score: 0
-  _lerpSpeed: 5
+  _lerpSpeed: 1

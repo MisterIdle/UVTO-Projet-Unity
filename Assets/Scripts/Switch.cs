@@ -2,18 +2,61 @@ using UnityEngine;
 
 public class Switch : Interactive
 {
-    [SerializeField] private Light[] _light;
+    public Light[] lights;
+    public bool IsOn;
+
+    private void Start()
+    {
+        TurnOffAllLights();
+    }
 
     public override void Interact()
     {
-        ToggleLight();
+        ToggleLights();
     }
 
-    private void ToggleLight()
+    public void ToggleLights()
     {
-        foreach (var light in _light)
+        if (lights == null || lights.Length == 0)
         {
-            light.enabled = !light.enabled;
+            Debug.LogWarning("No lights assigned to the switch.");
+            return;
+        }
+
+        foreach (var light in lights)
+        {
+            if (light != null)
+            {
+                light.enabled = !light.enabled;
+            }
+            else
+            {
+                Debug.LogWarning("A light in the array is null.");
+            }
+        }
+
+        IsOn = !IsOn;
+    }
+
+
+    private void TurnOffAllLights()
+    {
+        if (lights == null || lights.Length == 0)
+        {
+            Debug.LogWarning("No lights assigned to the switch.");
+            return;
+        }
+
+        foreach (var light in lights)
+        {
+            if (light != null)
+            {
+                light.enabled = false;
+            }
+            else
+            {
+                Debug.LogWarning("A light in the array is null.");
+            }
         }
     }
 }

@@ -6,11 +6,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _acceleration = 10f;
     [SerializeField] private float _deceleration = 10f;
-    [SerializeField] private Transform _cameraTransform;
     [SerializeField] private Transform _grabPoint;
     [SerializeField] private float _grabDistance = 2f;
     [SerializeField] private float _interactionDistance = 5f;
 
+    public Transform cameraTransform;
     public int Score;
 
     private UIManager _uiManager;
@@ -65,7 +65,7 @@ public class PlayerController : MonoBehaviour
         Vector3 targetVelocity = direction * _speed;
         _velocity = Vector3.Lerp(_velocity, targetVelocity, Time.deltaTime * (_velocity == Vector3.zero ? _acceleration : _deceleration));
     
-        Vector3 moveDirection = _cameraTransform.TransformDirection(_velocity);
+        Vector3 moveDirection = cameraTransform.TransformDirection(_velocity);
         moveDirection.y = _rigidbody.linearVelocity.y;
     
         _rigidbody.linearVelocity = moveDirection; 
@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, _interactionDistance))
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, _interactionDistance))
         {
             if (hit.collider.TryGetComponent(out Grabbable targetGrabbable))
             {
@@ -119,7 +119,7 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (Physics.Raycast(_cameraTransform.position, _cameraTransform.forward, out RaycastHit hit, _interactionDistance))
+        if (Physics.Raycast(cameraTransform.position, cameraTransform.forward, out RaycastHit hit, _interactionDistance))
         {
             Grabbable targetGrabbable = hit.collider.GetComponent<Grabbable>();
             if (targetGrabbable != null)
