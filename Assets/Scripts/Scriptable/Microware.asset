@@ -18,3 +18,7 @@ MonoBehaviour:
   IsMandatory: 0
   CanBeBorrowed: 1
   BorrowedChance: 30
+  HasRandomRotationSpawn: 1
+  RotationChance: 360
+  HasRandomPositionSpawn: 1
+  PositionChance: 1

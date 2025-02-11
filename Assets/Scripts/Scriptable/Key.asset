@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 5438069798486658980, guid: 0cf637999220abd498fb6e1814e7c95d, type: 3}
   Score: 1
-  IsUnique: 1
+  IsUnique: 0
   IsMandatory: 0
   CanBeBorrowed: 0
   BorrowedChance: 0
