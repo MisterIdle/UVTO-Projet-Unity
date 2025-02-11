@@ -1,0 +1,17 @@
+fileFormatVersion: 2
+guid: c40f30d71d027524ab5c25b5a6f90988
+timeCreated: 1579572380
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Divider_Folding_01_Convex
+    2.asset
+  uploadId: 709681

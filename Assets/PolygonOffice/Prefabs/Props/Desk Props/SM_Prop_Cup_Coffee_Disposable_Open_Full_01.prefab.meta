@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 93ed208b5f8bef04ebf2e77e85c8d4cd
+timeCreated: 1575344938
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_Cup_Coffee_Disposable_Open_Full_01.prefab
+  uploadId: 709681

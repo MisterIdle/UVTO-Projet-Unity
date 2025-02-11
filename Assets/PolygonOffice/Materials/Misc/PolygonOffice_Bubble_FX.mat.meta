@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0d959f9df49849143aa160f6d562a48e
+timeCreated: 1576028677
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Materials/Misc/PolygonOffice_Bubble_FX.mat
+  uploadId: 709681

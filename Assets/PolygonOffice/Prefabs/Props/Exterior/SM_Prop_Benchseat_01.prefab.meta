@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: b1db80d10aab7344287c50db3e6218a2
+timeCreated: 1575860998
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Exterior/SM_Prop_Benchseat_01.prefab
+  uploadId: 709681

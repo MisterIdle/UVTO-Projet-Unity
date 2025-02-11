@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a7b51936df1715b499b281c601044851
+timeCreated: 1574900460
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_FootRest_01.prefab
+  uploadId: 709681

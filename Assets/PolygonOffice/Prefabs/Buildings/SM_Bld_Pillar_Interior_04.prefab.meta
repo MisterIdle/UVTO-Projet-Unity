@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2805b3713accb9d4fa249b461324af2c
+timeCreated: 1575343253
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Buildings/SM_Bld_Pillar_Interior_04.prefab
+  uploadId: 709681

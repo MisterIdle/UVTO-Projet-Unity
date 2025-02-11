@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4d06ce347f0e6d24e88ee85d67072fa4
+timeCreated: 1575848072
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_Computer_Tower_Flat_01.prefab
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cf2291f4c98329e41b1b3383b17c8c36
+timeCreated: 1579571904
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Wep_ToyGun_SMG_01_Convex.asset
+  uploadId: 709681

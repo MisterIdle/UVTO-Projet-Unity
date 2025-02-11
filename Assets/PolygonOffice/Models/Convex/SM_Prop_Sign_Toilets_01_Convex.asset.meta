@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 24d37b6313e32654d9729b2d7f0387cf
+timeCreated: 1579572135
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Sign_Toilets_01_Convex.asset
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cff07592506f223439390481eecd94db
+timeCreated: 1574900479
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Bathroom/SM_Prop_Urinal_01.prefab
+  uploadId: 709681

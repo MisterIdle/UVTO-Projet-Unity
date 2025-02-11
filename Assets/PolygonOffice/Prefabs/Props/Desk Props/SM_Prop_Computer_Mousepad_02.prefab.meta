@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: de83f5dc9df09b14b82492eb2ad4a4e4
+timeCreated: 1574900452
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_Computer_Mousepad_02.prefab
+  uploadId: 709681

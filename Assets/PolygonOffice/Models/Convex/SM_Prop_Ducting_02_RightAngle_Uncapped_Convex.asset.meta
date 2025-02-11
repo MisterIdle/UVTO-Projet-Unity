@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 405c1a1d69e974e419458eff4413d7ec
+timeCreated: 1579574405
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Ducting_02_RightAngle_Uncapped_Convex.asset
+  uploadId: 709681

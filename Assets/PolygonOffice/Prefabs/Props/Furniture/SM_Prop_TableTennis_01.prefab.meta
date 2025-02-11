@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6765e5bbbb1d0ae478858d5790e0c321
+timeCreated: 1575344915
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Furniture/SM_Prop_TableTennis_01.prefab
+  uploadId: 709681

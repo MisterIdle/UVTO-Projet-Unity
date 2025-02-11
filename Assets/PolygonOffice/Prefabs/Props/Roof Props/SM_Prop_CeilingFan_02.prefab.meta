@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d541e4d8cd00dd447a9f2a02a13c19a8
+timeCreated: 1575344952
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Roof Props/SM_Prop_CeilingFan_02.prefab
+  uploadId: 709681

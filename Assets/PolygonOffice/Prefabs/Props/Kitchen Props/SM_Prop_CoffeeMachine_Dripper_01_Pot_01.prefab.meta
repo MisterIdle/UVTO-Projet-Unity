@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 02b72d5e6a5b2974e90e45ea30e1773a
+timeCreated: 1575344925
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Kitchen Props/SM_Prop_CoffeeMachine_Dripper_01_Pot_01.prefab
+  uploadId: 709681

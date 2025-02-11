@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d3a5d755683f372468a30ec81fa1d78a
+timeCreated: 1575504951
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Wall Props/SM_Prop_Sign_Sales_01.prefab
+  uploadId: 709681

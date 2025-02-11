@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: eb7a2482bc65aba43b29a59515e0b600
+timeCreated: 1574900463
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Wall Props/SM_Prop_Employee_Wall_01.prefab
+  uploadId: 709681

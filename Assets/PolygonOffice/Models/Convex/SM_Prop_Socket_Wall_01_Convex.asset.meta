@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: eb0a2b8c4f804f04499f6dc890a716a4
+timeCreated: 1579572118
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Socket_Wall_01_Convex.asset
+  uploadId: 709681

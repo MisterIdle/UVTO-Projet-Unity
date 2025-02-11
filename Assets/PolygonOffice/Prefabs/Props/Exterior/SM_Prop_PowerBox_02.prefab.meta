@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: db4c28af644509943bc77d13ba93f395
+timeCreated: 1576115655
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Exterior/SM_Prop_PowerBox_02.prefab
+  uploadId: 709681

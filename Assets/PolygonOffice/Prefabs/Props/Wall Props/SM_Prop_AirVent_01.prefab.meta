@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ecc85f2b380cfe34294d1b47c52542de
+timeCreated: 1574900438
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Wall Props/SM_Prop_AirVent_01.prefab
+  uploadId: 709681

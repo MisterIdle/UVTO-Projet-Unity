@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6f37a7e9181d9ec4387a06c9ff3075f0
+timeCreated: 1575855863
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Buildings/SM_Bld_Wall_Glass_Window_Blinds_Down_01.prefab
+  uploadId: 709681

@@ -4,11 +4,14 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
+    [SerializeField] private float crouchSpeed = 2.5f;
     [SerializeField] private float acceleration = 10f;
     [SerializeField] private float deceleration = 10f;
     [SerializeField] private Transform grabPoint;
-    [SerializeField] private float grabDistance = 2f;
-    [SerializeField] private float interactionDistance = 5f;
+    [SerializeField] private float grabDistance = 1f;
+    [SerializeField] private float interactionDistance = 2f;
+    [SerializeField] private float crouchHeight = 0.5f;
+    private float originalHeight;
 
     public Transform cameraTransform;
     public float Score { get; private set; }
@@ -19,11 +22,15 @@ public class PlayerController : MonoBehaviour
     private Vector3 velocity;
     private Grabbable grabbable;
     private bool isGrabbing;
+    private bool isCrouching;
+    private CapsuleCollider playerCollider;
 
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         uiManager = FindFirstObjectByType<UIManager>();
+        playerCollider = GetComponent<CapsuleCollider>();
+        originalHeight = playerCollider.height;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -52,7 +59,8 @@ public class PlayerController : MonoBehaviour
     private void MovePlayer()
     {
         Vector3 direction = new Vector3(movementInput.x, 0f, movementInput.y).normalized;
-        Vector3 targetVelocity = direction * speed;
+        float currentSpeed = isCrouching ? crouchSpeed : speed;
+        Vector3 targetVelocity = direction * currentSpeed;
         velocity = Vector3.Lerp(velocity, targetVelocity, Time.deltaTime * (velocity == Vector3.zero ? acceleration : deceleration));
 
         Vector3 moveDirection = cameraTransform.TransformDirection(velocity);
@@ -145,5 +153,15 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
             Interact();
+    }
+
+    public void OnCrouch(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            isCrouching = !isCrouching;
+            playerCollider.height = isCrouching ? crouchHeight : originalHeight;
+            Debug.Log(isCrouching ? "Crouching" : "Standing up");
+        }
     }
 }

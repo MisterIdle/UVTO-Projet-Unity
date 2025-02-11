@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ee39d9aa8d48c8a4c874407eb1d3c84f
+timeCreated: 1579556416
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Monitor_Crt_01_Convex.asset
+  uploadId: 709681

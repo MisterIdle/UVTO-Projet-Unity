@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2d5425f1c9a5f424699e3cdf8d58b6f7
+timeCreated: 1579572116
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_ProjectorScreen_02_Down_Convex.asset
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 422ad77daa64ad2478e7a541e831bdb5
+timeCreated: 1574900457
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Roof Props/SM_Prop_Light_08.prefab
+  uploadId: 709681

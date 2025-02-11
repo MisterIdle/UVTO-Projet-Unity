@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 729d603c62501e34b9c06ccb97283c32
+timeCreated: 1575344910
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Bathroom/SM_Prop_Toilet_Paper_01.prefab
+  uploadId: 709681

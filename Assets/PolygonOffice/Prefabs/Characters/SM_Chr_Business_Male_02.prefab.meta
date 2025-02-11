@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3a07a1305adf7464bbd22995e1a94b51
+timeCreated: 1576111638
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Characters/SM_Chr_Business_Male_02.prefab
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 71b2c4113e7828d45938621e94d5075d
+timeCreated: 1575344922
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_PaperShredder_01.prefab
+  uploadId: 709681

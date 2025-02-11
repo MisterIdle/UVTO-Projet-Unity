@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9de8288edfa5d0a4ca309f6a3d808680
+timeCreated: 1575330547
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Furniture/SM_Prop_Couch_05.prefab
+  uploadId: 709681

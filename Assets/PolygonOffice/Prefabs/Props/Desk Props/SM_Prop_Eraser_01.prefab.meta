@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d5cae223f609d5a46bee739a90dbdace
+timeCreated: 1575344930
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_Eraser_01.prefab
+  uploadId: 709681

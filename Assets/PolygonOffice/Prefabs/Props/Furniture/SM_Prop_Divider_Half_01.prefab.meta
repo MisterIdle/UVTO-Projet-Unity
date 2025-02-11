@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5e8a166929e85ed46b6e9e83374d120f
+timeCreated: 1575344906
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Furniture/SM_Prop_Divider_Half_01.prefab
+  uploadId: 709681

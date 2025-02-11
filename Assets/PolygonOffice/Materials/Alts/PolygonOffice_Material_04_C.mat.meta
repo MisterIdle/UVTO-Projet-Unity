@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5eaa716a0f18d104b8e3d8d45162863c
+timeCreated: 1574894180
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Materials/Alts/PolygonOffice_Material_04_C.mat
+  uploadId: 709681

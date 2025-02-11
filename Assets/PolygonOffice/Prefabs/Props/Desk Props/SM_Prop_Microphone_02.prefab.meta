@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ed078cc5afb5ed144bf373137f2d3c13
+timeCreated: 1575344953
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_Microphone_02.prefab
+  uploadId: 709681

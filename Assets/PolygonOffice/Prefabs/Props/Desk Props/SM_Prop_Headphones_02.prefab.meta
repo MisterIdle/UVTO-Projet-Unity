@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e4449c0ab18efc44c9245fdaef07b5dc
+timeCreated: 1575344950
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_Headphones_02.prefab
+  uploadId: 709681

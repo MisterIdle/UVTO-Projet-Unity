@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 48b0da2e74e00254fa491183a19702e7
+timeCreated: 1574900448
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_Figure_Goblin_01.prefab
+  uploadId: 709681

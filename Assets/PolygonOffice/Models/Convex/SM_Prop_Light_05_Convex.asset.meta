@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 919b17b864b68444187ed96c5714521f
+timeCreated: 1579574423
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Light_05_Convex.asset
+  uploadId: 709681

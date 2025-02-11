@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 249735227e3f47e44817e6a6a6d466b6
+timeCreated: 1579556299
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Scissors_02_Convex.asset
+  uploadId: 709681

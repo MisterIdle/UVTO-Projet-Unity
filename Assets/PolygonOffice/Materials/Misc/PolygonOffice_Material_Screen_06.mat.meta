@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: cee406e736c18544685de2c3bc2b1c2e
+timeCreated: 1575342738
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Materials/Misc/PolygonOffice_Material_Screen_06.mat
+  uploadId: 709681

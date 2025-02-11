@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e9c1b1d320dbfd34a912d836564b0921
+timeCreated: 1579556470
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_GraphicsTablet_StylusStand_01_Convex.asset
+  uploadId: 709681

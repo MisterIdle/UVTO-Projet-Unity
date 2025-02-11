@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 203b0d6f147d67c4d8bf3ed320bfc2c7
+timeCreated: 1574900455
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Misc/SM_Prop_Propane_01.prefab
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6788c60b085894f4c84b82a5010dc9fa
+timeCreated: 1575344931
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Roof Props/SM_Prop_Ducting_02_T.prefab
+  uploadId: 709681

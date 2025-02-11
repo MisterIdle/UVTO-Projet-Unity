@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3156b700db2e6644a866b74f2a482f2c
+timeCreated: 1579566316
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Generic_Tree_01_Convex.asset
+  uploadId: 709681

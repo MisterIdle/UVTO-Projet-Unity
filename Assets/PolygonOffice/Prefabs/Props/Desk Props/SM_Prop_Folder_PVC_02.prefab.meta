@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: ded6d53137585e342bf0cc0a3a117b3a
+timeCreated: 1574900453
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_Folder_PVC_02.prefab
+  uploadId: 709681

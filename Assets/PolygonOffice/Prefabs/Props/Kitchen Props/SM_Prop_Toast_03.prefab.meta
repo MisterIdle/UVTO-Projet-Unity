@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 62a00231beb3fe64a9eb65c2ff946cfa
+timeCreated: 1575344896
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Kitchen Props/SM_Prop_Toast_03.prefab
+  uploadId: 709681

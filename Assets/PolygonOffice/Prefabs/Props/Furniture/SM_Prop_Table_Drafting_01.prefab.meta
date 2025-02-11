@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f9dccd985176a8d44968919da0aa3455
+timeCreated: 1575344923
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Furniture/SM_Prop_Table_Drafting_01.prefab
+  uploadId: 709681

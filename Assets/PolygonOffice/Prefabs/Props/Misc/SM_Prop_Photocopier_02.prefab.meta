@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5fbecf6373353854893f75b135c5a327
+timeCreated: 1575344897
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Misc/SM_Prop_Photocopier_02.prefab
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 671ca0356dd8ee1438475826af87692d
+timeCreated: 1574900464
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Kitchen Props/SM_Prop_Pot_01.prefab
+  uploadId: 709681

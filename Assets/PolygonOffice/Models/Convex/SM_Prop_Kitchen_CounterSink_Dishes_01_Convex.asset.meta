@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7c50d0f82b3f5e04c81c6e313bb6e795
+timeCreated: 1579571632
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Kitchen_CounterSink_Dishes_01_Convex.asset
+  uploadId: 709681

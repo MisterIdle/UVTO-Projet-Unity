@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e4c6f660ae6b78848843fec55a87c90f
+timeCreated: 1574900437
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Kitchen Props/SM_Prop_Fridge_02.prefab
+  uploadId: 709681

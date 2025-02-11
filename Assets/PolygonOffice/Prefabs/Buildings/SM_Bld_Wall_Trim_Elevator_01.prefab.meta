@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 4d33585fec8cb8a4887141e33a06ffc5
+timeCreated: 1575000257
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Buildings/SM_Bld_Wall_Trim_Elevator_01.prefab
+  uploadId: 709681

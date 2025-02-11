@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 3a1a27d3616cffa48b8651d0499b95da
+timeCreated: 1575344887
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Kitchen Props/SM_Prop_ChoppingBoard_01.prefab
+  uploadId: 709681

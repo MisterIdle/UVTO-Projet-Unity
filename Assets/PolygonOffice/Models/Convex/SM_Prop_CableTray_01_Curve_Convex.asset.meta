@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 6f4e4949203e99942be8bd7094ba2161
+timeCreated: 1579574434
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_CableTray_01_Curve_Convex.asset
+  uploadId: 709681

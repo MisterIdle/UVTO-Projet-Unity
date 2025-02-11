@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9711ea32cb8554c45a61112fa5a4d2f5
+timeCreated: 1579574426
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Ducting_02_Cap_Convex.asset
+  uploadId: 709681

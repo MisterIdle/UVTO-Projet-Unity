@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 946f9a8ae6444174b93305fe3d298777
+timeCreated: 1579571214
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Desk_04_Convex.asset
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 0270336c726c4aa4bbc7cbe6aec381b9
+timeCreated: 1575344897
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Roof Props/SM_Prop_Sprinkler.prefab
+  uploadId: 709681

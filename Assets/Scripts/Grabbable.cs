@@ -1,29 +1,30 @@
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody))]
+[RequireComponent(typeof(Rigidbody), typeof(MeshCollider))]
 public class Grabbable : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     private Transform _grabPoint;
-
     private PlayerController _playerController;
 
-    [SerializeField] private float _lerpSpeed = 2f;
+    [SerializeField] private float _lerpSpeed = 10f;
+    [SerializeField] private float _releaseForceMultiplier = 2f;
+
+    private Vector3 _velocity = Vector3.zero;
 
     private void Start()
     {
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = FindFirstObjectByType<PlayerController>();
-
-        _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
-        _rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 
     private void FixedUpdate()
     {
         if (_grabPoint != null)
         {
-            _rigidbody.MovePosition(Vector3.Lerp(_rigidbody.position, _grabPoint.position, Time.deltaTime * _lerpSpeed));
+            // Mouvement fluide vers le point de grab
+            Vector3 targetPosition = _grabPoint.position;
+            _rigidbody.MovePosition(Vector3.SmoothDamp(_rigidbody.position, targetPosition, ref _velocity, 1f / _lerpSpeed));
         }
     }
 
@@ -31,6 +32,9 @@ public class Grabbable : MonoBehaviour
     {
         _grabPoint = grabPoint;
         _rigidbody.useGravity = false;
+
+        _rigidbody.linearVelocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
     }
 
     public void Release()
@@ -38,6 +42,7 @@ public class Grabbable : MonoBehaviour
         _grabPoint = null;
         _rigidbody.useGravity = true;
 
-        _rigidbody.AddForce(_playerController.cameraTransform.forward * 2f, ForceMode.Impulse);
+        Vector3 releaseForce = _playerController.cameraTransform.forward * _releaseForceMultiplier + _velocity;
+        _rigidbody.AddForce(releaseForce, ForceMode.Impulse);
     }
 }

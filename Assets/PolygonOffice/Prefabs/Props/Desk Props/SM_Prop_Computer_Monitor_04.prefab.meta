@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f913d63706cc5604086d57e00c3bcb9b
+timeCreated: 1575342952
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_Computer_Monitor_04.prefab
+  uploadId: 709681

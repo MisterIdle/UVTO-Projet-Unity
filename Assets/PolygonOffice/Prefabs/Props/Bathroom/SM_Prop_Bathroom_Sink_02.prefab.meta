@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a3e9d2b6e4af2f54f9f5bad0e0bc986c
+timeCreated: 1574900462
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Bathroom/SM_Prop_Bathroom_Sink_02.prefab
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 8a6ee7f53d55e6c4c8d1e291d3621781
+timeCreated: 1579556340
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Console_PlayBox_01_Convex.asset
+  uploadId: 709681

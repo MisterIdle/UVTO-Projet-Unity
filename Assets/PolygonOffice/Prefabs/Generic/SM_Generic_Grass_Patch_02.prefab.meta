@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 604695ab4a5265f49a9523e33d849aa7
+timeCreated: 1575860997
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Generic/SM_Generic_Grass_Patch_02.prefab
+  uploadId: 709681

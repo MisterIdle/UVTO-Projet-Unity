@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 87c0afbf10ad5d14295dd0d85cc70407
+timeCreated: 1576120616
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Characters/SM_Chr_Attachment_Nametag_01.prefab
+  uploadId: 709681

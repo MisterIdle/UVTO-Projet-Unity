@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: feeedd79b3dccbd42b59e3f643966909
+timeCreated: 1574900453
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Furniture/SM_Prop_CoffeeTable_03.prefab
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 2d57c064a79852544948bfb78fd762d7
+timeCreated: 1575861001
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Exterior/SM_Prop_Outdoor_Seat_01.prefab
+  uploadId: 709681

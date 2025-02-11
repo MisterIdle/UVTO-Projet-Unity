@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: a040b238fdf3b314b8f908f69ccb9b4a
+timeCreated: 1579571845
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Xmas_Present_02_Convex.asset
+  uploadId: 709681

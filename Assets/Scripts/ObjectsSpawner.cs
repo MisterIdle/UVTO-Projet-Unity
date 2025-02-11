@@ -16,7 +16,6 @@ public class ObjectsSpawner : MonoBehaviour
 
     void Start()
     {
-        Debug.Log("Starting ObjectsSpawner...");
         InitializeSpawnPoints();
         SpawnItems();
     }
@@ -24,27 +23,24 @@ public class ObjectsSpawner : MonoBehaviour
     private void InitializeSpawnPoints()
     {
         spawnPoints = new List<Transform>(transform.Cast<Transform>());
-        Debug.Log($"Initialized {spawnPoints.Count} spawn points.");
     }
 
     private void SpawnItems()
     {
         List<SpawnableObject> mandatoryItems = ItemDatabase.items.Where(item => item.IsMandatory).ToList();
-        Debug.Log($"Found {mandatoryItems.Count} mandatory items to spawn.");
         SpawnMandatoryItems(mandatoryItems);
 
         List<SpawnableObject> availableItems = ItemDatabase.items.Where(item => !item.IsUnique || !spawnedUniqueItems.Contains(item)).ToList();
         int availableItemCount = availableItems.Count;
-        if (availableItemCount == 0) {
-            Debug.Log("No more unique items to spawn.");
+
+        if (availableItemCount == 0)
             return;
-        }
 
         while (spawnPoints.Count > 0 && availableItemCount > 0)
         {
             int spawnIndex = Random.Range(0, availableItemCount);
             SpawnableObject selectedItem = availableItems[spawnIndex];
-            Debug.Log($"Spawning item: {selectedItem.name}");
+
             SpawnItemAtPoint(selectedItem);
             availableItems = availableItems.Where(item => !spawnedUniqueItems.Contains(item)).ToList();
             availableItemCount = availableItems.Count;
@@ -56,7 +52,6 @@ public class ObjectsSpawner : MonoBehaviour
         foreach (var item in mandatoryItems)
         {
             if (spawnPoints.Count == 0) break;
-            Debug.Log($"Spawning mandatory item: {item.name}");
             SpawnItemAtPoint(item);
         }
     }
@@ -70,32 +65,39 @@ public class ObjectsSpawner : MonoBehaviour
 
         if (!item.IsMandatory && Random.Range(0, 100) < ChanceToBeEmpty)
         {
-            Debug.Log($"Skipping spawn for item: {item.name} due to chance.");
             spawnPoints.RemoveAt(spawnIndex);
             return;
         }
 
         if (item.Prefab == null)
-        {
-            Debug.LogWarning($"Item {item.name} has no prefab assigned.");
             return;
-        }
 
-        GameObject spawnedObject = Instantiate(item.Prefab, spawnPoint.position, spawnPoint.rotation, ObjectsParent.transform);
-        Debug.Log($"Spawned item: {item.name} at position: {spawnPoint.position}");
+        Vector3 spawnPosition = spawnPoint.position;
+        Quaternion spawnRotation = spawnPoint.rotation;
 
-        if (item.IsUnique)
+        if (item.HasRandomPositionSpawn)
         {
-            spawnedUniqueItems.Add(item);
+            spawnPosition += new Vector3(Random.Range(-item.PositionChance, item.PositionChance), 0, Random.Range(-item.PositionChance, item.PositionChance));
         }
 
-        if (item.CanBeBorrowed && Random.Range(0, 100) < item.BorrowedChance)
+        if (item.HasRandomRotationSpawn)
+        {
+            spawnRotation *= Quaternion.Euler(0, Random.Range(0, item.RotationChance), 0);
+        }
+
+        GameObject spawnedObject = Instantiate(item.Prefab, spawnPosition, spawnRotation, ObjectsParent.transform);
+
+        if (item.IsUnique || (item.CanBeBorrowed && Random.Range(0, 100) < item.BorrowedChance))
         {
             var borrowable = spawnedObject.AddComponent<Borrowable>();
             var grabbable = spawnedObject.GetComponent<Grabbable>();
-            
+
             borrowable.ScoreValue = item.Score;
-            Debug.Log($"Item {item.name} can be borrowed with score value: {item.Score}");
+
+            if (item.IsUnique)
+            {
+                spawnedUniqueItems.Add(item);
+            }
 
             Destroy(grabbable);
         }

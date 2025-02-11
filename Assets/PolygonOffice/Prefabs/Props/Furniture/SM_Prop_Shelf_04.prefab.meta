@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 91fb0d151b33a394492640229f6b248a
+timeCreated: 1574900474
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Furniture/SM_Prop_Shelf_04.prefab
+  uploadId: 709681

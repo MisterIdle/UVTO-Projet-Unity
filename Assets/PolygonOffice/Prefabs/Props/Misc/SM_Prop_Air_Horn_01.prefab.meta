@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 61db06090bd819a48bd5c06454e295cf
+timeCreated: 1575344895
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Misc/SM_Prop_Air_Horn_01.prefab
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 910e6bfc38c686c4693b22f4c0d7ca7b
+timeCreated: 1575342017
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Buildings/SM_Bld_Wall_Glass_Pillar_02.prefab
+  uploadId: 709681

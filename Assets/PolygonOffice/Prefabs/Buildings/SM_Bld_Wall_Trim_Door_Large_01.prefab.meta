@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f394b3f188f36f84fa951ac9c7fdee54
+timeCreated: 1574900440
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Buildings/SM_Bld_Wall_Trim_Door_Large_01.prefab
+  uploadId: 709681

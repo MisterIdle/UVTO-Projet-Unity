@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 62daf3c45d6225846bc78ad7e8fa40d5
+timeCreated: 1575000255
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Buildings/SM_Bld_Wall_Brick_Elevator_01.prefab
+  uploadId: 709681

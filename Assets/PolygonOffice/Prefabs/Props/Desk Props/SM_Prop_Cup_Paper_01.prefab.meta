@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 7a16656eab9b5f249a62709adbc2a7e4
+timeCreated: 1576109971
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_Cup_Paper_01.prefab
+  uploadId: 709681

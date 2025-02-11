@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: d9f496733401b3f4cad8a385afe08ddf
+timeCreated: 1575344892
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Furniture/SM_Prop_CubicalWall_01.prefab
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 9cdb114f4d98e5d43b07e1a5877f29d2
+timeCreated: 1578614135
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 100100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Prefabs/Props/Desk Props/SM_Prop_Printer_3D_Toy_01.prefab
+  uploadId: 709681

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: f3253ba5cc0075140ab2188f891a5173
+timeCreated: 1579556368
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_SD_Card_01_Convex.asset
+  uploadId: 709681

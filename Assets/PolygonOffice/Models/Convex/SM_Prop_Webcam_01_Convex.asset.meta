@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 893420acd493d8041bc8e45e87d2ba8b
+timeCreated: 1579556346
+licenseType: Store
+NativeFormatImporter:
+  mainObjectFileID: 11400000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 159492
+  packageName: POLYGON Office - Low Poly 3D Art by Synty
+  packageVersion: 1.8.2
+  assetPath: Assets/PolygonOffice/Models/Convex/SM_Prop_Webcam_01_Convex.asset
+  uploadId: 709681
