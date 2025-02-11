@@ -3,7 +3,6 @@ using UnityEngine;
 public class Switch : Interactive
 {
     public Light[] lights;
-    public bool IsOn;
 
     private void Start()
     {
@@ -35,7 +34,7 @@ public class Switch : Interactive
             }
         }
 
-        IsOn = !IsOn;
+        IsActivated = !IsActivated;
     }
 
 

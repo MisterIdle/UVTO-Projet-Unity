@@ -5,200 +5,266 @@ using System.Collections;
 public class Enemy : MonoBehaviour
 {
     private NavMeshAgent _agent;
-    private Transform _player;
-    public float PlayerDetectionRadius = 10f;
-    public float SwitchDetectionRadius = 5f;
-    public float DoorDetectionRadius = 5f;
-    public float PatrolRadius = 20f;
-    public float MinDistancePatrol = 5f;
-    public int ActionPerSecond = 2;
-    public float ZoneActivationRadius = 3f;
-    private bool _isPatrolling;
-    private bool _isActionInProgress;
-    private Vector3 _lastPatrolPoint;
+    private PlayerController _player;
+    private Vector3 _lastKnownPlayerPosition;
+    private bool _isChasing = false;
+    private bool _lostPlayer = false;
+    private bool _isLookingAround = false;
+    private bool _isInteracting = false;
 
-    void Start()
+    [Header("Detection Settings")]
+    [SerializeField] private float _frontDetectionRadius = 7f;
+    [SerializeField] private float _frontDetectionAngle = 30f;
+    [SerializeField] private float _detectionRadius = 4f;
+    [SerializeField] private float _chaseDetectionRadius = 10f;
+
+    [Header("Movement Settings")]
+    [SerializeField] private float _patrolSpeed = 1.5f;
+    [SerializeField] private float _chaseSpeed = 2f;
+    [SerializeField] private float _lookAroundDuration = 1f;
+    [SerializeField] private float _lookAroundAngle = 90f;
+
+    [Header("Interaction Settings")]
+    [SerializeField] private float _interactRadius = 2f;
+    [SerializeField] private float _lostPlayerCooldown = 3f;
+    [SerializeField] private float _interactDuration = 2f;
+
+    [SerializeField] private Transform[] _patrolPoints;
+    private int currentPatrolIndex = 0;
+
+    private void Start()
     {
         _agent = GetComponent<NavMeshAgent>();
-        _player = FindFirstObjectByType<PlayerController>().transform;
-        _isPatrolling = true;
-        GoToNextPatrolPoint();
-        _isActionInProgress = false;
+        _player = FindFirstObjectByType<PlayerController>();
+        _agent.speed = _patrolSpeed;
+
+        PatrolNextPoint();
     }
 
-    void Update()
+    private void Update()
     {
-        float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+        HandleInteractions();
 
-        if (distanceToPlayer <= PlayerDetectionRadius)
-            PursuePlayer();
-
-        else
-            HandleNearbyObjects();
-
-        if (_isPatrolling)
-            Patrol();
-
-        TryInteractWithObjects();
-    }
-
-    private void PursuePlayer()
-    {
-        _agent.SetDestination(_player.position);
-        _isPatrolling = false;
-    }
-
-    private void HandleNearbyObjects()
-    {
-        Transform nearestInactiveSwitch = GetNearestInactiveSwitch();
-        Transform nearestInactiveDoor = GetNearestInactiveDoor();
-
-        if (nearestInactiveSwitch != null && Vector3.Distance(transform.position, nearestInactiveSwitch.position) <= SwitchDetectionRadius)
+        if (_isChasing)
         {
-            MoveToTarget(nearestInactiveSwitch);
+            HandleChasing();
         }
-        else if (nearestInactiveDoor != null && Vector3.Distance(transform.position, nearestInactiveDoor.position) <= DoorDetectionRadius)
+        else if (!_isLookingAround)
         {
-            MoveToTarget(nearestInactiveDoor);
+            HandlePatrolOrLookAround();
         }
-        else if (!_isPatrolling)
+
+        CheckForPlayerDetection();
+    }
+
+    private void HandleChasing()
+    {
+        _agent.SetDestination(_lastKnownPlayerPosition);
+
+        if (Vector3.Distance(transform.position, _player.transform.position) <= _chaseDetectionRadius)
         {
-            _isPatrolling = true;
-            GoToNextPatrolPoint();
+            _lastKnownPlayerPosition = _player.transform.position;
+            _lostPlayer = false;
+            _agent.speed = _chaseSpeed;
+        }
+        else if (!_lostPlayer)
+        {
+            _lostPlayer = true;
+            _agent.speed = _patrolSpeed;
+            StartCoroutine(ResetDetection());
         }
     }
 
-    private void MoveToTarget(Transform target)
-    {
-        _agent.SetDestination(target.position);
-        _isPatrolling = false;
-        FaceTarget(target);
-    }
-
-    private void GoToNextPatrolPoint()
-    {
-        Vector3 randomDirection;
-        NavMeshHit hit;
-
-        bool foundValidPoint = false;
-
-        while (!foundValidPoint)
-        {
-            randomDirection = Random.insideUnitSphere * PatrolRadius + transform.position;
-
-            if (NavMesh.SamplePosition(randomDirection, out hit, PatrolRadius, 1))
-            {
-                if (Vector3.Distance(hit.position, _lastPatrolPoint) >= MinDistancePatrol)
-                {
-                    foundValidPoint = true;
-                    _lastPatrolPoint = hit.position;
-                    _agent.destination = hit.position;
-                }
-            }
-        }
-    }
-
-    private void Patrol()
+    private void HandlePatrolOrLookAround()
     {
         if (!_agent.pathPending && _agent.remainingDistance < 0.5f)
         {
-            if (Vector3.Distance(_agent.destination, _lastPatrolPoint) > 1f)
+            StartCoroutine(LookAround());
+        }
+    }
+
+    private void CheckForPlayerDetection()
+    {
+        if (_isChasing) return;
+
+        bool playerDetected = IsPlayerInDetectionCone(transform.forward, _frontDetectionRadius, _frontDetectionAngle) ||
+                              IsPlayerInDetectionCone(-transform.forward, _detectionRadius, 180f);
+
+        if (playerDetected)
+        {
+            _lastKnownPlayerPosition = _player.transform.position;
+            _isChasing = true;
+            _lostPlayer = false;
+
+            if (_isLookingAround)
             {
-                GoToNextPatrolPoint();
-            }
-            else
-            {
-                GoToNextPatrolPoint();
+                StopAllCoroutines();
+                _isLookingAround = false;
+                _agent.isStopped = false;
             }
         }
     }
 
-    private void TryInteractWithObjects()
+    private bool IsPlayerInDetectionCone(Vector3 direction, float radius, float angle)
     {
-        if (!_isActionInProgress)
+        Collider[] hits = Physics.OverlapSphere(transform.position, radius);
+        foreach (Collider hit in hits)
         {
-            Collider[] hitColliders = Physics.OverlapSphere(transform.position, ZoneActivationRadius);
-            foreach (var hitCollider in hitColliders)
+            if (hit.TryGetComponent(out PlayerController player))
             {
-                Interactive targetInteractive = hitCollider.GetComponent<Interactive>();
-                if (targetInteractive != null)
-                {
-                    Door doorObj = targetInteractive as Door;
-                    if (doorObj != null && !doorObj.IsOpen)
-                    {
-                        StartCoroutine(InteractWithDelay(targetInteractive));
-                        break;
-                    }
+                Vector3 playerDirection = player.transform.position - transform.position;
+                float playerAngle = Vector3.Angle(direction, playerDirection);
 
-                    Switch switchObj = targetInteractive as Switch;
-                    if (switchObj != null && !switchObj.IsOn)
-                    {
-                        StartCoroutine(InteractWithDelay(targetInteractive));
-                        break;
-                    }
+                if (playerAngle < angle)
+                {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    private void PatrolNextPoint()
+    {
+        if (_patrolPoints.Length == 0)
+        {
+            Debug.LogError("No patrol points assigned to the enemy!");
+            return;
+        }
+
+        int nextPatrolIndex = Random.Range(0, _patrolPoints.Length);
+
+        while (nextPatrolIndex == currentPatrolIndex)
+        {
+            nextPatrolIndex = Random.Range(0, _patrolPoints.Length);
+        }
+
+        currentPatrolIndex = nextPatrolIndex;
+        _agent.SetDestination(_patrolPoints[currentPatrolIndex].position);
+    }
+
+    private IEnumerator LookAround()
+    {
+        if (_isLookingAround) yield break;
+
+        _isLookingAround = true;
+        _agent.isStopped = true;
+
+        for (int i = 0; i < 4; i++)
+        {
+            Quaternion targetRotation = Quaternion.Euler(0, transform.eulerAngles.y + _lookAroundAngle, 0);
+            float elapsedTime = 0f;
+
+            while (elapsedTime < _lookAroundDuration)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, elapsedTime / _lookAroundDuration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+        }
+
+        _agent.isStopped = false;
+        _isLookingAround = false;
+        PatrolNextPoint();
+    }
+
+    private IEnumerator ResetDetection()
+    {
+        yield return new WaitForSeconds(_lostPlayerCooldown);
+        _isChasing = false;
+        StartCoroutine(LookAround());
+    }
+
+    private void HandleInteractions()
+    {
+        if (_isInteracting) return;
+
+        Collider[] hits = Physics.OverlapSphere(transform.position, _detectionRadius);
+        foreach (Collider hit in hits)
+        {
+            if (hit.TryGetComponent(out Interactive interactive))
+            {
+                if (interactive.IsActivated)
+                    continue;
+
+                _agent.SetDestination(interactive.transform.position);
+
+                if (Vector3.Distance(transform.position, interactive.transform.position) <= _interactRadius)
+                {
+                    StartCoroutine(InteractWithObject(interactive));
                 }
             }
         }
     }
 
-    private IEnumerator InteractWithDelay(Interactive targetInteractive)
+    private IEnumerator InteractWithObject(Interactive interactive)
     {
-        _isActionInProgress = true;
-        targetInteractive.Interact();
-        yield return new WaitForSeconds(ActionPerSecond);
-        _isActionInProgress = false;
-        _agent.SetDestination(_lastPatrolPoint);
+        _isInteracting = true;
+
+        HandleInteractiveObject(interactive);
+
+        yield return new WaitForSeconds(_interactDuration);
+
+        _isInteracting = false;
     }
 
-    private Transform GetNearestInactiveSwitch()
+    private void HandleInteractiveObject(Interactive interactive)
     {
-        Transform nearestSwitch = null;
-        float closestDistance = float.MaxValue;
-
-        foreach (Switch switchTransform in FindObjectsByType<Switch>(FindObjectsSortMode.None))
+        switch (interactive)
         {
-            Switch switchObj = switchTransform.GetComponent<Switch>();
-            if (switchObj != null && !switchObj.IsOn)
+            case Switch s:
+                s.Interact();
+                break;
+            case Door d:
+                d.Interact();
+                break;
+        }
+
+        if (_isChasing)
+        {
+            _agent.SetDestination(_lastKnownPlayerPosition);
+        }
+        else if (!_isChasing && _patrolPoints.Length > 0)
+        {
+            PatrolNextPoint();
+        }
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawWireSphere(transform.position, _frontDetectionRadius);
+
+        Gizmos.color = Color.blue;
+        Gizmos.DrawWireSphere(transform.position, _detectionRadius);
+
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawWireSphere(transform.position, _interactRadius);
+
+        DrawDetectionCone(transform.forward, _frontDetectionRadius, _frontDetectionAngle, Color.red);
+
+        Gizmos.color = Color.yellow;
+        if (_patrolPoints != null)
+        {
+            foreach (var point in _patrolPoints)
             {
-                float distance = Vector3.Distance(transform.position, switchTransform.transform.position);
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    nearestSwitch = switchTransform.transform;
-                }
+                Gizmos.DrawSphere(point.position, 0.2f);
             }
         }
 
-        return nearestSwitch;
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, _chaseDetectionRadius);
     }
 
-    private Transform GetNearestInactiveDoor()
+    private void DrawDetectionCone(Vector3 direction, float radius, float angle, Color color)
     {
-        Transform nearestDoor = null;
-        float closestDistance = float.MaxValue;
+        Gizmos.color = color;
 
-        foreach (Door doorTransform in FindObjectsByType<Door>(FindObjectsSortMode.None))
-        {
-            Door doorObj = doorTransform.GetComponent<Door>();
-            if (doorObj != null && !doorObj.IsOpen)
-            {
-                float distance = Vector3.Distance(transform.position, doorTransform.transform.position);
-                if (distance < closestDistance)
-                {
-                    closestDistance = distance;
-                    nearestDoor = doorTransform.transform;
-                }
-            }
-        }
+        Vector3 leftLimit = Quaternion.Euler(0, -angle, 0) * direction * radius;
+        Vector3 rightLimit = Quaternion.Euler(0, angle, 0) * direction * radius;
 
-        return nearestDoor;
-    }
-
-    private void FaceTarget(Transform target)
-    {
-        Vector3 directionToTarget = target.position - transform.position;
-        directionToTarget.y = 0f;
-        Quaternion targetRotation = Quaternion.LookRotation(directionToTarget);
-        transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 5f);
+        Gizmos.DrawLine(transform.position, transform.position + leftLimit);
+        Gizmos.DrawLine(transform.position, transform.position + rightLimit);
+        Gizmos.DrawLine(transform.position + leftLimit, transform.position + rightLimit);
     }
 }

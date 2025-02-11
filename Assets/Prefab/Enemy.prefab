@@ -99,7 +99,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -146,10 +146,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec7765f7b5ec7443a21eee65112e09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerDetectionRadius: 10
-  SwitchDetectionRadius: 100
-  DoorDetectionRadius: 20
-  PatrolRadius: 30
-  MinDistancePatrol: 10
-  ActionPerSecond: 2
-  ZoneActivationRadius: 3
+  _frontDetectionRadius: 7
+  _frontDetectionAngle: 30
+  _detectionRadius: 4
+  _lostPlayerCooldown: 3
+  _patrolSpeed: 1.5
+  _patrolPoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  _lookAroundDuration: 1
+  _lookAroundAngle: 90
+  _chaseDetectionRadius: 10
+  _chaseSpeed: 2

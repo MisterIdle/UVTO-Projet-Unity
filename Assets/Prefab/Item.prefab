@@ -149,4 +149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3325dbf8245d7d349bc5a4bd1f33053f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  CanBeBorrowed: 0
+  IsMandatory: 0
+  Score: 0
   _lerpSpeed: 5
