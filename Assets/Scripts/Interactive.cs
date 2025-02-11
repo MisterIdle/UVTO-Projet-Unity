@@ -2,7 +2,9 @@ using UnityEngine;
 
 public class Interactive : MonoBehaviour
 {
-    public bool IsActivated { get; protected set; }
+
+    public bool IsActivated;
+    public bool IgnoreBot;
 
     public virtual void Interact() {}
 }

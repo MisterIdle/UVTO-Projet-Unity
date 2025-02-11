@@ -1,4 +1,3 @@
-using Unity.VisualScripting;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -6,10 +5,6 @@ public class Grabbable : MonoBehaviour
 {
     private Rigidbody _rigidbody;
     private Transform _grabPoint;
-
-    public bool CanBeBorrowed = false;
-    public bool IsMandatory = false;
-    public int Score = 0;
 
     private PlayerController _playerController;
 
@@ -36,12 +31,6 @@ public class Grabbable : MonoBehaviour
     {
         _grabPoint = grabPoint;
         _rigidbody.useGravity = false;
-    }
-
-    public void Borrow()
-    {
-        _playerController.Score += Score;
-        Destroy(gameObject);
     }
 
     public void Release()

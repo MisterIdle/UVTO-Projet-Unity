@@ -229,14 +229,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef6cbf2c7127894f983101d3a385356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 5
-  _acceleration: 10
-  _deceleration: 10
-  _cameraTransform: {fileID: 0}
-  _grabPoint: {fileID: 5140290207059585389}
-  _grabDistance: 1
-  _interactionDistance: 2
-  Score: 0
+  speed: 5
+  acceleration: 10
+  deceleration: 10
+  grabPoint: {fileID: 5140290207059585389}
+  grabDistance: 2
+  interactionDistance: 5
+  cameraTransform: {fileID: 0}
 --- !u!114 &667941840773981846
 MonoBehaviour:
   m_ObjectHideFlags: 0

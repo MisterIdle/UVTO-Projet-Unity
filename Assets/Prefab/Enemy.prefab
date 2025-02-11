@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 6409420514898269632}
   - component: {fileID: 435787974866997493}
   - component: {fileID: 7009560134783078128}
-  - component: {fileID: 1063170498806995194}
   - component: {fileID: 6570395650304520723}
   m_Layer: 0
   m_Name: Enemy
@@ -108,32 +107,9 @@ NavMeshAgent:
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 1
+  m_BaseOffset: 0.95
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!136 &1063170498806995194
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2123586008334422882}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &6570395650304520723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,12 +125,15 @@ MonoBehaviour:
   _frontDetectionRadius: 7
   _frontDetectionAngle: 30
   _detectionRadius: 4
-  _lostPlayerCooldown: 3
+  _chaseDetectionRadius: 10
   _patrolSpeed: 1.5
+  _chaseSpeed: 2
+  _lookAroundDuration: 1
+  _lookAroundAngle: 90
+  _interactRadius: 2
+  _lostPlayerCooldown: 3
+  _interactDuration: 2
   _patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
-  _lookAroundDuration: 1
-  _lookAroundAngle: 90
-  _chaseDetectionRadius: 10
-  _chaseSpeed: 2
+  - {fileID: 0}

@@ -1,115 +1,105 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class ObjectsSpawner : MonoBehaviour
 {
     public SpawnableObjectsList ItemDatabase;
-    public GameObject ItemParent;
+    public GameObject ObjectsParent;
+    [SerializeField] private Borrowable[] _borrowableObjects;
+    [SerializeField] private int numberOfObjectsBorrow;
 
     [Range(1, 100)] public int ChanceToBeEmpty = 50;
 
     private List<Transform> spawnPoints;
-    private HashSet<SpawnableObjects> spawnedUniqueItems = new HashSet<SpawnableObjects>();
+    private HashSet<SpawnableObject> spawnedUniqueItems = new HashSet<SpawnableObject>();
 
-    void Awake()
-    {        
+    void Start()
+    {
+        Debug.Log("Starting ObjectsSpawner...");
         InitializeSpawnPoints();
         SpawnItems();
-        Debug.Log("All items are spawned.");
     }
 
     private void InitializeSpawnPoints()
     {
-        spawnPoints = new List<Transform>();
-        foreach (Transform child in transform)
-        {
-            spawnPoints.Add(child);
-        }
+        spawnPoints = new List<Transform>(transform.Cast<Transform>());
+        Debug.Log($"Initialized {spawnPoints.Count} spawn points.");
     }
 
     private void SpawnItems()
     {
-        List<SpawnableObjects> byPassItem = GetMandatoryItems();
-        SpawnMandatoryItems(byPassItem);
+        List<SpawnableObject> mandatoryItems = ItemDatabase.items.Where(item => item.IsMandatory).ToList();
+        Debug.Log($"Found {mandatoryItems.Count} mandatory items to spawn.");
+        SpawnMandatoryItems(mandatoryItems);
 
-        while (spawnPoints.Count > 0)
+        List<SpawnableObject> availableItems = ItemDatabase.items.Where(item => !item.IsUnique || !spawnedUniqueItems.Contains(item)).ToList();
+        int availableItemCount = availableItems.Count;
+        if (availableItemCount == 0) {
+            Debug.Log("No more unique items to spawn.");
+            return;
+        }
+
+        while (spawnPoints.Count > 0 && availableItemCount > 0)
         {
-            List<SpawnableObjects> availableItems = GetAvailableItems();
-
-            if (availableItems.Count == 0)
-            {
-                Debug.Log("All unique items are spawned and no other items are available to spawn.");
-                break;
-            }
-
-            SpawnableObjects selectedItem = SelectRandomItem(availableItems);
+            int spawnIndex = Random.Range(0, availableItemCount);
+            SpawnableObject selectedItem = availableItems[spawnIndex];
+            Debug.Log($"Spawning item: {selectedItem.name}");
             SpawnItemAtPoint(selectedItem);
+            availableItems = availableItems.Where(item => !spawnedUniqueItems.Contains(item)).ToList();
+            availableItemCount = availableItems.Count;
         }
     }
 
-    private List<SpawnableObjects> GetMandatoryItems()
+    private void SpawnMandatoryItems(List<SpawnableObject> mandatoryItems)
     {
-        return ItemDatabase.items.FindAll(item => item.IsMandatory);
-    }
-
-    private void SpawnMandatoryItems(List<SpawnableObjects> byPassItems)
-    {
-        foreach (var item in byPassItems)
+        foreach (var item in mandatoryItems)
         {
             if (spawnPoints.Count == 0) break;
+            Debug.Log($"Spawning mandatory item: {item.name}");
             SpawnItemAtPoint(item);
         }
     }
 
-    private List<SpawnableObjects> GetAvailableItems()
+    private void SpawnItemAtPoint(SpawnableObject item)
     {
-        return ItemDatabase.items.FindAll(item => !item.IsUnique || !spawnedUniqueItems.Contains(item));
-    }
+        if (spawnPoints.Count == 0) return;
 
-    private SpawnableObjects SelectRandomItem(List<SpawnableObjects> availableItems)
-    {
-        return availableItems[Random.Range(0, availableItems.Count)];
-    }
-
-    private void SpawnItemAtPoint(SpawnableObjects item)
-    {
         int spawnIndex = Random.Range(0, spawnPoints.Count);
         Transform spawnPoint = spawnPoints[spawnIndex];
-    
-        if (!item.IsMandatory && ChanceToBeEmpty >= Random.Range(0, 100))
+
+        if (!item.IsMandatory && Random.Range(0, 100) < ChanceToBeEmpty)
         {
+            Debug.Log($"Skipping spawn for item: {item.name} due to chance.");
             spawnPoints.RemoveAt(spawnIndex);
             return;
         }
-    
-        GameObject obj = Instantiate(item.Prefab, spawnPoint.position, spawnPoint.rotation);
-        obj.transform.SetParent(ItemParent.transform);
-    
+
+        if (item.Prefab == null)
+        {
+            Debug.LogWarning($"Item {item.name} has no prefab assigned.");
+            return;
+        }
+
+        GameObject spawnedObject = Instantiate(item.Prefab, spawnPoint.position, spawnPoint.rotation, ObjectsParent.transform);
+        Debug.Log($"Spawned item: {item.name} at position: {spawnPoint.position}");
+
         if (item.IsUnique)
         {
             spawnedUniqueItems.Add(item);
         }
-    
-        HandleGrabbableItems(obj, item);
-    
-        spawnPoints.RemoveAt(spawnIndex);
-    }
 
-
-    private void HandleGrabbableItems(GameObject obj, SpawnableObjects item)
-    {
-        if (obj.TryGetComponent(out Grabbable grabbable))
+        if (item.CanBeBorrowed && Random.Range(0, 100) < item.BorrowedChance)
         {
-            if (item.IsMandatory)
-            {
-                grabbable.IsMandatory = true;
-            }
+            var borrowable = spawnedObject.AddComponent<Borrowable>();
+            var grabbable = spawnedObject.GetComponent<Grabbable>();
+            
+            borrowable.ScoreValue = item.Score;
+            Debug.Log($"Item {item.name} can be borrowed with score value: {item.Score}");
 
-            if (item.CanBeBorrowed)
-            {
-                grabbable.CanBeBorrowed = item.BorrowedChance >= Random.Range(0, 100);
-                grabbable.Score = item.Score;
-            }
+            Destroy(grabbable);
         }
+
+        spawnPoints.RemoveAt(spawnIndex);
     }
 }

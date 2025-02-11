@@ -23,7 +23,7 @@ public class UIManager : MonoBehaviour
         InteractionText.text = text;
     }
 
-    public void SetScoreText(int score)
+    public void SetScoreText(float score)
     {
         ScoreText.text = "Score: " + score;
     }

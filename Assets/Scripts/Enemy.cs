@@ -212,10 +212,10 @@ public class Enemy : MonoBehaviour
     {
         switch (interactive)
         {
-            case Switch s:
+            case Switch s when !_isChasing && !s.IgnoreBot:
                 s.Interact();
                 break;
-            case Door d:
+            case Door d when !d.IgnoreBot:
                 d.Interact();
                 break;
         }
@@ -242,15 +242,6 @@ public class Enemy : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, _interactRadius);
 
         DrawDetectionCone(transform.forward, _frontDetectionRadius, _frontDetectionAngle, Color.red);
-
-        Gizmos.color = Color.yellow;
-        if (_patrolPoints != null)
-        {
-            foreach (var point in _patrolPoints)
-            {
-                Gizmos.DrawSphere(point.position, 0.2f);
-            }
-        }
 
         Gizmos.color = Color.magenta;
         Gizmos.DrawWireSphere(transform.position, _chaseDetectionRadius);

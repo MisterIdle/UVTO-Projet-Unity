@@ -9,7 +9,7 @@ public class Door : Interactive
     public float MoveDistance = 0f;
     public float OpenAngle = 90f;
     public bool OpenToRight = true;
-    
+
     private bool _isAnimating = false;
     private Quaternion _initialRotation;
     private Vector3 _initialPosition;
@@ -20,6 +20,7 @@ public class Door : Interactive
     {
         _initialRotation = transform.localRotation;
         _initialPosition = transform.localPosition;
+        
         _meshCollider = GetComponent<MeshCollider>();
         _navMeshObstacle = GetComponent<NavMeshObstacle>();
     }

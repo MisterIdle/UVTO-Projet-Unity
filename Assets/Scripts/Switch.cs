@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 public class Switch : Interactive
@@ -6,56 +7,31 @@ public class Switch : Interactive
 
     private void Start()
     {
-        TurnOffAllLights();
+        IsActivated = false;
+        
+        foreach (Light light in lights)
+        {
+            light.enabled = IsActivated;
+        }
     }
 
     public override void Interact()
     {
-        ToggleLights();
-    }
-
-    public void ToggleLights()
-    {
-        if (lights == null || lights.Length == 0)
-        {
-            Debug.LogWarning("No lights assigned to the switch.");
+        if (IsActivated == !IsActivated)
             return;
-        }
-
-        foreach (var light in lights)
-        {
-            if (light != null)
-            {
-                light.enabled = !light.enabled;
-            }
-            else
-            {
-                Debug.LogWarning("A light in the array is null.");
-            }
-        }
 
         IsActivated = !IsActivated;
+        StartCoroutine(ToggleLights(IsActivated));
     }
 
-
-    private void TurnOffAllLights()
+    private IEnumerator ToggleLights(bool on)
     {
-        if (lights == null || lights.Length == 0)
+        foreach (Light light in lights)
         {
-            Debug.LogWarning("No lights assigned to the switch.");
-            return;
+            light.enabled = on;
         }
 
-        foreach (var light in lights)
-        {
-            if (light != null)
-            {
-                light.enabled = false;
-            }
-            else
-            {
-                Debug.LogWarning("A light in the array is null.");
-            }
-        }
+        yield return null;
     }
+
 }
