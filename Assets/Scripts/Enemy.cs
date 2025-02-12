@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     private NavMeshAgent _agent;
     private PlayerController _player;
     private Vector3 _lastKnownPlayerPosition;
+    private Animator _animator;
     private bool _isChasing = false;
     private bool _lostPlayer = false;
     private bool _isLookingAround = false;
@@ -21,7 +22,7 @@ public class Enemy : MonoBehaviour
     [Header("Movement Settings")]
     [SerializeField] private float _patrolSpeed = 1.5f;
     [SerializeField] private float _chaseSpeed = 2f;
-    [SerializeField] private float _lookAroundDuration = 1f;
+    [SerializeField] private float _lookAroundDuration = 3f;
     [SerializeField] private float _lookAroundAngle = 90f;
 
     [Header("Interaction Settings")]
@@ -36,6 +37,7 @@ public class Enemy : MonoBehaviour
     {
         _agent = GetComponent<NavMeshAgent>();
         _player = FindFirstObjectByType<PlayerController>();
+        _animator = GetComponentInChildren<Animator>();
         _agent.speed = _patrolSpeed;
 
         PatrolNextPoint();
@@ -66,11 +68,14 @@ public class Enemy : MonoBehaviour
             _lastKnownPlayerPosition = _player.transform.position;
             _lostPlayer = false;
             _agent.speed = _chaseSpeed;
+            _animator.SetBool("Turn", false);
+            _animator.speed = 1.2f;
         }
         else if (!_lostPlayer)
         {
             _lostPlayer = true;
             _agent.speed = _patrolSpeed;
+            _animator.speed = 1f;
             StartCoroutine(ResetDetection());
         }
     }
@@ -150,9 +155,12 @@ public class Enemy : MonoBehaviour
         _isLookingAround = true;
         _agent.isStopped = true;
 
+        _animator.SetBool("Turn", true);
+
         for (int i = 0; i < 4; i++)
         {
-            Quaternion targetRotation = Quaternion.Euler(0, transform.eulerAngles.y + _lookAroundAngle, 0);
+            float direction = Random.value > 0.5f ? 1f : -1f;
+            Quaternion targetRotation = Quaternion.Euler(0, transform.eulerAngles.y + direction * _lookAroundAngle, 0);
             float elapsedTime = 0f;
 
             while (elapsedTime < _lookAroundDuration)
@@ -163,8 +171,11 @@ public class Enemy : MonoBehaviour
             }
         }
 
+        _animator.SetBool("Turn", false);
+
         _agent.isStopped = false;
         _isLookingAround = false;
+
         PatrolNextPoint();
     }
 
@@ -172,6 +183,7 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(_lostPlayerCooldown);
         _isChasing = false;
+
         StartCoroutine(LookAround());
     }
 
@@ -200,12 +212,39 @@ public class Enemy : MonoBehaviour
     private IEnumerator InteractWithObject(Interactive interactive)
     {
         _isInteracting = true;
+        _agent.isStopped = true;
 
-        HandleInteractiveObject(interactive);
+        _animator.SetBool("Interact", true);
 
-        yield return new WaitForSeconds(_interactDuration);
+        float elapsedTime = 0f;
 
+        while (elapsedTime < _interactDuration)
+        {
+            if (_isChasing)
+            {
+                HandleInteractiveObject(interactive);
+                // FIX LE BOT QUI EFFECTUE PAS L'INTERACTION !!
+                break;
+            }
+
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+
+        if (!_isChasing)
+        {
+            HandleInteractiveObject(interactive);
+        }
+
+        _agent.isStopped = false;
         _isInteracting = false;
+
+        _animator.SetBool("Interact", false);
+
+        if (_isChasing)
+        {
+            _agent.SetDestination(_lastKnownPlayerPosition);
+        }
     }
 
     private void HandleInteractiveObject(Interactive interactive)

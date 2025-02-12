@@ -15,6 +15,7 @@ public class Door : Interactive
     private Vector3 _initialPosition;
     private MeshCollider _meshCollider;
     private NavMeshObstacle _navMeshObstacle;
+    private Coroutine _currentCoroutine;
 
     private void Start()
     {
@@ -27,17 +28,18 @@ public class Door : Interactive
 
     public override void Interact()
     {
-        if (_isAnimating || IsActivated == !IsActivated)
-            return;
+        if (_currentCoroutine != null)
+        {
+            StopCoroutine(_currentCoroutine);
+        }
 
         IsActivated = !IsActivated;
-        StartCoroutine(ToggleDoor(IsActivated));
+        _currentCoroutine = StartCoroutine(ToggleDoor(IsActivated));
     }
 
     private IEnumerator ToggleDoor(bool open)
     {
         _isAnimating = true;
-        _meshCollider.enabled = false;
         _navMeshObstacle.enabled = false;
 
         Quaternion targetRotation = open ? _initialRotation * Quaternion.Euler(0, OpenToRight ? OpenAngle : -OpenAngle, 0) : _initialRotation;
@@ -58,7 +60,9 @@ public class Door : Interactive
         
         transform.localRotation = targetRotation;
         transform.localPosition = targetPosition;
-        _meshCollider.enabled = true;
+
+        _navMeshObstacle.enabled = true;
         _isAnimating = false;
+        _currentCoroutine = null;
     }
 }
