@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Microware
   m_EditorClassIdentifier: 
   Prefab: {fileID: 8342191068853748294, guid: 09f86e67df906f94599069b304d1d414, type: 3}
+  Name: Microwave
   Score: 50
   IsUnique: 0
   IsMandatory: 0
   CanBeBorrowed: 1
-  BorrowedChance: 30
+  BorrowedChance: 100
   HasRandomRotationSpawn: 1
   RotationChance: 360
   HasRandomPositionSpawn: 1

@@ -1,21 +1,19 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
-using System.Collections.Generic;
 
 [RequireComponent(typeof(MeshCollider), typeof(NavMeshObstacle))]
 public class Drawer : Interactive
 {
     public float OpenDuration = 1.0f;
     public float MoveDistance = 0f;
-    private bool _isAnimating = false;
-
     private Vector3 _initialPosition;
-
     private MeshCollider _meshCollider;
     private NavMeshObstacle _navMeshObstacle;
 
-    private HashSet<Transform> _borrowables = new HashSet<Transform>();
+    private GameObject _objectsParent;
+
+    private Coroutine _currentCoroutine;
 
     private void Start()
     {
@@ -23,41 +21,23 @@ public class Drawer : Interactive
         
         _meshCollider = GetComponent<MeshCollider>();
         _navMeshObstacle = GetComponent<NavMeshObstacle>();
-    }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Borrowable borrowable = collision.collider.GetComponent<Borrowable>();
-        if (borrowable != null)
-        {
-            _borrowables.Add(borrowable.transform);
-            borrowable.transform.SetParent(transform, true); 
-        }
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        Borrowable borrowable = collision.collider.GetComponent<Borrowable>();
-        if (borrowable != null && _borrowables.Contains(borrowable.transform))
-        {
-            _borrowables.Remove(borrowable.transform);
-            borrowable.transform.SetParent(null, true);
-        }
+        _objectsParent = GameObject.Find("Objects");
     }
 
     public override void Interact()
     {
-        if (_isAnimating || IsActivated == !IsActivated)
-            return;
+        if (_currentCoroutine != null)
+        {
+            StopCoroutine(_currentCoroutine);
+        }
 
         IsActivated = !IsActivated;
-        StartCoroutine(ToggleDrawer(IsActivated));
+        _currentCoroutine = StartCoroutine(ToggleDrawer(IsActivated));
     }
 
     private IEnumerator ToggleDrawer(bool open)
     {
-        _isAnimating = true;
-
         Vector3 targetPosition = open ? _initialPosition + transform.forward * MoveDistance : _initialPosition;
         Vector3 startPosition = transform.localPosition;
         float elapsedTime = 0f;
@@ -71,6 +51,22 @@ public class Drawer : Interactive
         }
         
         transform.localPosition = targetPosition;
-        _isAnimating = false;
+        _currentCoroutine = null;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Entity"))
+        {
+            collision.transform.SetParent(transform);
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (!collision.gameObject.CompareTag("Entity"))
+        {
+            collision.transform.SetParent(_objectsParent.transform);
+        }
     }
 }

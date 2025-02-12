@@ -333,6 +333,7 @@ MonoBehaviour:
   CrosshairsInteract: {fileID: 21300000, guid: e5424a7bb9a1ebc4aa4d7d7eaaae6824, type: 3}
   InteractionText: {fileID: 6424496360461961777}
   ScoreText: {fileID: 6137949256938574259}
+  ListText: {fileID: 0}
 --- !u!1 &8921678428581201055
 GameObject:
   m_ObjectHideFlags: 0

@@ -9,6 +9,7 @@ public class Borrowable : MonoBehaviour
     private Renderer _renderer;
     private MeshCollider _meshCollider;
     private Rigidbody _rigidbody;
+    public bool IsBorrowed = false;
 
     private void Awake()
     {
@@ -28,6 +29,8 @@ public class Borrowable : MonoBehaviour
         if (_playerController != null)
         {
             _playerController.AddScore(ScoreValue);
+            IsBorrowed = true;
+
         }
         StartCoroutine(DisappearAnimation());
     }
@@ -54,6 +57,6 @@ public class Borrowable : MonoBehaviour
             yield return null;
         }
 
-        Destroy(gameObject);
+        gameObject.SetActive(false);
     }
 }

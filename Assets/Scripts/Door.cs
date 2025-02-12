@@ -10,10 +10,8 @@ public class Door : Interactive
     public float OpenAngle = 90f;
     public bool OpenToRight = true;
 
-    private bool _isAnimating = false;
     private Quaternion _initialRotation;
     private Vector3 _initialPosition;
-    private MeshCollider _meshCollider;
     private NavMeshObstacle _navMeshObstacle;
     private Coroutine _currentCoroutine;
 
@@ -22,7 +20,6 @@ public class Door : Interactive
         _initialRotation = transform.localRotation;
         _initialPosition = transform.localPosition;
         
-        _meshCollider = GetComponent<MeshCollider>();
         _navMeshObstacle = GetComponent<NavMeshObstacle>();
     }
 
@@ -39,7 +36,6 @@ public class Door : Interactive
 
     private IEnumerator ToggleDoor(bool open)
     {
-        _isAnimating = true;
         _navMeshObstacle.enabled = false;
 
         Quaternion targetRotation = open ? _initialRotation * Quaternion.Euler(0, OpenToRight ? OpenAngle : -OpenAngle, 0) : _initialRotation;
@@ -62,7 +58,6 @@ public class Door : Interactive
         transform.localPosition = targetPosition;
 
         _navMeshObstacle.enabled = true;
-        _isAnimating = false;
         _currentCoroutine = null;
     }
 }

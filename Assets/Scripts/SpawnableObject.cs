@@ -4,6 +4,7 @@ using UnityEngine;
 public class SpawnableObject : ScriptableObject
 {
     public GameObject Prefab;
+    public string Name;
     public int Score;
     public bool IsUnique;
     public bool IsMandatory;

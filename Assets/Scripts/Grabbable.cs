@@ -48,7 +48,7 @@ public class Grabbable : MonoBehaviour
         _grabPoint = null;
         _rigidbody.useGravity = true;
 
-        Vector3 releaseForce = _playerController.cameraTransform.forward * _releaseForceMultiplier + _velocity;
+        Vector3 releaseForce = _playerController.CameraTransform.forward * _releaseForceMultiplier + _velocity;
         _rigidbody.AddForce(releaseForce, ForceMode.Impulse);
     }
 }

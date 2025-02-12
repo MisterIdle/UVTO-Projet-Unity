@@ -1,16 +1,14 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
     public Image BaseCrosshair;
-
     public Sprite CrosshairsNormal;
     public Sprite CrosshairsInteract;
-
     public TMP_Text InteractionText;
-
     public TMP_Text ScoreText;
 
     public void SetCrosshair(bool isInteracting)

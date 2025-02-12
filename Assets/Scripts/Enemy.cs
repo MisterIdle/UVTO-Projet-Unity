@@ -48,13 +48,11 @@ public class Enemy : MonoBehaviour
         HandleInteractions();
 
         if (_isChasing)
-        {
             HandleChasing();
-        }
+
         else if (!_isLookingAround)
-        {
             HandlePatrolOrLookAround();
-        }
+
 
         CheckForPlayerDetection();
     }
@@ -92,8 +90,7 @@ public class Enemy : MonoBehaviour
     {
         if (_isChasing) return;
 
-        bool playerDetected = IsPlayerInDetectionCone(transform.forward, _frontDetectionRadius, _frontDetectionAngle) ||
-                              IsPlayerInDetectionCone(-transform.forward, _detectionRadius, 180f);
+        bool playerDetected = IsPlayerInDetectionCone(transform.forward, _frontDetectionRadius, _frontDetectionAngle) || IsPlayerInDetectionCone(-transform.forward, _detectionRadius, 180f);
 
         if (playerDetected)
         {
@@ -211,47 +208,43 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator InteractWithObject(Interactive interactive)
     {
+        if (_isChasing && interactive is Switch)
+            yield break;
+
+        if (interactive.IgnoreBot)
+            yield break;
+
         _isInteracting = true;
         _agent.isStopped = true;
-
         _animator.SetBool("Interact", true);
 
         float elapsedTime = 0f;
 
         while (elapsedTime < _interactDuration)
         {
-            if (_isChasing)
-            {
-                HandleInteractiveObject(interactive);
-                // FIX LE BOT QUI EFFECTUE PAS L'INTERACTION !!
-                break;
-            }
-
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        if (!_isChasing)
-        {
-            HandleInteractiveObject(interactive);
-        }
+        HandleInteractiveObject(interactive);
 
         _agent.isStopped = false;
         _isInteracting = false;
-
         _animator.SetBool("Interact", false);
 
         if (_isChasing)
-        {
             _agent.SetDestination(_lastKnownPlayerPosition);
-        }
+
+        else
+            PatrolNextPoint();
     }
+
 
     private void HandleInteractiveObject(Interactive interactive)
     {
         switch (interactive)
         {
-            case Switch s when !_isChasing && !s.IgnoreBot:
+            case Switch s when !s.IgnoreBot:
                 s.Interact();
                 break;
             case Door d when !d.IgnoreBot:
@@ -260,13 +253,10 @@ public class Enemy : MonoBehaviour
         }
 
         if (_isChasing)
-        {
             _agent.SetDestination(_lastKnownPlayerPosition);
-        }
+
         else if (!_isChasing && _patrolPoints.Length > 0)
-        {
             PatrolNextPoint();
-        }
     }
 
     private void OnDrawGizmos()

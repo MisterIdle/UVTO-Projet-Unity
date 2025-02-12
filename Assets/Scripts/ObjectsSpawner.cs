@@ -6,15 +6,14 @@ public class ObjectsSpawner : MonoBehaviour
 {
     public SpawnableObjectsList ItemDatabase;
     public GameObject ObjectsParent;
-    [SerializeField] private Borrowable[] _borrowableObjects;
-    [SerializeField] private int numberOfObjectsBorrow;
+    [SerializeField] private int _numberOfObjectsBorrow;
 
     [Range(1, 100)] public int ChanceToBeEmpty = 50;
 
     private List<Transform> spawnPoints;
     private HashSet<SpawnableObject> spawnedUniqueItems = new HashSet<SpawnableObject>();
 
-    void Start()
+    void Awake()
     {
         InitializeSpawnPoints();
         SpawnItems();
@@ -93,6 +92,7 @@ public class ObjectsSpawner : MonoBehaviour
             var grabbable = spawnedObject.GetComponent<Grabbable>();
 
             borrowable.ScoreValue = item.Score;
+            borrowable.name = item.Name;
 
             if (item.IsUnique)
             {
