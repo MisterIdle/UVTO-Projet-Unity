@@ -3,16 +3,22 @@ using UnityEngine.InputSystem;
 
 public class Flashlight : MonoBehaviour
 {
-    [SerializeField] private Light _light;
+    public Light flashlight;
 
     private void Start()
     {
-        _light.enabled = false;
+        if (flashlight != null)
+        {
+            flashlight.enabled = false;
+        }
     }
 
     public void ToggleLight()
     {
-        _light.enabled = !_light.enabled;
+        if (flashlight != null)
+        {
+            flashlight.enabled = !flashlight.enabled;
+        }
     }
 
     public void OnFlashlight(InputAction.CallbackContext context)
@@ -20,6 +26,7 @@ public class Flashlight : MonoBehaviour
         if (context.performed)
         {
             ToggleLight();
+            Debug.Log("Flashlight toggled");
         }
     }
 }

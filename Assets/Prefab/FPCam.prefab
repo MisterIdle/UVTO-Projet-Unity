@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 3510912922009233301}
   - component: {fileID: 8144581536679633617}
   - component: {fileID: 223189323911442104}
-  - component: {fileID: 4198493949811280307}
   - component: {fileID: 8255183963539586455}
   m_Layer: 0
   m_Name: FPCam
@@ -126,23 +125,6 @@ MonoBehaviour:
       Wait: 1
       Time: 2
     Restrictions: 0
---- !u!114 &4198493949811280307
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4005222402528550348}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
-  PivotOffset: {x: 0, y: 0, z: 0}
-  AmplitudeGain: 0.7
-  FrequencyGain: 0.7
-  m_NoiseOffsets: {x: 991.35474, y: -739.8911, z: 756.00146}
 --- !u!114 &8255183963539586455
 MonoBehaviour:
   m_ObjectHideFlags: 0

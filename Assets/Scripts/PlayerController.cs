@@ -24,6 +24,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Camera Settings")]
     public Transform CameraTransform;
+    public Transform HeadTransform;
+
+    [Header("Character Model")]
+    public GameObject CharacterModel;
+    public Animator CharacterAnimator;
     
     private float _originalHeight;
     public float Score { get; private set; }
@@ -53,10 +58,14 @@ public class PlayerController : MonoBehaviour
         SetList();
     }
 
+    void Update()
+    {
+        CharacterModel.transform.forward = Vector3.Lerp(CharacterModel.transform.forward, new Vector3(CameraTransform.forward.x, 0, CameraTransform.forward.z), Time.deltaTime * _acceleration);
+    }
+
     private void FixedUpdate()
     {
         MovePlayer();
-        _uiManager.SetScoreText(Score);
         _uilist.UpdateList(_borrowedObjects);
     }
 
@@ -81,10 +90,14 @@ public class PlayerController : MonoBehaviour
         Vector3 targetVelocity = direction * currentSpeed;
         _velocity = Vector3.Lerp(_velocity, targetVelocity, Time.deltaTime * (_velocity == Vector3.zero ? _acceleration : _deceleration));
 
+        CharacterAnimator.SetFloat("Speed", _velocity.magnitude);
+
         Vector3 moveDirection = CameraTransform.TransformDirection(_velocity);
         moveDirection.y = _rb.linearVelocity.y;
 
         _rb.linearVelocity = moveDirection;
+
+        HeadTransform.rotation = Quaternion.Lerp(HeadTransform.rotation, CameraTransform.rotation, Time.deltaTime * _acceleration);
     }
 
     private void UpdateInteractionUI()
@@ -187,7 +200,6 @@ public class PlayerController : MonoBehaviour
         target.Borrow();
 
         _uiManager.SetScoreText(Score);
-        _uilist.UpdateList(_borrowedObjects);
     }
 
 

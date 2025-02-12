@@ -8,12 +8,12 @@ public class UIList : MonoBehaviour
 
     public void UpdateList(List<Borrowable> borrowedObjects)
     {
-        ListText.text = "Items:\n";
+        ListText.text = "";
         foreach (var obj in borrowedObjects)
         {
             if (obj.IsBorrowed)
             {
-                ListText.text += "<s>" + obj.name + "</s>\n";
+                ListText.text += "<color=#D3D3D3><s>" + obj.name + "</s></color>\n";
             }
             else
             {
