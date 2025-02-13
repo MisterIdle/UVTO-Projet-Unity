@@ -17,7 +17,7 @@ MonoBehaviour:
   Score: 50
   IsUnique: 0
   IsMandatory: 0
-  CanBeBorrowed: 1
+  CanBeBorrowed: 0
   BorrowedChance: 100
   HasRandomRotationSpawn: 1
   RotationChance: 360

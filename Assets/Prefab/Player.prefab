@@ -543,8 +543,8 @@ MonoBehaviour:
   _acceleration: 10
   _deceleration: 10
   _crouchHeight: 0.5
-  _grabPoint: {fileID: 5140290207059585389}
   _grabDistance: 1
+  GrabPoint: {fileID: 5140290207059585389}
   _interactionDistance: 2
   _ObjectsList: {fileID: 0}
   _borrowedObjects: []
@@ -552,6 +552,8 @@ MonoBehaviour:
   HeadTransform: {fileID: 183424292004455358}
   CharacterModel: {fileID: 6648680919130467144}
   CharacterAnimator: {fileID: 6706748621973046364}
+  Score: 0
+  IsGrabbing: 0
 --- !u!114 &6479859434583068232
 MonoBehaviour:
   m_ObjectHideFlags: 0

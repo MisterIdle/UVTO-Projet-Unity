@@ -6,17 +6,18 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour
 {
     [Header("Movement Settings")]
-    [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _speed = 4f;
     [SerializeField] private float _crouchSpeed = 2.5f;
-    [SerializeField] private float _runSpeed = 10f;
+    [SerializeField] private float _runSpeed = 6f;
     [SerializeField] private float _acceleration = 10f;
     [SerializeField] private float _deceleration = 10f;
     [SerializeField] private float _crouchHeight = 0.5f;
 
     [Header("Interaction Settings")]
-    [SerializeField] private Transform _grabPoint;
-    [SerializeField] private float _grabDistance = 1f;
+    [SerializeField] private float _grabDistance = 2f;
+    public Transform GrabPoint;
     [SerializeField] private float _interactionDistance = 2f;
+    [SerializeField] private float _interactionAngle = 45f;
 
     [Header("List Settings")]
     [SerializeField] private GameObject _ObjectsList;
@@ -30,57 +31,39 @@ public class PlayerController : MonoBehaviour
     public GameObject CharacterModel;
     public Animator CharacterAnimator;
     
-    private float _originalHeight;
-    public float Score { get; private set; }
-
-    private UIManager _uiManager;
-    private UIList _uilist;
+    public float Score;
     private Rigidbody _rb;
     private Vector2 _movementInput;
     private Vector3 _velocity;
-    private Grabbable _grabbable;
-    private bool _isGrabbing;
+    public Grabbable CurrentGrabbable;
     private bool _isCrouching;
     private bool _isRunning;
-    private CapsuleCollider _playerCollider;
+    public bool IsGrabbing;
 
     private void Start()
     {
         _rb = GetComponent<Rigidbody>();
-        _uiManager = FindFirstObjectByType<UIManager>();
-        _uilist = GetComponentInChildren<UIList>();
-        _playerCollider = GetComponent<CapsuleCollider>();
-        _originalHeight = _playerCollider.height;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-
-        SetList();
     }
 
     void Update()
     {
+        HeadTransform.position = CameraTransform.position;
         CharacterModel.transform.forward = Vector3.Lerp(CharacterModel.transform.forward, new Vector3(CameraTransform.forward.x, 0, CameraTransform.forward.z), Time.deltaTime * _acceleration);
+    }
+
+    private void LateUpdate()
+    {
+        if (IsGrabbing && CurrentGrabbable != null)
+            if (Vector3.Distance(GrabPoint.position, CurrentGrabbable.transform.position) > _grabDistance)
+                DropAll();
     }
 
     private void FixedUpdate()
     {
         MovePlayer();
-        _uilist.UpdateList(_borrowedObjects);
-    }
-
-    private void LateUpdate()
-    {
-        UpdateInteractionUI();
-
-        if (_isGrabbing && _grabbable != null)
-        {
-            _grabbable.Grab(_grabPoint);
-            if (Vector3.Distance(_grabPoint.position, _grabbable.transform.position) > _grabDistance)
-            {
-                ReleaseGrabbable();
-            }
-        }
     }
 
     private void MovePlayer()
@@ -100,112 +83,25 @@ public class PlayerController : MonoBehaviour
         HeadTransform.rotation = Quaternion.Lerp(HeadTransform.rotation, CameraTransform.rotation, Time.deltaTime * _acceleration);
     }
 
-    private void UpdateInteractionUI()
-    {
-        if (_isGrabbing)
-        {
-            _uiManager.SetCrosshair(true);
-            _uiManager.SetInteractionText("(E) Drop");
-            return;
-        }
-
-        if (Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, _interactionDistance))
-        {
-            if (hit.collider.TryGetComponent(out Grabbable g))
-                SetUI("(E) Grab");
-            else if (hit.collider.TryGetComponent(out Borrowable b))
-                SetUI("(E) Borrow");
-            else if (hit.collider.TryGetComponent(out Interactive i))
-                SetUI("(E) Interact");
-            else
-                ClearUI();
-        }
-        else
-        {
-            ClearUI();
-        }
-    }
-
-    private void SetUI(string text)
-    {
-        _uiManager.SetCrosshair(true);
-        _uiManager.SetInteractionText(text);
-    }
-
-    private void ClearUI()
-    {
-        _uiManager.SetCrosshair(false);
-        _uiManager.SetInteractionText("");
-    }
-
     private void Interact()
     {
-        if (_isGrabbing)
+        RaycastHit hit;
+        if (Physics.Raycast(CameraTransform.position, CameraTransform.forward, out hit, _interactionDistance))
         {
-            ReleaseGrabbable();
-            return;
-        }
+            if (hit.collider.TryGetComponent(out Interactive interactive))
+                interactive.Interact();
 
-        if (Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, _interactionDistance))
-        {
-            if (hit.collider.TryGetComponent(out Grabbable g))
-                GrabGrabbable(g);
-            else if (hit.collider.TryGetComponent(out Interactive i))
-                Interactive(i);
-            else if (hit.collider.TryGetComponent(out Borrowable b))
-                Borrow(b);
+            if (hit.collider.TryGetComponent(out Collectible collectible))
+                collectible.Collect();
         }
     }
 
-    private void Couch()
+    private void DropAll()
     {
-        _isCrouching = !_isCrouching;
-        _playerCollider.height = _isCrouching ? _crouchHeight : _originalHeight;
-    }
+        if (CurrentGrabbable != null)
+            CurrentGrabbable.Drop();
 
-    private void Run()
-    {
-        _isRunning = !_isRunning;
-    }
-
-    private void SetList() 
-    {
-        foreach (Borrowable obj in _ObjectsList.GetComponentsInChildren<Borrowable>())
-        {
-            Debug.Log(obj);
-            _borrowedObjects.Add(obj);
-        }
-    }
-
-    private void GrabGrabbable(Grabbable target)
-    {
-        _grabbable = target;
-        _isGrabbing = true;
-    }
-
-    private void ReleaseGrabbable()
-    {
-        _grabbable?.Release();
-        _grabbable = null;
-        _isGrabbing = false;
-    }
-
-    private void Interactive(Interactive target)
-    {
-        target.Interact();
-    }
-
-    private void Borrow(Borrowable target)
-    {
-        target.Borrow();
-
-        _uiManager.SetScoreText(Score);
-    }
-
-
-    public void AddScore(float score)
-    {
-        Score += score;
+        IsGrabbing = false;
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -216,20 +112,19 @@ public class PlayerController : MonoBehaviour
     public void OnInteract(InputAction.CallbackContext context)
     {
         if (context.started)
-            Interact();
+        {
+            if (IsGrabbing)
+                DropAll();
+            else
+                Interact();
+        }
     }
 
     public void OnCrouch(InputAction.CallbackContext context)
     {
-        if (context.started)
-            Couch();
     }
 
     public void OnRun(InputAction.CallbackContext context)
     {
-        if (context.started)
-            Run();
-        else if (context.canceled)
-            Run();
     }
 }

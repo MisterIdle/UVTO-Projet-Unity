@@ -312,8 +312,8 @@ Transform:
   m_GameObject: {fileID: 1143380198862742584}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -1.007, z: 0}
-  m_LocalScale: {x: 1.3094, y: 1.3094, z: 1.3094}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2931637842339256909}
@@ -333,7 +333,7 @@ Animator:
   m_Controller: {fileID: 9100000, guid: 4f77ba86a99409c429af28b334a91ad8, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0
@@ -636,6 +636,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec7765f7b5ec7443a21eee65112e09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _isPlayerDetected: 0
   _frontDetectionRadius: 7
   _frontDetectionAngle: 30
   _detectionRadius: 4

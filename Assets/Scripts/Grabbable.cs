@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(MeshCollider))]
-public class Grabbable : MonoBehaviour
+public class Grabbable : Collectible
 {
     private Rigidbody _rigidbody;
     private Transform _grabPoint;
@@ -34,20 +34,38 @@ public class Grabbable : MonoBehaviour
         }
     }
 
+    public override void Collect()
+    {
+        if(_grabPoint == null)
+            _playerController.IsGrabbing = true;
+        else
+            _playerController.IsGrabbing = false;
+
+        
+        if (_playerController.IsGrabbing)
+            Grab(_playerController.GrabPoint);
+        else
+            Drop();
+    }
+
     public void Grab(Transform grabPoint)
     {
         _grabPoint = grabPoint;
         _rigidbody.useGravity = false;
 
+        _playerController.CurrentGrabbable = this;
+
         _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
     }
 
-    public void Release()
+    public void Drop()
     {
         _grabPoint = null;
         _rigidbody.useGravity = true;
 
+        _playerController.CurrentGrabbable = null;
+        
         Vector3 releaseForce = _playerController.CameraTransform.forward * _releaseForceMultiplier + _velocity;
         _rigidbody.AddForce(releaseForce, ForceMode.Impulse);
     }

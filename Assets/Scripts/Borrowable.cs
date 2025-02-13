@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 
 [RequireComponent(typeof(Rigidbody), typeof(MeshCollider))]
-public class Borrowable : MonoBehaviour
+public class Borrowable : Collectible
 {
     private PlayerController _playerController;
     public float ScoreValue;
@@ -24,14 +24,10 @@ public class Borrowable : MonoBehaviour
         _rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 
-    public void Borrow()
+    public override void Collect()
     {
-        if (_playerController != null)
-        {
-            _playerController.AddScore(ScoreValue);
-            IsBorrowed = true;
-
-        }
+        IsBorrowed = true;
+        //_playerController.AddScore(ScoreValue);
         StartCoroutine(DisappearAnimation());
     }
 
