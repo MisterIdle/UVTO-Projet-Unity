@@ -27,7 +27,7 @@ public class Borrowable : Collectible
     public override void Collect()
     {
         IsBorrowed = true;
-        //_playerController.AddScore(ScoreValue);
+        _playerController.AddScore(ScoreValue);
         StartCoroutine(DisappearAnimation());
     }
 

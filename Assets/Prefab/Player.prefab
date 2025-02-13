@@ -161,7 +161,7 @@ Transform:
   m_GameObject: {fileID: 2323635653409144355}
   serializedVersion: 2
   m_LocalRotation: {x: -0.000000059604645, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 2.5}
+  m_LocalPosition: {x: 0, y: 0, z: 1.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -315,9 +315,8 @@ GameObject:
   - component: {fileID: 100457927983418493}
   - component: {fileID: 7968748529833795764}
   - component: {fileID: 8594526293921038225}
-  - component: {fileID: 3432033025706593606}
   m_Layer: 0
-  m_Name: List
+  m_Name: ListPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -392,19 +391,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &3432033025706593606
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4137674631736748597}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 008ec099f4f5fc44e9d3da103c8ffe50, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ListText: {fileID: 6124813957598178264}
 --- !u!1 &5377376852952401340
 GameObject:
   m_ObjectHideFlags: 0
@@ -430,7 +416,7 @@ Transform:
   m_GameObject: {fileID: 5377376852952401340}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.628, z: 0.381}
+  m_LocalPosition: {x: 0, y: 1.6, z: 0.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -451,6 +437,7 @@ GameObject:
   - component: {fileID: 5456340592207659781}
   - component: {fileID: 4619739999166144482}
   - component: {fileID: 6479859434583068232}
+  - component: {fileID: 2522873724256888137}
   - component: {fileID: 667941840773981846}
   m_Layer: 0
   m_Name: Player
@@ -538,21 +525,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 5
-  _crouchSpeed: 2.5
-  _runSpeed: 10
   _acceleration: 10
   _deceleration: 10
-  _crouchHeight: 0.5
-  _grabDistance: 1
+  _normalHeight: 1.6
+  _crouchHeight: 1
+  _crouchSpeed: 2.5
+  _crouchDuration: 0.5
   GrabPoint: {fileID: 5140290207059585389}
-  _interactionDistance: 2
+  _interactionDistance: 3
+  _grabMaxDistance: 1
   _ObjectsList: {fileID: 0}
   _borrowedObjects: []
   CameraTransform: {fileID: 0}
+  CameraHeadTransform: {fileID: 6909211151336019285}
   HeadTransform: {fileID: 183424292004455358}
   CharacterModel: {fileID: 6648680919130467144}
   CharacterAnimator: {fileID: 6706748621973046364}
   Score: 0
+  CurrentGrabbable: {fileID: 0}
   IsGrabbing: 0
 --- !u!114 &6479859434583068232
 MonoBehaviour:
@@ -567,6 +557,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashlight: {fileID: 786231582459319272}
+--- !u!114 &2522873724256888137
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5918966225432183709}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 008ec099f4f5fc44e9d3da103c8ffe50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  listPanel: {fileID: 4137674631736748597}
 --- !u!114 &667941840773981846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -724,6 +727,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: b5a13a0f-f131-4734-bbcc-22ce2ab2612a
     m_ActionName: 'Player/Flashlight[/Mouse/rightButton]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2522873724256888137}
+        m_TargetAssemblyTypeName: ListPanel, Assembly-CSharp
+        m_MethodName: OnList
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 452bda9f-212f-4529-8120-771fd9c23240
+    m_ActionName: 'Player/List[/Keyboard/tab]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
@@ -1321,10 +1340,10 @@ Animator:
   m_GameObject: {fileID: 6648680919130467144}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 2f51be603ea52db45be54e6116872d0c, type: 3}
-  m_Controller: {fileID: 9100000, guid: d5e318f322d2130408b6a7f4ebf86a63, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0fbfde39d2957be4d971fb8eccdbe589, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
-  m_ApplyRootMotion: 1
+  m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
   m_AnimatePhysics: 0

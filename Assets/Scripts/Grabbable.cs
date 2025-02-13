@@ -36,12 +36,8 @@ public class Grabbable : Collectible
 
     public override void Collect()
     {
-        if(_grabPoint == null)
-            _playerController.IsGrabbing = true;
-        else
-            _playerController.IsGrabbing = false;
+        _playerController.IsGrabbing = _grabPoint == null;
 
-        
         if (_playerController.IsGrabbing)
             Grab(_playerController.GrabPoint);
         else
@@ -65,7 +61,7 @@ public class Grabbable : Collectible
         _rigidbody.useGravity = true;
 
         _playerController.CurrentGrabbable = null;
-        
+
         Vector3 releaseForce = _playerController.CameraTransform.forward * _releaseForceMultiplier + _velocity;
         _rigidbody.AddForce(releaseForce, ForceMode.Impulse);
     }
