@@ -121,8 +121,7 @@ public class Enemy : MonoBehaviour
                 if (_isPlayerDetected)
                 {
                     _animator.SetBool("IsLook", false);
-                    _currentState = State.Chase;
-                    _agent.isStopped = false;
+                    HandleChase();
                     yield break;
                 }
             }
@@ -155,7 +154,7 @@ public class Enemy : MonoBehaviour
         foreach (Collider hit in hits)
         {
             if (hit.TryGetComponent(out Interactive interactive) && !interactive.IsActivated && !interactive.IgnoreBot)
-            {
+            { 
                 float distance = Vector3.Distance(transform.position, interactive.transform.position);
                 if (distance < closestDistance)
                 {
@@ -167,6 +166,7 @@ public class Enemy : MonoBehaviour
 
         if (closestInteractive != null && closestDistance <= _interactRadius)
         {
+            if (closestInteractive is Switch && _isPlayerDetected) return;
             StartCoroutine(InteractWithObject(closestInteractive));
         }
     }

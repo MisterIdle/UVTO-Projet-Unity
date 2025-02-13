@@ -570,6 +570,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listPanel: {fileID: 4137674631736748597}
+  ListText: {fileID: 0}
 --- !u!114 &667941840773981846
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -881,7 +882,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6647948775740473802}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0

@@ -636,17 +636,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dec7765f7b5ec7443a21eee65112e09b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _lostPlayer: 0
+  _isSurprised: 0
+  _isInteracting: 0
   _isPlayerDetected: 0
   _frontDetectionRadius: 7
   _frontDetectionAngle: 30
   _detectionRadius: 4
   _chaseDetectionRadius: 10
+  _lostPlayerCooldown: 3
+  _surprisedDuration: 1.5
   _patrolSpeed: 3
   _chaseSpeed: 4
   _lookAroundDuration: 2
   _lookAroundAngle: 90
   _interactRadius: 2
-  _lostPlayerCooldown: 3
   _interactDuration: 1
   _patrolPoints:
   - {fileID: 0}
@@ -1268,7 +1272,7 @@ SkinnedMeshRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5877233261715453317}
   m_Enabled: 1
-  m_CastShadows: 1
+  m_CastShadows: 2
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
   m_StaticShadowCaster: 0
