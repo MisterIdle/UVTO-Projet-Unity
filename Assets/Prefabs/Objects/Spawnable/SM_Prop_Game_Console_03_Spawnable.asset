@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ed07c4715e90844b6c1fbb42dad753, type: 3}
+  m_Name: SM_Prop_Game_Console_03_Spawnable
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 6014998210860530683, guid: f3a11b16fd2356a4eaa2f0738795c25a, type: 3}
+  Name: SM_Prop_Game_Console_03
+  Score: 0
+  Mass: 20
+  IsUniqueGlobal: 1
+  IsUniquePerRoom: 0
+  CanBeBorrowed: 1
+  BorrowedChance: 100

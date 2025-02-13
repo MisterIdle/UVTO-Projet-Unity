@@ -1,7 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(Rigidbody), typeof(MeshCollider))]
+[RequireComponent(typeof(Rigidbody), typeof(MeshCollider), typeof(NavMeshObstacle))]
 public class Borrowable : Collectible
 {
     private PlayerController _playerController;

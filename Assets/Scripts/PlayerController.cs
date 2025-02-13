@@ -21,10 +21,6 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _interactionDistance = 2f;
     [SerializeField] private float _grabMaxDistance = 2f;
 
-    [Header("List Settings")]
-    [SerializeField] private GameObject _ObjectsList;
-    [SerializeField] private List<Borrowable> _borrowedObjects = new List<Borrowable>();
-
     [Header("Camera Settings")]
     public Transform CameraTransform;
     public Transform CameraHeadTransform;
@@ -33,8 +29,7 @@ public class PlayerController : MonoBehaviour
     [Header("Character Model")]
     public GameObject CharacterModel;
     public Animator CharacterAnimator;
-    
-    public float Score;
+
     private Rigidbody _rb;
     private Vector2 _movementInput;
     private Vector3 _velocity;
@@ -56,8 +51,7 @@ public class PlayerController : MonoBehaviour
 
         _uiManager = FindFirstObjectByType<UIManager>();
         _listPanel = FindFirstObjectByType<ListPanel>();
-
-        AddBorrowedObject();
+        CameraTransform = Camera.main.transform;
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
@@ -72,7 +66,6 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         CheckGrabbableDistance();
-        _listPanel.UpdateList(_borrowedObjects);
     }
 
     private void FixedUpdate()
@@ -126,12 +119,12 @@ public class PlayerController : MonoBehaviour
         while (elapsedTime < _crouchDuration)
         {
             float newY = Mathf.Lerp(startHeight, targetHeight, elapsedTime / _crouchDuration);
-            CameraHeadTransform.localPosition = new Vector3(0, newY, 0.4f);
+            CameraHeadTransform.localPosition = new Vector3(0, newY, 0.6f);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        CameraHeadTransform.localPosition = new Vector3(0, targetHeight, 0.4f);
+        CameraHeadTransform.localPosition = new Vector3(0, targetHeight, 0.6f);
     }
 
     private void Interact()
@@ -193,17 +186,7 @@ public class PlayerController : MonoBehaviour
 
     public void AddScore(float score)
     {
-        Score += score;
-        _uiManager.SetScoreText(Score);
-    }
-
-    public void AddBorrowedObject()
-    {
-        foreach (var obj in _ObjectsList.GetComponentsInChildren<Borrowable>())
-        {
-            _borrowedObjects.Add(obj);
-            Debug.Log("Object added to the list");
-        }
+        GameManager.Instance.Score += score;
     }
 
     private void CheckGrabbableDistance()
@@ -234,11 +217,5 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started)
             Crouch();
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-        Gizmos.DrawRay(CameraTransform.position, CameraTransform.forward * _interactionDistance);        
     }
 }

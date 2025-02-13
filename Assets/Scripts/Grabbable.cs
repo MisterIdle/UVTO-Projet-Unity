@@ -1,6 +1,7 @@
 using UnityEngine;
+using UnityEngine.AI;
 
-[RequireComponent(typeof(Rigidbody), typeof(MeshCollider))]
+[RequireComponent(typeof(Rigidbody), typeof(MeshCollider), typeof(NavMeshObstacle))]
 public class Grabbable : Collectible
 {
     private Rigidbody _rigidbody;
@@ -30,7 +31,8 @@ public class Grabbable : Collectible
         if (_grabPoint != null)
         {
             Vector3 targetPosition = _grabPoint.position;
-            _rigidbody.MovePosition(Vector3.SmoothDamp(_rigidbody.position, targetPosition, ref _velocity, 1f / _lerpSpeed));
+            float adjustedLerpSpeed = _lerpSpeed / _rigidbody.mass;
+            _rigidbody.MovePosition(Vector3.SmoothDamp(_rigidbody.position, targetPosition, ref _velocity, 1f / adjustedLerpSpeed));
         }
     }
 
