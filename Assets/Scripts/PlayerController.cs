@@ -165,6 +165,8 @@ public class PlayerController : MonoBehaviour
                 SetUI("(E) Borrow");
             else if (hit.collider.TryGetComponent<Interactive>(out _))
                 SetUI("(E) Interact");
+            else
+                ClearUI();
         }
 
         else
