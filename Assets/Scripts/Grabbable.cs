@@ -8,6 +8,10 @@ public class Grabbable : Collectible
     private Transform _grabPoint;
     private PlayerController _playerController;
     private MeshCollider _meshCollider;
+    private NavMeshObstacle _navMeshObstacle;
+    
+    public int ChanceToBeBorrowed;
+    public float ScoreValue;
 
     [SerializeField] private float _lerpSpeed = 10f;
     [SerializeField] private float _releaseForceMultiplier = 2f;
@@ -19,8 +23,10 @@ public class Grabbable : Collectible
         _meshCollider = GetComponent<MeshCollider>();
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = FindFirstObjectByType<PlayerController>();
+        _navMeshObstacle = GetComponent<NavMeshObstacle>();
 
         _meshCollider.convex = true;
+        _navMeshObstacle.carving = true;
 
         _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
         _rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Hoop_Child_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3706898931213892697, guid: c6415e636521da74ca65344a24c012ab, type: 3}
-  Name: SM_Prop_Hoop_Child_01
-  Score: 0
+  Name: Basketball Hoop
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

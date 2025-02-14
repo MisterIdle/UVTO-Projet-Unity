@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Stereo_Speaker_Large_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 854746744151307142, guid: 235a55a61e2cc2d40a61a8923c9f637c, type: 3}
-  Name: SM_Prop_Stereo_Speaker_Large_01
-  Score: 0
+  Name: Stereo Speaker Large
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

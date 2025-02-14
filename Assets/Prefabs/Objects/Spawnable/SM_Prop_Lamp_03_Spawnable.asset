@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Lamp_03_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 4201050440178173432, guid: 5e9b9761e8e03524d993f6de3266d3c8, type: 3}
-  Name: SM_Prop_Lamp_03
-  Score: 0
+  Name: Desk Lamp
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

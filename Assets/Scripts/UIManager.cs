@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System.Collections.Generic;
 
 public class UIManager : MonoBehaviour
 {
@@ -21,7 +20,7 @@ public class UIManager : MonoBehaviour
         InteractionText.text = text;
     }
 
-    public void SetScoreText(float score)
+    public void UpdateScore(float score)
     {
         ScoreText.text = "Score: " + score;
     }

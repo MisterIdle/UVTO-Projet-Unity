@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Television_DVD_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1105740741973420567, guid: 5d8f6f5eda461c34d9ad429359e33de6, type: 3}
-  Name: SM_Prop_Television_DVD_01
-  Score: 0
+  Name: Television DVD
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

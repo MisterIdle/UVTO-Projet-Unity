@@ -1,10 +1,13 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
-using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("General Settings")]
+    public int Health = 4;
+    public bool IsDead;
+
     [Header("Movement Settings")]
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _acceleration = 10f;
@@ -25,6 +28,7 @@ public class PlayerController : MonoBehaviour
     public Transform CameraTransform;
     public Transform CameraHeadTransform;
     public Transform HeadTransform;
+    public Transform DeathCameraTransform;
 
     [Header("Character Model")]
     public GameObject CharacterModel;
@@ -59,24 +63,30 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (IsDead) return;
+
         UpdateHeadPosition();
         UpdateCharacterModelDirection();
     }
 
     private void LateUpdate()
     {
+        if (IsDead) return;
+
         CheckGrabbableDistance();
     }
 
     private void FixedUpdate()
     {
+        if (IsDead) return;
+
         UpdateInteractionUI();
         MovePlayer();
     }
 
     private void UpdateHeadPosition()
-    {
-        HeadTransform.position = CameraTransform.position;
+    {  
+        HeadTransform.position = CameraHeadTransform.position;
     }
 
     private void UpdateCharacterModelDirection()
@@ -189,6 +199,24 @@ public class PlayerController : MonoBehaviour
     public void AddScore(float score)
     {
         GameManager.Instance.Score += score;
+        _uiManager.UpdateScore(GameManager.Instance.Score);
+    }
+
+    public void TakeDamage(int damage)
+    {
+        Health -= damage;
+
+        Debug.Log($"Player took {damage} damage. Health: {Health}");
+
+        if (Health <= 0 && !IsDead) {
+            CharacterAnimator.applyRootMotion = true;
+            CharacterAnimator.SetTrigger("Die");
+
+            IsDead = true;
+
+            if (IsGrabbing)
+                DropAll();
+        }
     }
 
     private void CheckGrabbableDistance()
@@ -201,12 +229,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        _movementInput = context.ReadValue<Vector2>();
+        if (!IsDead)
+            _movementInput = context.ReadValue<Vector2>();
     }
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !IsDead)
         {
             if (IsGrabbing)
                 DropAll();
@@ -217,7 +246,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnCrouch(InputAction.CallbackContext context)
     {
-        if (context.started)
+        if (context.started && !IsDead)
             Crouch();
+    }
+
+    public void OnReset(InputAction.CallbackContext context)
+    {
+        if (context.started && IsDead)
+            GameManager.Instance.RestartGame();
     }
 }

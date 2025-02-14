@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Trampoline_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 613476967828697928, guid: 9d79185951ec4194391ed69ef480690f, type: 3}
-  Name: SM_Prop_Trampoline_01
-  Score: 0
+  Name: Trampoline
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

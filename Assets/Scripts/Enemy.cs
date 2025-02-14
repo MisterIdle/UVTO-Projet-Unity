@@ -27,6 +27,12 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _interactRadius = 2f;
     [SerializeField] private float _interactDuration = 1f;
 
+    [Header("Attack Settings")]
+    [SerializeField] private float _attackRadius = 1.5f;
+    [SerializeField] private float _attackCooldown = 1.5f;
+    [SerializeField] private int _attackDamage = 1;
+    private bool _canAttack = true;
+
     private NavMeshAgent _agent;
     private PlayerController _player;
     private Vector3 _lastKnownPlayerPosition;
@@ -222,17 +228,29 @@ public class Enemy : MonoBehaviour
         {
             _isSurprised = true;
             _currentState = State.Surprised;
-            _animator.SetTrigger("Surprised");
+            
+            LookAtPlayer();
 
+            _animator.SetTrigger("Surprised");
             StartCoroutine(Surprised());
         }
 
         if (_isPlayerDetected)
         {
-            _animator.SetBool("IsRun", true);
-            _agent.speed = _chaseSpeed;
-            _lastKnownPlayerPosition = _player.transform.position;
-            _agent.SetDestination(_lastKnownPlayerPosition);
+            _agent.stoppingDistance = _attackRadius;
+
+            float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
+            if (distanceToPlayer <= _attackRadius && _canAttack)
+            {
+                StartCoroutine(AttackPlayer());
+            }
+            else
+            {
+                _animator.SetBool("IsRun", true);
+                _agent.speed = _chaseSpeed;
+                _lastKnownPlayerPosition = _player.transform.position;
+                _agent.SetDestination(_lastKnownPlayerPosition);
+            }
         }
         else
         {
@@ -241,10 +259,50 @@ public class Enemy : MonoBehaviour
                 _lostPlayer = true;
                 StartCoroutine(LostPlayer());
             }
-
             _agent.SetDestination(_lastKnownPlayerPosition);
         }
     }
+
+    private IEnumerator AttackPlayer()
+    {
+        _canAttack = false;
+        _agent.isStopped = true;
+        _animator.SetTrigger("Attack");
+
+        yield return new WaitForSeconds(_attackCooldown);
+
+        LookAtPlayer();
+        
+        float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
+        if (distanceToPlayer <= _attackRadius && !_player.IsDead)
+        {
+            _player.TakeDamage(_attackDamage);
+        }
+
+        yield return new WaitForSeconds(_attackCooldown);
+        
+        if(_player.IsDead)
+            Win();
+
+        _animator.SetTrigger("Attack");
+
+        _agent.isStopped = false;
+        _canAttack = true;
+    }
+
+    public void LookAtPlayer()
+    {
+        Vector3 directionToPlayer = (_player.transform.position - transform.position).normalized;
+        Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToPlayer.x, 0, directionToPlayer.z));
+        transform.rotation = lookRotation;
+    }
+
+    private void Win()
+    {
+        _agent.isStopped = true;
+        _animator.SetTrigger("Win");
+    }
+
 
     private IEnumerator Surprised()
     {
@@ -268,6 +326,7 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator LostPlayer()
     {
+        _agent.stoppingDistance = 0f;
         yield return new WaitForSeconds(_lostPlayerCooldown);
         _lostPlayer = false;
         _animator.SetBool("IsRun", false);
@@ -293,5 +352,8 @@ public class Enemy : MonoBehaviour
 
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, _interactRadius);
+
+        Gizmos.color = Color.magenta;
+        Gizmos.DrawWireSphere(transform.position, _attackRadius);
     }
 }

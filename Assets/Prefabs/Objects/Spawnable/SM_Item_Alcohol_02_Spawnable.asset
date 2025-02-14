@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Item_Alcohol_02_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 208093325304423649, guid: c7a8a0813fe2fdc45bf38ff3ce76796c, type: 3}
-  Name: SM_Item_Alcohol_02
-  Score: 0
+  Name: Alcohol
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

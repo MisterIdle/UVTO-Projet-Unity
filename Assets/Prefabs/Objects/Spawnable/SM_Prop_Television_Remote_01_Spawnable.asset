@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Television_Remote_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 9116926522706444644, guid: 80dc38033090c624d8027a02a82e3040, type: 3}
-  Name: SM_Prop_Television_Remote_01
-  Score: 0
+  Name: Remote
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

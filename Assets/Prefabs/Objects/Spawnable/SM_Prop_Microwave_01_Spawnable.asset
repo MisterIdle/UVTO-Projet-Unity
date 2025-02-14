@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Microwave_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3221280834959504165, guid: 2180f12015e1838498acc99b5f6d2221, type: 3}
-  Name: SM_Prop_Microwave_01
-  Score: 0
+  Name: Microwave
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

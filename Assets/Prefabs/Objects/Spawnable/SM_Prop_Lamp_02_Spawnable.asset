@@ -12,11 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13ed07c4715e90844b6c1fbb42dad753, type: 3}
   m_Name: SM_Prop_Lamp_02_Spawnable
   m_EditorClassIdentifier: 
-  Prefab: {fileID: 1637605100822092134, guid: 8e22c99ade6961a4aa9630a0a6f1be41, type: 3}
-  Name: SM_Prop_Lamp_02
-  Score: 0
+  Prefab: {fileID: 100000, guid: 879a23a0b575be54da9982c1712c3fb7, type: 3}
+  Name: Lamp
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

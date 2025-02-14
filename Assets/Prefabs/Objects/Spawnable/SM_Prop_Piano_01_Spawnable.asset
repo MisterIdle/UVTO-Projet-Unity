@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Piano_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2343148476978733901, guid: 1424b1fc78071ec4fbb2115858a686f7, type: 3}
-  Name: SM_Prop_Piano_01
-  Score: 0
+  Name: Piano
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

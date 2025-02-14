@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Pool_Child_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2839044733848060537, guid: 634ca76a2d31f74448ffdbdadc8dae51, type: 3}
-  Name: SM_Prop_Pool_Child_01
-  Score: 0
+  Name: Pool
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

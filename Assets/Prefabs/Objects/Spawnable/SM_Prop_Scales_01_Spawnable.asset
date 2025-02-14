@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Scales_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 5407236328037589763, guid: 3399b155cc7d75c49b143d1d8119b8b4, type: 3}
-  Name: SM_Prop_Scales_01
-  Score: 0
+  Name: Scales
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

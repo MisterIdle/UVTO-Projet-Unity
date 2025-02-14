@@ -391,6 +391,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!1 &5169133508493056091
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6723548432805303845}
+  m_Layer: 0
+  m_Name: Death
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6723548432805303845
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5169133508493056091}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: -1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5526042468342081809}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5377376852952401340
 GameObject:
   m_ObjectHideFlags: 0
@@ -459,6 +490,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6723548432805303845}
   - {fileID: 6652157993668020884}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -524,6 +556,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3ef6cbf2c7127894f983101d3a385356, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 4
+  IsDead: 0
   _speed: 5
   _acceleration: 10
   _deceleration: 10
@@ -534,14 +568,12 @@ MonoBehaviour:
   GrabPoint: {fileID: 5140290207059585389}
   _interactionDistance: 3
   _grabMaxDistance: 1
-  _ObjectsList: {fileID: 0}
-  _borrowedObjects: []
   CameraTransform: {fileID: 0}
   CameraHeadTransform: {fileID: 6909211151336019285}
   HeadTransform: {fileID: 183424292004455358}
+  DeathCameraTransform: {fileID: 6723548432805303845}
   CharacterModel: {fileID: 6648680919130467144}
   CharacterAnimator: {fileID: 6706748621973046364}
-  Score: 0
   CurrentGrabbable: {fileID: 0}
   IsGrabbing: 0
 --- !u!114 &6479859434583068232
@@ -557,6 +589,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashlight: {fileID: 786231582459319272}
+  PlayerController: {fileID: 0}
 --- !u!114 &2522873724256888137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -570,7 +603,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   listPanel: {fileID: 4137674631736748597}
-  ListText: {fileID: 0}
+  ListText: {fileID: 6124813957598178264}
+  PlayerController: {fileID: 0}
 --- !u!114 &667941840773981846
 MonoBehaviour:
   m_ObjectHideFlags: 0

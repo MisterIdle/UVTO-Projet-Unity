@@ -43,8 +43,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Update()
+    public void RestartGame()
     {
-        
+        Score = 0;
+        BorrowedObjectsCount = 0;
+        BorrowedObjectsList.Clear();
+
+        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 }

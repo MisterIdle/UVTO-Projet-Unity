@@ -58,17 +58,19 @@ public class GlobalObjectSpawner : MonoBehaviour
 
     }
 
-    private void ChooseBorrowableItem()
+    public void ChooseBorrowableItem()
     {
         Grabbable[] items = FindObjectsByType<Grabbable>(FindObjectsSortMode.None);
 
-        foreach (var item in items)
+        foreach (var i in items)
         {
-            if (CanBorrowableSpawnItem())
+            if (CanBorrowableSpawnItem() && Random.Range(0, 100) < i.ChanceToBeBorrowed)
             {
-                item.AddComponent<Borrowable>();
-                Destroy(item.GetComponent<Grabbable>());
-                IncrementBorrowableSpawnCount(item.GetComponent<Borrowable>());
+                var borrowable = i.gameObject.AddComponent<Borrowable>();
+                borrowable.ScoreValue = i.ScoreValue;
+                
+                Destroy(i);
+                IncrementBorrowableSpawnCount(borrowable);
             }
         }
     }

@@ -100,9 +100,20 @@ public class ObjectSpawner : MonoBehaviour
         if (usedSpawnPoints.Count >= spawnPoints.Length) return;
         int randomIndex = GetRandomUnusedIndex();
         GameObject obj = Instantiate(item.Prefab, spawnPoints[randomIndex].position, spawnPoints[randomIndex].rotation);
-        obj.AddComponent<Grabbable>();
+
+        obj.name = item.Name;
+
+        var grabbable = obj.AddComponent<Grabbable>();
+        var rigidbody = obj.GetComponent<Rigidbody>();
+
+        rigidbody.mass = item.Mass;
+        grabbable.ChanceToBeBorrowed = item.BorrowedChance;
+        grabbable.ScoreValue = item.Score;
+
         usedSpawnPoints.Add(randomIndex);
         obj.transform.SetParent(globalSpawner.ObjectsParent.transform);
+
+        Debug.Log($"Spawned {item.name} at {spawnPoints[randomIndex].position}");
     }
 
     private int GetRandomUnusedIndex()

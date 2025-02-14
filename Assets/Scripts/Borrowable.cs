@@ -9,6 +9,7 @@ public class Borrowable : Collectible
     public float ScoreValue;
     private Renderer _renderer;
     private MeshCollider _meshCollider;
+    private NavMeshObstacle _navMeshObstacle;
     private Rigidbody _rigidbody;
     public bool IsBorrowed = false;
 
@@ -18,11 +19,11 @@ public class Borrowable : Collectible
         _meshCollider = GetComponent<MeshCollider>();
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = FindFirstObjectByType<PlayerController>();
+        _navMeshObstacle = GetComponent<NavMeshObstacle>();
 
         _meshCollider.convex = true;
+        _navMeshObstacle.carving = true;
 
-        _rigidbody.interpolation = RigidbodyInterpolation.Interpolate;
-        _rigidbody.collisionDetectionMode = CollisionDetectionMode.Continuous;
     }
 
     public override void Collect()
@@ -30,6 +31,11 @@ public class Borrowable : Collectible
         IsBorrowed = true;
         _playerController.AddScore(ScoreValue);
         StartCoroutine(DisappearAnimation());
+    }
+
+    public void UpdateScore(float score)
+    {
+        ScoreValue = score;
     }
 
     private IEnumerator DisappearAnimation()

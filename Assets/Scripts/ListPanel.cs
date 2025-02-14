@@ -8,8 +8,12 @@ public class ListPanel : MonoBehaviour
     public GameObject listPanel;
     public TMP_Text ListText;
 
+    public PlayerController PlayerController;
+
     private void Start()
     {
+        PlayerController = GetComponentInParent<PlayerController>();
+
         if (listPanel != null)
         {
             listPanel.SetActive(false);
@@ -42,7 +46,7 @@ public class ListPanel : MonoBehaviour
 
     public void OnList(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && !PlayerController.IsDead)
         {
             ToggleList();
             Debug.Log("List toggled");

@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Pool_Float_Ring_02_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 5825758508924486399, guid: 27d6305e428b1954b858d931a8b91ca4, type: 3}
-  Name: SM_Prop_Pool_Float_Ring_02
-  Score: 0
+  Name: Pool Float Ring
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

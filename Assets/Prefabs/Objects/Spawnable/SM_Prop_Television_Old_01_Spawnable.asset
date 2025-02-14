@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Television_Old_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3194020577560373449, guid: 41e663666b726744ab6f8a5400cce160, type: 3}
-  Name: SM_Prop_Television_Old_01
-  Score: 0
+  Name: Old Television
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

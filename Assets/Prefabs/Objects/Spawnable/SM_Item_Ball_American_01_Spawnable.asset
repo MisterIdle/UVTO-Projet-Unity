@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Item_Ball_American_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 62370198608301605, guid: 16983e01a7c02414ba61249f4c13eae4, type: 3}
-  Name: SM_Item_Ball_American_01
-  Score: 0
+  Name: American Football Ball
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

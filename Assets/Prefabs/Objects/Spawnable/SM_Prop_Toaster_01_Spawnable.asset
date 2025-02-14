@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Toaster_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1944458582900654244, guid: 709002ff781ed83439209739a80f7c80, type: 3}
-  Name: SM_Prop_Toaster_01
-  Score: 0
+  Name: Toaster
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

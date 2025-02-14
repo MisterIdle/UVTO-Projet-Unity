@@ -13,10 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Sign_Stop_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1360475503196418651, guid: d9cf0734db74b104aa12cf66f5fce949, type: 3}
-  Name: SM_Prop_Sign_Stop_01
-  Score: 0
+  Name: Stop
+  Score: 100
   Mass: 20
-  IsUniqueGlobal: 1
+  IsUniqueGlobal: 0
   IsUniquePerRoom: 0
-  CanBeBorrowed: 1
   BorrowedChance: 100

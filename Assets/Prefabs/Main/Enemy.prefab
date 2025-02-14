@@ -312,7 +312,7 @@ Transform:
   m_GameObject: {fileID: 1143380198862742584}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: -1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -621,7 +621,7 @@ NavMeshAgent:
   m_AutoBraking: 0
   m_AutoRepath: 1
   m_Height: 2
-  m_BaseOffset: 0.95
+  m_BaseOffset: 1
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!114 &6570395650304520723
@@ -652,6 +652,9 @@ MonoBehaviour:
   _lookAroundAngle: 90
   _interactRadius: 2
   _interactDuration: 1
+  _attackRadius: 3
+  _attackCooldown: 0.7
+  _attackDamage: 1
   _patrolPoints:
   - {fileID: 0}
   - {fileID: 0}
@@ -1243,7 +1246,7 @@ GameObject:
   - component: {fileID: 2931637842339256909}
   - component: {fileID: 1944974090599413158}
   m_Layer: 0
-  m_Name: Character_Father_02
+  m_Name: Man
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

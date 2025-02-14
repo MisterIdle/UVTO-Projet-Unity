@@ -10,8 +10,6 @@ public class SpawnableObject : ScriptableObject
 
     public bool IsUniqueGlobal;
     public bool IsUniquePerRoom;
-
-    public bool CanBeBorrowed;
     [Range(0, 100)] public int BorrowedChance;
 
     private void OnValidate()
