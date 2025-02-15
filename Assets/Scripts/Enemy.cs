@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour
     [Header("Detection Settings")]
     [SerializeField] private bool _isPlayerDetected = false;
     [SerializeField] private float _frontDetectionRadius = 7f;
+    [SerializeField] private float _crouchDetectionRadius = 4f;
     [SerializeField] private float _frontDetectionAngle = 30f;
     [SerializeField] private float _detectionRadius = 4f;
     [SerializeField] private float _chaseDetectionRadius = 10f;
@@ -30,6 +31,7 @@ public class Enemy : MonoBehaviour
     [Header("Attack Settings")]
     [SerializeField] private float _attackRadius = 1.5f;
     [SerializeField] private float _attackCooldown = 1.5f;
+    [SerializeField] private float _endAttackCooldown = 1;
     [SerializeField] private int _attackDamage = 1;
     private bool _canAttack = true;
 
@@ -63,6 +65,8 @@ public class Enemy : MonoBehaviour
 
         HandleInteractions();
         CheckForPlayerDetection();
+
+        _agent.stoppingDistance = 0;
 
         switch (_currentState)
         {
@@ -240,7 +244,7 @@ public class Enemy : MonoBehaviour
             _agent.stoppingDistance = _attackRadius;
 
             float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
-            if (distanceToPlayer <= _attackRadius && _canAttack)
+            if (distanceToPlayer <= _attackRadius && _canAttack && !_player.IsDead)
             {
                 StartCoroutine(AttackPlayer());
             }
@@ -269,9 +273,9 @@ public class Enemy : MonoBehaviour
         _agent.isStopped = true;
         _animator.SetTrigger("Attack");
 
-        yield return new WaitForSeconds(_attackCooldown);
-
         LookAtPlayer();
+
+        yield return new WaitForSeconds(_attackCooldown);
         
         float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
         if (distanceToPlayer <= _attackRadius && !_player.IsDead)
@@ -279,7 +283,7 @@ public class Enemy : MonoBehaviour
             _player.TakeDamage(_attackDamage);
         }
 
-        yield return new WaitForSeconds(_attackCooldown);
+        yield return new WaitForSeconds(_endAttackCooldown);
         
         if(_player.IsDead)
             Win();
@@ -326,7 +330,6 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator LostPlayer()
     {
-        _agent.stoppingDistance = 0f;
         yield return new WaitForSeconds(_lostPlayerCooldown);
         _lostPlayer = false;
         _animator.SetBool("IsRun", false);

@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
+using UnityEngine.Rendering.Universal;
+using UnityEngine.Rendering;
 
 public class PlayerController : MonoBehaviour
 {
@@ -30,15 +32,22 @@ public class PlayerController : MonoBehaviour
     public Transform HeadTransform;
     public Transform DeathCameraTransform;
 
+    [Header("Damage Settings")]
+    [SerializeField] private Volume _vignette;
+    [SerializeField] private float _damageCooldown = 1f;
+
     [Header("Character Model")]
-    public GameObject CharacterModel;
-    public Animator CharacterAnimator;
+    [SerializeField] public GameObject _model;
+    [SerializeField] public Animator _animator;
+
+    [Header("Enemy Settings")]
+    [SerializeField] public Enemy _enemy;
 
     private Rigidbody _rb;
     private Vector2 _movementInput;
     private Vector3 _velocity;
     public Grabbable CurrentGrabbable;
-    private bool _isCrouching;
+    public bool IsCrouching;
     public bool IsGrabbing;
 
     private UIManager _uiManager;
@@ -55,6 +64,8 @@ public class PlayerController : MonoBehaviour
 
         _uiManager = FindFirstObjectByType<UIManager>();
         _listPanel = FindFirstObjectByType<ListPanel>();
+        _enemy = FindFirstObjectByType<Enemy>();
+
         CameraTransform = Camera.main.transform;
 
         Cursor.lockState = CursorLockMode.Locked;
@@ -92,17 +103,17 @@ public class PlayerController : MonoBehaviour
     private void UpdateCharacterModelDirection()
     {
         Vector3 targetDirection = new Vector3(CameraTransform.forward.x, 0, CameraTransform.forward.z);
-        CharacterModel.transform.forward = Vector3.Lerp(CharacterModel.transform.forward, targetDirection, Time.deltaTime * _acceleration);
+        _model.transform.forward = Vector3.Lerp(_model.transform.forward, targetDirection, Time.deltaTime * _acceleration);
     }
 
     private void MovePlayer()
     {
         Vector3 direction = new Vector3(_movementInput.x, 0f, _movementInput.y).normalized;
-        float currentSpeed = _isCrouching ? _crouchSpeed : _speed;
+        float currentSpeed = IsCrouching ? _crouchSpeed : _speed;
         Vector3 targetVelocity = direction * currentSpeed;
         _velocity = Vector3.Lerp(_velocity, targetVelocity, Time.deltaTime * (_velocity == Vector3.zero ? _acceleration : _deceleration));
 
-        CharacterAnimator.SetFloat("Speed", _velocity.magnitude);
+        _animator.SetFloat("Speed", _velocity.magnitude);
 
         Vector3 moveDirection = CameraTransform.TransformDirection(_velocity);
         moveDirection.y = _rb.linearVelocity.y;
@@ -114,11 +125,11 @@ public class PlayerController : MonoBehaviour
 
     private void Crouch()
     {
-        _isCrouching = !_isCrouching;
-        CharacterAnimator.SetBool("IsCrouch", _isCrouching);
+        IsCrouching = !IsCrouching;
+        _animator.SetBool("IsCrouch", IsCrouching);
 
         StopAllCoroutines();
-        StartCoroutine(LerpCrouch(_isCrouching ? _crouchHeight : _normalHeight));
+        StartCoroutine(LerpCrouch(IsCrouching ? _crouchHeight : _normalHeight));
     }
 
     private IEnumerator LerpCrouch(float targetHeight)
@@ -158,6 +169,7 @@ public class PlayerController : MonoBehaviour
         IsGrabbing = false;
     }
 
+
     private void UpdateInteractionUI()
     {
         if (IsGrabbing)
@@ -165,7 +177,7 @@ public class PlayerController : MonoBehaviour
             _uiManager.SetCrosshair(true);
             _uiManager.SetInteractionText("(E) Drop");
             return;
-        }   
+        }
 
         if (Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, _interactionDistance))
         {
@@ -178,11 +190,11 @@ public class PlayerController : MonoBehaviour
             else
                 ClearUI();
         }
-
         else
+        {
             ClearUI();
+        }
     }
-
 
     private void SetUI(string text)
     {
@@ -204,19 +216,50 @@ public class PlayerController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (IsDead)
+            return;
+
         Health -= damage;
+        HitEffect();
 
-        Debug.Log($"Player took {damage} damage. Health: {Health}");
+        if (Health <= 0)
+            Die();
+    }
 
-        if (Health <= 0 && !IsDead) {
-            CharacterAnimator.applyRootMotion = true;
-            CharacterAnimator.SetTrigger("Die");
-
-            IsDead = true;
-
-            if (IsGrabbing)
-                DropAll();
+    private void HitEffect()
+    {
+        if (_vignette.profile.TryGet(out Vignette vignette))
+        {
+            StartCoroutine(LerpVignetteIntensity(vignette, 1, 0, _damageCooldown));
         }
+    }
+
+    private IEnumerator LerpVignetteIntensity(Vignette vignette, float startIntensity, float endIntensity, float duration)
+    {
+        float elapsedTime = 0f;
+        while (elapsedTime < duration)
+        {
+            vignette.intensity.value = Mathf.Lerp(startIntensity, endIntensity, elapsedTime / duration);
+            elapsedTime += Time.deltaTime;
+            yield return null;
+        }
+        vignette.intensity.value = endIntensity;
+    }
+
+    private void Die()
+    {
+        if (IsDead) return;
+
+        IsDead = true;
+        _animator.applyRootMotion = true;
+        _animator.SetTrigger("Die");
+
+        if (IsGrabbing)
+            DropAll();
+
+        _listPanel.Hide();
+
+        //_uiManager.ShowDeathScreen();
     }
 
     private void CheckGrabbableDistance()

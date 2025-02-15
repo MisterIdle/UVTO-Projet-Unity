@@ -28,6 +28,11 @@ public class ListPanel : MonoBehaviour
         }
     }
 
+    public void Hide()
+    {
+        listPanel.SetActive(false);
+    }
+
     public void UpdateList(List<Borrowable> borrowedObjects)
     {
         ListText.text = "";

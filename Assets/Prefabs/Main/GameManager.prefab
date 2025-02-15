@@ -47,4 +47,4 @@ MonoBehaviour:
   Score: 0
   MaxBorrowedObjects: 10
   BorrowedObjectsCount: 0
-  BorrowedObjects: []
+  BorrowedObjectsList: []

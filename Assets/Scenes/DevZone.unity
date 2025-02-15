@@ -855,6 +855,10 @@ PrefabInstance:
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 4619739999166144482, guid: 7adedd92b45da5f49b307ee83b669ccd, type: 3}
+      propertyPath: _vignette
+      value: 
+      objectReference: {fileID: 832575518}
+    - target: {fileID: 4619739999166144482, guid: 7adedd92b45da5f49b307ee83b669ccd, type: 3}
       propertyPath: _ObjectsList
       value: 
       objectReference: {fileID: 1957197203}
@@ -862,6 +866,10 @@ PrefabInstance:
       propertyPath: CameraTransform
       value: 
       objectReference: {fileID: 1406274074}
+    - target: {fileID: 4619739999166144482, guid: 7adedd92b45da5f49b307ee83b669ccd, type: 3}
+      propertyPath: CinemachineCamera
+      value: 
+      objectReference: {fileID: 1406274085}
     - target: {fileID: 5526042468342081809, guid: 7adedd92b45da5f49b307ee83b669ccd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.02
@@ -1339,7 +1347,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4389481605537069748, guid: 466e0e581649310409d267941321a849, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.231232
+      value: 9.17
       objectReference: {fileID: 0}
     - target: {fileID: 4389481605537069748, guid: 466e0e581649310409d267941321a849, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1347,7 +1355,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4389481605537069748, guid: 466e0e581649310409d267941321a849, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.74575
+      value: -1.99
       objectReference: {fileID: 0}
     - target: {fileID: 4389481605537069748, guid: 466e0e581649310409d267941321a849, type: 3}
       propertyPath: m_LocalRotation.w
@@ -1376,10 +1384,6 @@ PrefabInstance:
     - target: {fileID: 4389481605537069748, guid: 466e0e581649310409d267941321a849, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6570395650304520723, guid: 466e0e581649310409d267941321a849, type: 3}
-      propertyPath: _attackCooldown
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6570395650304520723, guid: 466e0e581649310409d267941321a849, type: 3}
       propertyPath: '_patrolPoints.Array.data[0]'
@@ -1697,6 +1701,19 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2d3ea0165d206424e9568e580231da45, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _cineMachineCamera: {fileID: 0}
+  _playerController: {fileID: 0}
+--- !u!114 &1406274085 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3510912922009233301, guid: ed129225a31a6da498d454c093bad04e, type: 3}
+  m_PrefabInstance: {fileID: 2044959543142394655}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 968521017}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9dfa5b682dcd46bda6128250e975f58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1406814281
@@ -2479,10 +2496,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2624797418358738474, guid: dde000444a8c9ae4bab0ff79064e60da, type: 3}
-      propertyPath: MaxBorrowedObjects
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4033759901817306070, guid: dde000444a8c9ae4bab0ff79064e60da, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.639227

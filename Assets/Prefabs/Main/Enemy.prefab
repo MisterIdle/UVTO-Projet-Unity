@@ -653,7 +653,8 @@ MonoBehaviour:
   _interactRadius: 2
   _interactDuration: 1
   _attackRadius: 3
-  _attackCooldown: 0.7
+  _attackCooldown: 1
+  _endAttackCooldown: 0.5
   _attackDamage: 1
   _patrolPoints:
   - {fileID: 0}

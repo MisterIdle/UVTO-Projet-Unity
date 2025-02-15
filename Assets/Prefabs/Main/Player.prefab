@@ -331,8 +331,8 @@ Transform:
   m_GameObject: {fileID: 4137674631736748597}
   serializedVersion: 2
   m_LocalRotation: {x: -0.5516213, y: -0.15347664, z: -0.10410631, w: 0.81321627}
-  m_LocalPosition: {x: -0.6418621, y: -0.56371665, z: 0.91764736}
-  m_LocalScale: {x: 0.07, y: 0.1, z: 0.1}
+  m_LocalPosition: {x: -0.503, y: -0.412, z: 0.562}
+  m_LocalScale: {x: 0.04, y: 0.06, z: 0.06}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9091384836546070840}
@@ -572,8 +572,10 @@ MonoBehaviour:
   CameraHeadTransform: {fileID: 6909211151336019285}
   HeadTransform: {fileID: 183424292004455358}
   DeathCameraTransform: {fileID: 6723548432805303845}
-  CharacterModel: {fileID: 6648680919130467144}
-  CharacterAnimator: {fileID: 6706748621973046364}
+  _vignette: {fileID: 0}
+  _damageCooldown: 1
+  _model: {fileID: 6648680919130467144}
+  _animator: {fileID: 6706748621973046364}
   CurrentGrabbable: {fileID: 0}
   IsGrabbing: 0
 --- !u!114 &6479859434583068232
@@ -778,6 +780,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 452bda9f-212f-4529-8120-771fd9c23240
     m_ActionName: 'Player/List[/Keyboard/tab]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 2e68e22d-cc70-4491-a5b0-0c219c44d1b5
+    m_ActionName: 'Player/Reset[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
