@@ -11,7 +11,7 @@ public class Enemy : MonoBehaviour
     [Header("Detection Settings")]
     [SerializeField] private bool _isPlayerDetected = false;
     [SerializeField] private float _frontDetectionRadius = 7f;
-    [SerializeField] private float _crouchDetectionRadius = 4f;
+
     [SerializeField] private float _frontDetectionAngle = 30f;
     [SerializeField] private float _detectionRadius = 4f;
     [SerializeField] private float _chaseDetectionRadius = 10f;
@@ -241,10 +241,10 @@ public class Enemy : MonoBehaviour
 
         if (_isPlayerDetected)
         {
-            _agent.stoppingDistance = _attackRadius;
+            _agent.stoppingDistance = _interactRadius;
 
             float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
-            if (distanceToPlayer <= _attackRadius && _canAttack && !_player.IsDead)
+            if (distanceToPlayer <= _interactRadius && _canAttack && !_player.IsDead)
             {
                 StartCoroutine(AttackPlayer());
             }
@@ -276,19 +276,19 @@ public class Enemy : MonoBehaviour
         LookAtPlayer();
 
         yield return new WaitForSeconds(_attackCooldown);
-        
+
         float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
         if (distanceToPlayer <= _attackRadius && !_player.IsDead)
         {
             _player.TakeDamage(_attackDamage);
-        }
+        } 
 
         yield return new WaitForSeconds(_endAttackCooldown);
-        
-        if(_player.IsDead)
-            Win();
 
-        _animator.SetTrigger("Attack");
+         _animator.SetTrigger("Attack");
+
+        if (_player.IsDead)
+            Win();
 
         _agent.isStopped = false;
         _canAttack = true;

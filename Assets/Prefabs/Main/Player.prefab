@@ -45,7 +45,7 @@ GameObject:
   - component: {fileID: 4010531120617355337}
   - component: {fileID: 1419980860565780502}
   - component: {fileID: 5232009932269200826}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -178,7 +178,7 @@ GameObject:
   - component: {fileID: 2224208342322280479}
   - component: {fileID: 5173774438539120809}
   - component: {fileID: 6124813957598178264}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ListText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -315,7 +315,7 @@ GameObject:
   - component: {fileID: 100457927983418493}
   - component: {fileID: 7968748529833795764}
   - component: {fileID: 8594526293921038225}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: ListPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +576,9 @@ MonoBehaviour:
   _damageCooldown: 1
   _model: {fileID: 6648680919130467144}
   _animator: {fileID: 6706748621973046364}
+  _enemy: {fileID: 0}
   CurrentGrabbable: {fileID: 0}
+  IsCrouching: 0
   IsGrabbing: 0
 --- !u!114 &6479859434583068232
 MonoBehaviour:
@@ -2682,7 +2684,7 @@ GameObject:
   - component: {fileID: 2899576418504097809}
   - component: {fileID: 5672018818930241953}
   - component: {fileID: 3440309426922568476}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BorrowableText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
