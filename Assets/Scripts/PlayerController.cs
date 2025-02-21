@@ -55,6 +55,9 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         if (!TryGetComponent(out _rb))
         {
             Debug.LogError("Rigidbody component missing from the player.");
@@ -67,9 +70,6 @@ public class PlayerController : MonoBehaviour
         _enemy = FindFirstObjectByType<Enemy>();
 
         CameraTransform = Camera.main.transform;
-
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
     }
 
     private void Update()
@@ -140,12 +140,12 @@ public class PlayerController : MonoBehaviour
         while (elapsedTime < _crouchDuration)
         {
             float newY = Mathf.Lerp(startHeight, targetHeight, elapsedTime / _crouchDuration);
-            CameraHeadTransform.localPosition = new Vector3(0, newY, 0.6f);
+            CameraHeadTransform.localPosition = new Vector3(0, newY, 0);
             elapsedTime += Time.deltaTime;
             yield return null;
         }
 
-        CameraHeadTransform.localPosition = new Vector3(0, targetHeight, 0.6f);
+        CameraHeadTransform.localPosition = new Vector3(0, targetHeight, 0);
     }
 
     private void Interact()
