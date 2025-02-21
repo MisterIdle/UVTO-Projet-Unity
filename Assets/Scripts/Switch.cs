@@ -34,4 +34,13 @@ public class Switch : Interactive
         yield return null;
     }
 
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.yellow;
+        foreach (Light light in lights)
+        {
+            Gizmos.DrawLine(transform.position, light.transform.position);
+        }
+    }
+
 }

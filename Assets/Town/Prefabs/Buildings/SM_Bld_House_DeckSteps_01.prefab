@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33605672449845728}
   - component: {fileID: 23132407425011112}
   - component: {fileID: 302881696214438133}
-  - component: {fileID: 3159360321093390104}
+  - component: {fileID: 5778029687759260615}
   m_Layer: 0
   m_Name: SM_Bld_House_DeckSteps_01
   m_TagString: Untagged
@@ -107,9 +107,9 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6665039, y: 0.22698909, z: 1.0462952}
-  m_Center: {x: -0.0036780834, y: 0.113494545, z: 0}
---- !u!65 &3159360321093390104
+  m_Size: {x: 1.6665039, y: 0.15136643, z: 1.0462952}
+  m_Center: {x: -0.0036780941, y: 0.056491453, z: 0}
+--- !u!65 &5778029687759260615
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,5 +128,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.6665039, y: 0.25719425, z: 1.0462952}
-  m_Center: {x: -0.0036780834, y: 0.12859713, z: 0}
+  m_Size: {x: 1.6665056, y: 0.2630288, z: 0.4106211}
+  m_Center: {x: -0.00368102, y: 0.1315147, z: -0.3178406}

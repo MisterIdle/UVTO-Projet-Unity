@@ -118,6 +118,11 @@ public class PlayerController : MonoBehaviour
         Vector3 moveDirection = CameraTransform.TransformDirection(_velocity);
         moveDirection.y = _rb.linearVelocity.y;
 
+        if (_rb.linearVelocity.y < 0)
+        {
+            moveDirection.y += Physics.gravity.y * 2f * Time.deltaTime;
+        }
+
         _rb.linearVelocity = moveDirection;
 
         HeadTransform.rotation = Quaternion.Lerp(HeadTransform.rotation, CameraTransform.rotation, Time.deltaTime * _acceleration);

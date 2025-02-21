@@ -273,10 +273,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsActivated: 0
   IgnoreBot: 0
-  OpenDuration: 1
-  MoveDistance: -0.1
-  OpenAngle: 90
-  OpenToRight: 1
+  _openDuration: 1
+  _moveDistance: 0
+  _openAngle: -90
+  _openToRight: 1
+  _isLocked: 0
 --- !u!1 &8912835708309910080
 GameObject:
   m_ObjectHideFlags: 0

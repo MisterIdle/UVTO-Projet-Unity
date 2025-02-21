@@ -2595,14 +2595,14 @@ Light:
   m_Enabled: 1
   serializedVersion: 11
   m_Type: 0
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.9642407, b: 0.8254717, a: 1}
   m_Intensity: 2
   m_Range: 20
-  m_SpotAngle: 76.989395
-  m_InnerSpotAngle: 21.80208
+  m_SpotAngle: 126.113815
+  m_InnerSpotAngle: 88.290955
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1

@@ -251,10 +251,9 @@ GameObject:
   - component: {fileID: 2936565327310289624}
   - component: {fileID: 2934447981567825376}
   - component: {fileID: 2926372919317850922}
-  - component: {fileID: 2893558431377028646}
   - component: {fileID: 8712094006722326102}
   - component: {fileID: 3561541249373738262}
-  - component: {fileID: 4173654677209749861}
+  - component: {fileID: 8070459368858730094}
   m_Layer: 0
   m_Name: SM_Bld_House_Door
   m_TagString: Untagged
@@ -330,27 +329,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2893558431377028646
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2939281730361178422}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 1.0447855, y: 2.2243478, z: 0.23754603}
-  m_Center: {x: -0.52239263, y: 1.1121739, z: 0.04999995}
 --- !u!64 &8712094006722326102
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -370,7 +348,7 @@ MeshCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 5
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300002, guid: b7b2e98bb7ded31409cfa2a2ad18c706, type: 3}
 --- !u!208 &3561541249373738262
@@ -389,7 +367,7 @@ NavMeshObstacle:
   m_CarveOnlyStationary: 1
   m_Center: {x: -0.522, y: 1.1120001, z: 0.05}
   m_TimeToStationary: 0.5
---- !u!114 &4173654677209749861
+--- !u!114 &8070459368858730094
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -403,7 +381,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsActivated: 0
   IgnoreBot: 0
-  OpenDuration: 1
-  MoveDistance: 0.1
-  OpenAngle: 90
-  OpenToRight: 1
+  _openDuration: 1
+  _moveDistance: -0.1
+  _openAngle: 90
+  _openToRight: 1
+  _isLocked: 0
+  _lockedAnimationDuration: 0.5
+  _lockedAnimationAngle: 10

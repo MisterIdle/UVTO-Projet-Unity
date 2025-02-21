@@ -186,12 +186,6 @@ GameObject:
   - component: {fileID: 3216406213590588654}
   - component: {fileID: 2885159777175927490}
   - component: {fileID: 5551317423432323819}
-  - component: {fileID: 3081010880271751778}
-  - component: {fileID: 5138194451606438697}
-  - component: {fileID: 5160761254684447391}
-  - component: {fileID: 2245128238745874235}
-  - component: {fileID: 6566760210123158607}
-  - component: {fileID: 3178309808436928993}
   m_Layer: 0
   m_Name: SM_Bld_House_Door_01
   m_TagString: Untagged
@@ -268,128 +262,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3081010880271751778
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4056844666882235914}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43201364665991332, guid: 57c88dd7b28796f4ea5d3f4f8fcd9554, type: 2}
---- !u!64 &5138194451606438697
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4056844666882235914}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43954041824499134, guid: 57c88dd7b28796f4ea5d3f4f8fcd9554, type: 2}
---- !u!64 &5160761254684447391
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4056844666882235914}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43468606324560138, guid: 57c88dd7b28796f4ea5d3f4f8fcd9554, type: 2}
---- !u!64 &2245128238745874235
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4056844666882235914}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 43614627615485768, guid: 57c88dd7b28796f4ea5d3f4f8fcd9554, type: 2}
---- !u!208 &6566760210123158607
-NavMeshObstacle:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4056844666882235914}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Shape: 1
-  m_Extents: {x: 0.64000005, y: 1.2240001, z: 0.18400002}
-  m_MoveThreshold: 0.1
-  m_Carve: 0
-  m_CarveOnlyStationary: 1
-  m_Center: {x: -1.2700001, y: 1.0840001, z: 0.16800001}
-  m_TimeToStationary: 0.5
---- !u!114 &3178309808436928993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4056844666882235914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72af09f1cf7a66647935f95ec91dc8f3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  IsActivated: 0
-  IgnoreBot: 0
-  OpenDuration: 1
-  MoveDistance: 0
-  OpenAngle: 90
-  OpenToRight: 1
 --- !u!1 &4322717449903031970
 GameObject:
   m_ObjectHideFlags: 0
@@ -401,6 +273,9 @@ GameObject:
   - component: {fileID: 4705781776856228025}
   - component: {fileID: 5777214210683464262}
   - component: {fileID: 551066536812000}
+  - component: {fileID: 6952675824129873260}
+  - component: {fileID: 5693978004581300755}
+  - component: {fileID: 5179269020991952478}
   - component: {fileID: 2016355357281596384}
   m_Layer: 0
   m_Name: SM_Bld_House_Door
@@ -477,6 +352,65 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!208 &6952675824129873260
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322717449903031970}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.522, y: 1.1120001, z: 0.119}
+  m_MoveThreshold: 0.1
+  m_Carve: 0
+  m_CarveOnlyStationary: 1
+  m_Center: {x: -0.522, y: 1.1120001, z: 0.05}
+  m_TimeToStationary: 0.5
+--- !u!64 &5693978004581300755
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322717449903031970}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300002, guid: b7b2e98bb7ded31409cfa2a2ad18c706, type: 3}
+--- !u!114 &5179269020991952478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4322717449903031970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72af09f1cf7a66647935f95ec91dc8f3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsActivated: 0
+  IgnoreBot: 0
+  _openDuration: 1
+  _moveDistance: -0.1
+  _openAngle: 90
+  _openToRight: 1
+  _isLocked: 0
+  _lockedAnimationDuration: 0.5
+  _lockedAnimationAngle: 10
 --- !u!65 &2016355357281596384
 BoxCollider:
   m_ObjectHideFlags: 0
