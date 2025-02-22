@@ -266,7 +266,8 @@ public class PlayerController : MonoBehaviour
 
         _listPanel.Hide();
 
-        //_uiManager.ShowDeathScreen();
+        _uiManager.SetGameOverText("Game Over");
+        _uiManager.ShowEndGameText();
     }
 
     private void CheckGrabbableDistance()

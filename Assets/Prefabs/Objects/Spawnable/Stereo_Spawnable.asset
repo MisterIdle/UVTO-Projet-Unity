@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 13ed07c4715e90844b6c1fbb42dad753, type: 3}
+  m_Name: Stereo_Spawnable
+  m_EditorClassIdentifier: 
+  Prefab: {fileID: 7952165427107821847, guid: cd55c50f4fcb0d04a8f7e5263182e9e0, type: 3}
+  Name: Stereo
+  Score: 100
+  Mass: 20

@@ -98,6 +98,7 @@ public class Enemy : MonoBehaviour
         for (int i = 0; i < _globalPatrolPoints.childCount; i++)
         {
             _patrolPoints[i] = _globalPatrolPoints.GetChild(i);
+            Debug.Log(_patrolPoints[i]);
         }
     }
 

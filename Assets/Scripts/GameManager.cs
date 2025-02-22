@@ -51,4 +51,18 @@ public class GameManager : MonoBehaviour
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
+
+    public bool CanBorrowMore()
+    {
+        return BorrowedObjectsCount < MaxBorrowedObjects;
+    }
+
+    public void AddBorrowedObject(Borrowable obj)
+    {
+        if (CanBorrowMore())
+        {
+            BorrowedObjectsList.Add(obj);
+            BorrowedObjectsCount++;
+        }
+    }
 }

@@ -578,6 +578,7 @@ GameObject:
   - component: {fileID: 4389481605537069748}
   - component: {fileID: 7009560134783078128}
   - component: {fileID: 6570395650304520723}
+  - component: {fileID: 3466964501455127925}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Entity
@@ -646,6 +647,7 @@ MonoBehaviour:
   _chaseDetectionRadius: 10
   _lostPlayerCooldown: 3
   _surprisedDuration: 1.5
+  _globalPatrolPoints: {fileID: 0}
   _patrolSpeed: 3
   _chaseSpeed: 4
   _lookAroundDuration: 2
@@ -657,6 +659,29 @@ MonoBehaviour:
   _endAttackCooldown: 1
   _attackDamage: 1
   _patrolPoints: []
+--- !u!136 &3466964501455127925
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2123586008334422882}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Height: 2.056929
+  m_Direction: 1
+  m_Center: {x: 0, y: -0.010222793, z: 0}
 --- !u!1 &2321201825374350530
 GameObject:
   m_ObjectHideFlags: 0

@@ -49,13 +49,15 @@ public class GlobalObjectSpawner : MonoBehaviour
 
         foreach (var i in items)
         {
+            if (!GameManager.Instance.CanBorrowMore()) break;
+
             var borrowable = i.gameObject.AddComponent<Borrowable>();
             Destroy(i.gameObject.GetComponent<Grabbable>());
             borrowable.ScoreValue = i.ScoreValue;
             borrowableItems.Add(borrowable);
+
+            GameManager.Instance.AddBorrowedObject(borrowable);
             Debug.Log($"Borrowed {i.name}");
         }
-
-        GameManager.Instance.BorrowedObjectsList.AddRange(borrowableItems);
     }
 }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33158840987907290}
   - component: {fileID: 23436959049119532}
   - component: {fileID: 64660117403862730}
-  - component: {fileID: 5117065942147973128}
+  - component: {fileID: 1698559207042734275}
   m_Layer: 0
   m_Name: SM_Prop_Lightswitch_01
   m_TagString: Untagged
@@ -110,7 +110,7 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 43784845448908350, guid: 3da9daa14b48969439749611b2ea456e, type: 2}
---- !u!114 &5117065942147973128
+--- !u!114 &1698559207042734275
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,4 +124,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsActivated: 0
   IgnoreBot: 0
-  lights: []
+  lights:
+  - {fileID: 0}
+  - {fileID: 0}

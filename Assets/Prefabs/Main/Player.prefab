@@ -783,7 +783,19 @@ MonoBehaviour:
     m_ActionId: 452bda9f-212f-4529-8120-771fd9c23240
     m_ActionName: 'Player/List[/Keyboard/tab]'
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 4619739999166144482}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnReset
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 2e68e22d-cc70-4491-a5b0-0c219c44d1b5
     m_ActionName: 'Player/Reset[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
@@ -2602,7 +2614,7 @@ Light:
   m_InnerSpotAngle: 63.671528
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1

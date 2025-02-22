@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     public Sprite CrosshairsInteract;
     public TMP_Text InteractionText;
     public TMP_Text ScoreText;
+    public TMP_Text EndGameText;
 
     public void SetCrosshair(bool isInteracting)
     {
@@ -23,5 +24,15 @@ public class UIManager : MonoBehaviour
     public void UpdateScore(float score)
     {
         ScoreText.text = "Score: " + score;
+    }
+
+    public void ShowEndGameText()
+    {
+        EndGameText.gameObject.SetActive(true);
+    }
+
+    public void SetGameOverText(string text)
+    {
+        EndGameText.text = text;
     }
 }
