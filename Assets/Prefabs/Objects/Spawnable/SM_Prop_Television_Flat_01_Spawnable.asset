@@ -13,9 +13,8 @@ MonoBehaviour:
   m_Name: SM_Prop_Television_Flat_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2074432872782463958, guid: cc7f54bcf1daeef45a3ac8410396b5bd, type: 3}
-  Name: Television
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: Flat TV
+  Score: 0
+  Mass: 10
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

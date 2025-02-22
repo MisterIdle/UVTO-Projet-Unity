@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _surprisedDuration = 1.5f;
 
     [Header("Movement Settings")]
+    [SerializeField] private Transform _globalPatrolPoints;
     [SerializeField] private float _patrolSpeed = 1.5f;
     [SerializeField] private float _chaseSpeed = 2f;
     [SerializeField] private float _lookAroundDuration = 3f;
@@ -52,9 +53,12 @@ public class Enemy : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _player = FindFirstObjectByType<PlayerController>();
         _animator = GetComponentInChildren<Animator>();
+        _globalPatrolPoints = GameObject.Find("GlobalPatrolPoints").transform;
 
         _agent.speed = _patrolSpeed;
         _currentState = State.Patrol;
+
+        GetAllPoints();
 
         PatrolNextPoint();
     }
@@ -88,25 +92,20 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    private void PatrolNextPoint()
+    private void GetAllPoints()
     {
-        if (_patrolPoints.Length == 0)
+        _patrolPoints = new Transform[_globalPatrolPoints.childCount];
+        for (int i = 0; i < _globalPatrolPoints.childCount; i++)
         {
-            Debug.LogError("No patrol points assigned to the enemy!");
-            return;
+            _patrolPoints[i] = _globalPatrolPoints.GetChild(i);
         }
-
-        int nextPatrolIndex = Random.Range(0, _patrolPoints.Length);
-
-        while (nextPatrolIndex == _currentPatrolIndex)
-        {
-            nextPatrolIndex = Random.Range(0, _patrolPoints.Length);
-        }
-
-        _currentPatrolIndex = nextPatrolIndex;
-        _agent.SetDestination(_patrolPoints[_currentPatrolIndex].position);
     }
 
+    private void PatrolNextPoint()
+    {
+        _agent.SetDestination(_patrolPoints[_currentPatrolIndex].position);
+        _currentPatrolIndex = (_currentPatrolIndex + 1) % _patrolPoints.Length;
+    }
 
     private IEnumerator LookAround()
     {

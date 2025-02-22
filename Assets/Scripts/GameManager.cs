@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
                 if (_instance == null)
                 {
-                    GameObject singleton = new GameObject(typeof(GameManager).ToString());
+                    GameObject singleton = new GameObject(nameof(GameManager));
                     _instance = singleton.AddComponent<GameManager>();
                     DontDestroyOnLoad(singleton);
                 }

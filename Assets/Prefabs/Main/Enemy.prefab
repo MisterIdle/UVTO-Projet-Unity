@@ -654,10 +654,9 @@ MonoBehaviour:
   _interactDuration: 1
   _attackRadius: 3
   _attackCooldown: 2
+  _endAttackCooldown: 1
   _attackDamage: 1
-  _patrolPoints:
-  - {fileID: 0}
-  - {fileID: 0}
+  _patrolPoints: []
 --- !u!1 &2321201825374350530
 GameObject:
   m_ObjectHideFlags: 0

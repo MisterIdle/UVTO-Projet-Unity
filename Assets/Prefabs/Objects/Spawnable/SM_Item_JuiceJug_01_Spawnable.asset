@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Item_JuiceJug_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 575605855496685578, guid: 69a91be481ed7ce40a45f692c4ce7e61, type: 3}
-  Name: Juice Jug
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Item_JuiceJug_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

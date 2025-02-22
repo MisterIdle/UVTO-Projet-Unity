@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_LetterBox_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 8927263461528195942, guid: d43a3c16ea0698546a1c5124dc89aec1, type: 3}
-  Name: Letter Box
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_LetterBox_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

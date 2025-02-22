@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_CuttingBoard_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 8652795554161739215, guid: 568f1f89372306347a12314f66847149, type: 3}
-  Name: Cutting Board
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_CuttingBoard_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

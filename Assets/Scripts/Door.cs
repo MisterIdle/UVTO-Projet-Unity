@@ -42,6 +42,8 @@ public class Door : Interactive
 
         _isOpen = !_isOpen;
         _currentCoroutine = StartCoroutine(AnimateDoor(_isOpen));
+
+        IsActivated = _isOpen;
     }
 
     private IEnumerator AnimateDoor(bool open)

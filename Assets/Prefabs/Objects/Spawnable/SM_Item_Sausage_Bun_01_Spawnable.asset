@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Item_Sausage_Bun_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 6621790334052938063, guid: 9ce9f914a028a4f4dbceed154971c91d, type: 3}
-  Name: Sausage Bun
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Item_Sausage_Bun_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

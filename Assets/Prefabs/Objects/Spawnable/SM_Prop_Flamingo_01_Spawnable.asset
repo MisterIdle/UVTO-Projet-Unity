@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Flamingo_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2243118511357913135, guid: 02f6910f55519624eae6f97ea03c6a87, type: 3}
-  Name: Flamingo
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_Flamingo_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

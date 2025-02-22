@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_CoffeeMachine_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7457136646087136194, guid: 3f03fe9e160b72b4e9179382c882d3f6, type: 3}
-  Name: Coffee Machine
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_CoffeeMachine_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

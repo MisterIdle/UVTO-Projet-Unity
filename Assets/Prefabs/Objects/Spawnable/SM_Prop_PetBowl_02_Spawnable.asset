@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_PetBowl_02_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 397155119809161398, guid: 69432807046000541ad863d9462395fd, type: 3}
-  Name: Pet Bowl
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_PetBowl_02
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Game_Console_03_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 6014998210860530683, guid: f3a11b16fd2356a4eaa2f0738795c25a, type: 3}
-  Name: Game Console
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_Game_Console_03
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

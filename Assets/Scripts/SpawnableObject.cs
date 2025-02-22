@@ -7,20 +7,7 @@ public class SpawnableObject : ScriptableObject
     public string Name;
     public int Score;
     public int Mass;
-
-    public bool IsUniqueGlobal;
-    public bool IsUniquePerRoom;
-    [Range(0, 100)] public int BorrowedChance;
-
-    private void OnValidate()
-    {
-        if (IsUniqueGlobal && IsUniquePerRoom)
-        {
-            if (IsUniqueGlobal) 
-                IsUniquePerRoom = false;
-            else 
-                IsUniqueGlobal = false;
-        }
-    }
+    [Range(0, 360)] public float RandomizeRotationChance;
+    [Range(0, 2)] public float RandomizePositionChance;
 
 }

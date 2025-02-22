@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_TrashBag_02_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3271528522780300063, guid: 7b374f06fc8ad1b48a72831d682c53f0, type: 3}
-  Name: TrashBag
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_TrashBag_02
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

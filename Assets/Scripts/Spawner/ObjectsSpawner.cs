@@ -1,128 +1,51 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Linq;
 
 public class ObjectSpawner : MonoBehaviour
 {
-    public SpawnableObjectsList itemDatabase;
-    public Transform[] spawnPoints;
-    private GlobalObjectSpawner globalSpawner;
-    private HashSet<int> usedSpawnPoints = new HashSet<int>();
-    private List<SpawnableObject> uniquePerRoomItems = new List<SpawnableObject>();
+    public List<SpawnableObject> spawnableObjects;
 
-    public void Init()
+    private GlobalObjectSpawner globalObjectSpawner;
+
+    private void Awake()
     {
-        globalSpawner = GetComponentInParent<GlobalObjectSpawner>();
-        uniquePerRoomItems = itemDatabase.items.FindAll(item => item.IsUniquePerRoom);
-        ShuffleList(uniquePerRoomItems);
-        ShuffleList(itemDatabase.items);
-        SpawnItems();
+        globalObjectSpawner = GetComponentInParent<GlobalObjectSpawner>();
     }
 
-    private void SpawnItems()
+    public void SpawnObject()
     {
-        SpawnMandatoryItems(uniquePerRoomItems, true); 
-        SpawnMandatoryItems(uniquePerRoomItems, false);
-        SpawnUniqueNonMandatoryItems();
-
-        while (usedSpawnPoints.Count < spawnPoints.Length)
+        if (spawnableObjects.Count == 0)
         {
-            SpawnRemainingItems();
+            Debug.Log("No objects to spawn.");
+            return;
         }
-    }
 
-    private void SpawnMandatoryItems(List<SpawnableObject> items, bool isUniqueGlobal)
-    {
-        foreach (var item in items)
+        var randomObject = spawnableObjects[Random.Range(0, spawnableObjects.Count)];
+
+        if (!globalObjectSpawner.CanSpawnObject(randomObject))
         {
-            if (item.IsUniqueGlobal == isUniqueGlobal && CanSpawnUniqueItem(item))
-            {
-                if (usedSpawnPoints.Count >= spawnPoints.Length)
-                {
-                    Debug.LogWarning($"No available spawn points for item: {item.name}");
-                    continue;
-                }
-                SpawnItem(item);
-                if (item.IsUniqueGlobal) globalSpawner.UniqueItemsSpawned.Add(item);
-            }
+            Debug.Log($"Object {randomObject.Name} has already been spawned. Skipping...");
+            return;
         }
-    }
 
-    private void SpawnUniqueNonMandatoryItems()
-    {
-        foreach (var item in itemDatabase.items)
-        {
-            if (item.IsUniqueGlobal && CanSpawnUniqueItem(item))
-            {
-                if (usedSpawnPoints.Count >= spawnPoints.Length)
-                {
-                    Debug.LogWarning($"No available spawn points for item: {item.name}");
-                    continue;
-                }
-                SpawnItem(item);
-                globalSpawner.UniqueItemsSpawned.Add(item);
-            }
-        }
-    }
-
-    private void SpawnRemainingItems()
-    {
-        List<SpawnableObject> shuffledItems = new List<SpawnableObject>(itemDatabase.items);
-        ShuffleList(shuffledItems);
-    
-        foreach (var item in shuffledItems)
-        {
-            if (!item.IsUniqueGlobal && !item.IsUniquePerRoom)
-            {
-                if (usedSpawnPoints.Count >= spawnPoints.Length) break;
-                SpawnItem(item);
-            }
-        }
-    }
-    
-    private void ShuffleList<T>(List<T> list)
-    {
-        for (int i = 0; i < list.Count; i++)
-        {
-            T temp = list[i];
-            int randomIndex = Random.Range(i, list.Count);
-            list[i] = list[randomIndex];
-            list[randomIndex] = temp;
-        }
-    }
-
-    private bool CanSpawnUniqueItem(SpawnableObject item)
-    {
-        return !globalSpawner.UniqueItemsSpawned.Contains(item);
-    }
-
-    private void SpawnItem(SpawnableObject item)
-    {
-        if (usedSpawnPoints.Count >= spawnPoints.Length) return;
-        int randomIndex = GetRandomUnusedIndex();
-        GameObject obj = Instantiate(item.Prefab, spawnPoints[randomIndex].position, spawnPoints[randomIndex].rotation);
-
-        obj.name = item.Name;
+        GameObject obj = Instantiate(randomObject.Prefab, transform.position, transform.rotation);
+        obj.transform.SetParent(globalObjectSpawner.ObjectsParent.transform);
 
         var grabbable = obj.AddComponent<Grabbable>();
+        grabbable.ScoreValue = randomObject.Score;
+
         var rigidbody = obj.GetComponent<Rigidbody>();
-
-        rigidbody.mass = item.Mass;
-        grabbable.ChanceToBeBorrowed = item.BorrowedChance;
-        grabbable.ScoreValue = item.Score;
-
-        usedSpawnPoints.Add(randomIndex);
-        obj.transform.SetParent(globalSpawner.ObjectsParent.transform);
-
-        Debug.Log($"Spawned {item.name} at {spawnPoints[randomIndex].position}");
-    }
-
-    private int GetRandomUnusedIndex()
-    {
-        int randomIndex;
-        do
+        if (rigidbody == null)
         {
-            randomIndex = Random.Range(0, spawnPoints.Length);
-        } while (usedSpawnPoints.Contains(randomIndex));
-        return randomIndex;
+            rigidbody = obj.AddComponent<Rigidbody>();
+        }
+        rigidbody.mass = randomObject.Mass;
+
+        obj.name = randomObject.Name;
+
+        globalObjectSpawner.MarkObjectAsSpawned(randomObject);
+
+        Debug.Log($"Spawned: {randomObject.Name}");
     }
 }

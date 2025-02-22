@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Item_Ball_Soccer_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 4926729889877945335, guid: 1d607b130bf7ecb478e4787559fba3ec, type: 3}
-  Name: Soccer Ball
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Item_Ball_Soccer_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

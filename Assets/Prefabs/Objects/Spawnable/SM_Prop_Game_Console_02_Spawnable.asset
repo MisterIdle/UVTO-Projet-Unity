@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Game_Console_02_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7005325765535058658, guid: ce220509af4889247a17f6f142c2ffcb, type: 3}
-  Name: PS4
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_Game_Console_02
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

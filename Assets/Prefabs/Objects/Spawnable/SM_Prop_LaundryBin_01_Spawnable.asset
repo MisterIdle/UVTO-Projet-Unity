@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_LaundryBin_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 8938924232110835569, guid: a3d49080984df9b41a7ff4adff6c05f2, type: 3}
-  Name: Laundry Bin
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_LaundryBin_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

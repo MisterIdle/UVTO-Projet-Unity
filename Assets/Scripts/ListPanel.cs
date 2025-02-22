@@ -40,7 +40,7 @@ public class ListPanel : MonoBehaviour
         {
             if (obj.IsBorrowed)
             {
-                ListText.text += "<color=#D3D3D3><s>" + obj.name + "</s></color>\n";
+                ListText.text += "<s>" + obj.name + "</s>\n";
             }
             else
             {

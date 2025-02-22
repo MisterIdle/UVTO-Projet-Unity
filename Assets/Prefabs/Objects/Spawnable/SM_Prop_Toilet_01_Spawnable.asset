@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Toilet_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7923110812137826064, guid: d8f980d49ca61dc4b9fdbe4b654be39f, type: 3}
-  Name: Toilet
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_Toilet_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

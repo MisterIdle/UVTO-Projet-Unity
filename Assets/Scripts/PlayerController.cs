@@ -78,6 +78,8 @@ public class PlayerController : MonoBehaviour
 
         UpdateHeadPosition();
         UpdateCharacterModelDirection();
+
+        _listPanel.UpdateList(GameManager.Instance.BorrowedObjectsList);
     }
 
     private void LateUpdate()

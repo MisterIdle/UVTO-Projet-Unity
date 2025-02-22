@@ -9,8 +9,6 @@ public class Grabbable : Collectible
     private PlayerController _playerController;
     private MeshCollider _meshCollider;
     private NavMeshObstacle _navMeshObstacle;
-    
-    public int ChanceToBeBorrowed;
     public float ScoreValue;
 
     [SerializeField] private float _lerpSpeed = 10f;

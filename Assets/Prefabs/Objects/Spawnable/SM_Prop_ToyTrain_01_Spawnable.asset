@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_ToyTrain_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 25796378309897948, guid: 93fcaca1c1812aa49b96b9266bbae2c9, type: 3}
-  Name: ToyTrain
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_ToyTrain_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

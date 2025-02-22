@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Computer_Screen_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3456370163527749646, guid: 978d9909a94ac9441af9228785e8398f, type: 3}
-  Name: Screen
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_Computer_Screen_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0

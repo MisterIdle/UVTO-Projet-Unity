@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: SM_Prop_Cart_01_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 6645574670413210507, guid: b6d8568fc66b60142b85c33958b0d520, type: 3}
-  Name: Cart
-  Score: 100
-  Mass: 20
-  IsUniqueGlobal: 0
-  IsUniquePerRoom: 0
-  BorrowedChance: 100
+  Name: SM_Prop_Cart_01
+  Score: 0
+  Mass: 0
+  BorrowedChance: 0
+  RandomizeRotationChance: 0
+  RandomizePositionChance: 0
