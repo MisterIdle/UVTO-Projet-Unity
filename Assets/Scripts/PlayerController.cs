@@ -46,12 +46,13 @@ public class PlayerController : MonoBehaviour
     [Header("Audio Settings")]
     [SerializeField] private AudioClip _footstepSound;
     [SerializeField] private AudioClip _hitSound;
-    [SerializeField] public AudioClip GrabSound;
     [SerializeField] public AudioClip CollisionSound;
+    [SerializeField] public AudioClip BorrowSound;
 
     private Rigidbody _rb;
     private Vector2 _movementInput;
     private Vector3 _velocity;
+    private Coroutine _quitCoroutine;
 
     private UIManager _uiManager;
     private ListPanel _listPanel;
@@ -124,7 +125,7 @@ public class PlayerController : MonoBehaviour
         if (_rb.linearVelocity.y < 0)
         {
             moveDirection.y += Physics.gravity.y * 2f * Time.deltaTime;
-        }   
+        }
 
         _rb.linearVelocity = moveDirection; 
 
@@ -135,10 +136,8 @@ public class PlayerController : MonoBehaviour
 
     private void PlayFootstepSound()
     {
-        if (isWalking)
-        {
-            SoundManager.Instance.PlaySound(_footstepSound, transform, 1f, true);
-        }
+        if (isWalking && !IsCrouching)
+            SoundManager.Instance.PlayOneTimeSound(_footstepSound, transform, 0.2f);
     }
 
     private void Crouch()
@@ -176,7 +175,6 @@ public class PlayerController : MonoBehaviour
             else if (hit.collider.TryGetComponent(out Collectible collectible))
             {
                 collectible.Collect();
-                SoundManager.Instance.PlaySound(GrabSound, transform, 1f, true);
             }
         }
     }
@@ -201,7 +199,7 @@ public class PlayerController : MonoBehaviour
             if (hit.collider.TryGetComponent<Grabbable>(out _))
                 SetUI("(E) Grab");
             else if (hit.collider.TryGetComponent<Borrowable>(out _))
-                SetUI("(E) Borrow");
+                SetUI("(E) Borrow " + hit.collider.name);
             else if (hit.collider.TryGetComponent<Interactive>(out _))
                 SetUI("(E) Interact");
             else
@@ -238,7 +236,7 @@ public class PlayerController : MonoBehaviour
 
         Health -= damage;
         HitEffect();
-        SoundManager.Instance.PlaySound(_hitSound, transform, 1f, true);
+        SoundManager.Instance.PlaySound(_hitSound, transform, 1f);
 
         if (Health <= 0)
             Die();
@@ -314,5 +312,33 @@ public class PlayerController : MonoBehaviour
     {
         if (context.started && IsDead)
             GameManager.Instance.RestartGame();
+    }
+
+    public void OnQuit(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            _quitCoroutine = StartCoroutine(QuitCountdown());
+        }
+        else if (context.canceled)
+        {
+            if (_quitCoroutine != null)
+            {
+                StopCoroutine(_quitCoroutine);
+                _quitCoroutine = null;
+                _uiManager.SetQuitText("");
+            }
+        }
+    }
+
+    private IEnumerator QuitCountdown()
+    {
+        for (int i = 3; i > 0; i--)
+        {
+            _uiManager.SetQuitText("Quitting in " + i);
+            yield return new WaitForSeconds(1f);
+        }
+
+        GameManager.Instance.StopGame();
     }
 }

@@ -30,6 +30,7 @@ public class Borrowable : Collectible
     {
         IsBorrowed = true;
         _playerController.AddScore(ScoreValue);
+        SoundManager.Instance.PlaySound(_playerController.BorrowSound, transform, 1f);
         StartCoroutine(DisappearAnimation());
     }
 

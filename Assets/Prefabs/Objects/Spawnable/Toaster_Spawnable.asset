@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1944458582900654244, guid: 709002ff781ed83439209739a80f7c80, type: 3}
   Name: Toaster
-  Score: 100
-  Mass: 20
+  Score: 25
+  Mass: 2

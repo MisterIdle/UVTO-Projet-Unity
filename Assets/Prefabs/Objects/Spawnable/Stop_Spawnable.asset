@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Stop_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1360475503196418651, guid: d9cf0734db74b104aa12cf66f5fce949, type: 3}
-  Name: Stop
-  Score: 100
-  Mass: 20
+  Name: Stop Sign
+  Score: 2500
+  Mass: 10000

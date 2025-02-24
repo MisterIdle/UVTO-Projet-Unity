@@ -15,4 +15,4 @@ MonoBehaviour:
   Prefab: {fileID: 2243118511357913135, guid: 02f6910f55519624eae6f97ea03c6a87, type: 3}
   Name: Flamingo
   Score: 5000
-  Mass: 10
+  Mass: 1

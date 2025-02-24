@@ -315,13 +315,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsActivated: 0
-  IgnoreBot: 0
+  IgnoreBot: 1
   _openDuration: 1
   _moveDistance: -0.1
   _openAngle: 90
   _openToRight: 1
   _isLocked: 0
   _lockedAnimationDuration: 0.5
-  _lockedAnimationAngle: 10
+  _lockedAnimationAngle: 2
   _openSound: {fileID: 8300000, guid: e455517049637aa4b82cee1a4ddd3571, type: 3}
-  _lockedSound: {fileID: 8300000, guid: 72ad4c78bd730cf4aaa6fcb5a2ab4fac, type: 3}
+  _closeSound: {fileID: 8300000, guid: 72ad4c78bd730cf4aaa6fcb5a2ab4fac, type: 3}
+  _lockedSound: {fileID: 8300000, guid: dc69aa34b432783458a0d963433addf6, type: 3}

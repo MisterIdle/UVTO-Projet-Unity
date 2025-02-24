@@ -13,8 +13,6 @@ MonoBehaviour:
   m_Name: DeskLamp_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 4201050440178173432, guid: 5e9b9761e8e03524d993f6de3266d3c8, type: 3}
-  Name: DeskLamp
-  Score: 0
-  Mass: 0
-  RandomizeRotationChance: 0
-  RandomizePositionChance: 0
+  Name: Desk Lamp
+  Score: 25
+  Mass: 2

@@ -15,4 +15,4 @@ MonoBehaviour:
   Prefab: {fileID: 8938924232110835569, guid: a3d49080984df9b41a7ff4adff6c05f2, type: 3}
   Name: LaundryBin
   Score: 15
-  Mass: 10
+  Mass: 5

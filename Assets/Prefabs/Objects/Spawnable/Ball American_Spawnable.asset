@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 62370198608301605, guid: 16983e01a7c02414ba61249f4c13eae4, type: 3}
   Name: Ball American
-  Score: 50
+  Score: 20
   Mass: 1

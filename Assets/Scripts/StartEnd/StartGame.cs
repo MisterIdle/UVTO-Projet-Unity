@@ -10,11 +10,6 @@ public class StartGame : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Application.Quit();
-        }
-
         if (Input.GetKeyDown(KeyCode.Space))
         {
             StartGameButton();

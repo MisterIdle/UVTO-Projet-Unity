@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CoffeeMachine_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7457136646087136194, guid: 3f03fe9e160b72b4e9179382c882d3f6, type: 3}
-  Name: CoffeeMachine
+  Name: Coffee Machine
   Score: 1500
-  Mass: 20
+  Mass: 10

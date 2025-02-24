@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 6621790334052938063, guid: 9ce9f914a028a4f4dbceed154971c91d, type: 3}
   Name: Sausage Bun
-  Score: 9999
+  Score: 1000
   Mass: 1

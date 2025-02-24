@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7923110812137826064, guid: d8f980d49ca61dc4b9fdbe4b654be39f, type: 3}
   Name: Toilet
-  Score: 100
-  Mass: 20
+  Score: 10
+  Mass: 1

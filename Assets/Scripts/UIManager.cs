@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public Sprite CrosshairsNormal;
     public Sprite CrosshairsInteract;
     public TMP_Text InteractionText;
+    public TMP_Text QuitText;
     public TMP_Text ScoreText;
     public TMP_Text EndGameText;
 
@@ -26,6 +27,11 @@ public class UIManager : MonoBehaviour
     public void SetInteractionText(string text)
     {
         InteractionText.text = text;
+    }
+
+    public void SetQuitText(string text)
+    {
+        QuitText.text = text;
     }
 
     public void UpdateScore(float score)

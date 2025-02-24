@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 5918876810225864720, guid: be625b6ccbcd76c48b75fdc2a28de29d, type: 3}
   Name: Duck Pool Float Ring
-  Score: 50
+  Score: 2500
   Mass: 1

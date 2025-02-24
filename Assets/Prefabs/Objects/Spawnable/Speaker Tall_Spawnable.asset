@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 8800846570821975562, guid: b7a318aaff1a8be44b79d1e5d3afe347, type: 3}
   Name: Speaker Tall
-  Score: 100
-  Mass: 20
+  Score: 25
+  Mass: 3

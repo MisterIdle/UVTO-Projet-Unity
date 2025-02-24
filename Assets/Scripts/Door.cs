@@ -6,6 +6,7 @@ using UnityEngine.Audio;
 [RequireComponent(typeof(NavMeshObstacle), typeof(MeshCollider))]
 public class Door : Interactive
 {
+    [Header("Door Settings")]
     [SerializeField] private float _openDuration = 1.0f;
     [SerializeField] private float _moveDistance = 0f;
     [SerializeField] private float _openAngle = 90f;
@@ -13,7 +14,10 @@ public class Door : Interactive
     [SerializeField] private bool _isLocked = false;
     [SerializeField] private float _lockedAnimationDuration = 0.5f;
     [SerializeField] private float _lockedAnimationAngle = 10f;
+
+    [Header("Audio Settings")]
     [SerializeField] private AudioClip _openSound;
+    [SerializeField] private AudioClip _closeSound;
     [SerializeField] private AudioClip _lockedSound;
 
     private Quaternion _initialRotation;
@@ -40,15 +44,15 @@ public class Door : Interactive
         if (_isLocked)
         {
             _currentCoroutine = StartCoroutine(AnimateLockedDoor());
-            return;
+            SoundManager.Instance.PlaySound(_lockedSound, transform, 0.5f);
         }
-
-        _isOpen = !_isOpen;
-        _currentCoroutine = StartCoroutine(AnimateDoor(_isOpen));
-
-        SoundManager.Instance.PlaySound(_isOpen ? _openSound : _lockedSound, transform, 0.5f);
-
-        IsActivated = _isOpen;
+        else
+        {
+            _isOpen = !_isOpen;
+            _currentCoroutine = StartCoroutine(AnimateDoor(_isOpen));
+            SoundManager.Instance.PlaySound(_isOpen ? _openSound : _closeSound, transform, 0.5f);
+            IsActivated = _isOpen;
+        }
     }
 
     private IEnumerator AnimateDoor(bool open)

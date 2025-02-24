@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: WateringCan_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7613971245808906972, guid: 5fd9e4289b47b2a458eb160cb40e36c8, type: 3}
-  Name: WateringCan
+  Name: Watering Can
   Score: 100
-  Mass: 20
+  Mass: 5

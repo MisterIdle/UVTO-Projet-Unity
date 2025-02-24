@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2839044733848060537, guid: 634ca76a2d31f74448ffdbdadc8dae51, type: 3}
   Name: Pool Child
-  Score: 0
-  Mass: 0
-  RandomizeRotationChance: 0
-  RandomizePositionChance: 0
+  Score: 20
+  Mass: 3

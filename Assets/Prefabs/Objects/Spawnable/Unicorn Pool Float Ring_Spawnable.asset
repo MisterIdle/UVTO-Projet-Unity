@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7322984003463072076, guid: e0a51ef2a58f21f468b7c7d47fba325e, type: 3}
   Name: Unicorn Pool Float Ring
-  Score: 100
-  Mass: 20
+  Score: 1000
+  Mass: 1

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 994405770962125434, guid: 9ae3fe27c4df7b049babb1f9b741ba71, type: 3}
   Name: Cake
-  Score: 100
+  Score: 50
   Mass: 2

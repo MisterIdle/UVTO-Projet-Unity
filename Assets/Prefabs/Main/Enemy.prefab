@@ -654,19 +654,17 @@ MonoBehaviour:
   _lookAroundAngle: 90
   _minLookAroundTurn: 1
   _maxLookAroundTurn: 6
-  _stuckDetectionTime: 2
-  _stuckResetDistance: 1
   _interactRadius: 2
   _interactDuration: 1
   _attackRadius: 3
   _attackCooldown: 1
   _endAttackCooldown: 0.5
   _attackDamage: 1
-  _timeWarning: 5
-  _timeFree: 10
+  _timeWarning: 90
+  _timeFree: 30
   _attackSound: {fileID: 8300000, guid: 6931d2f436d24f54f84132a1e572a344, type: 3}
   _surprisedSound: {fileID: 8300000, guid: 56ac277ef71903e42af9474c420bef11, type: 3}
-  _footstepSound: {fileID: 8300000, guid: dbea663c3e22d2e458feedf589cf08c6, type: 3}
+  _footstepSound: {fileID: 8300000, guid: db83f6bc4612b61418d61c7c18805d4f, type: 3}
   _patrolPoints: []
 --- !u!1 &2321201825374350530
 GameObject:

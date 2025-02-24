@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 4597845798485627000, guid: f0ecf0283dfcf244882efc5c563ce31b, type: 3}
   Name: Sausage Cooked
-  Score: 9999
+  Score: 10000
   Mass: 1

@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 2343148476978733901, guid: 1424b1fc78071ec4fbb2115858a686f7, type: 3}
   Name: Piano
-  Score: 0
-  Mass: 0
-  RandomizeRotationChance: 0
-  RandomizePositionChance: 0
+  Score: 25
+  Mass: 2000

@@ -28,8 +28,6 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float _lookAroundAngle = 90f;
     [SerializeField] private float _minLookAroundTurn = 1f;
     [SerializeField] private float _maxLookAroundTurn = 6f;
-    [SerializeField] private float _stuckDetectionTime = 2f;
-    [SerializeField] private float _stuckResetDistance = 1f;
 
     [Header("Interaction Settings")]
     [SerializeField] private float _interactRadius = 2f;
@@ -55,12 +53,7 @@ public class Enemy : MonoBehaviour
     private WasherMachine _washerMachine;
     private Vector3 _lastKnownPlayerPosition;
     private Animator _animator;
-
-    private Vector3 _lastPosition;
-    private float _stuckTimer = 0f;
-
     [SerializeField] private Transform[] _patrolPoints;
-    private int _currentPatrolIndex = 0;
 
     private enum State { Patrol, Chase, LookAround, Surprised }
 
@@ -87,99 +80,39 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         if (_isInteracting) return;
-
+    
         HandleInteractions();
         CheckForPlayerDetection();
-
+    
         _agent.stoppingDistance = 0;
-
-        HandleStuckDetection();
-
+    
         switch (_currentState)
         {
             case State.Patrol:
                 HandlePatrol();
                 break;
-
+    
             case State.Chase:
                 HandleChase();
                 break;
         }
-
-        isWalking = _agent.velocity.sqrMagnitude > 0;
+    
+        isWalking = _agent.velocity.sqrMagnitude > 0.1;
         PlayFootstepSound();
+
+        _agent.updatePosition = true;
+        _agent.updateRotation = true;
+
     }
+
 
     private void PlayFootstepSound()
     {
         if (isWalking)
         {
-            SoundManager.Instance.PlaySound(_footstepSound, transform, 1f, true);
+            SoundManager.Instance.PlayOneTimeSound(_footstepSound, transform, 1f);
         }
     }
-
-    private void HandleStuckDetection()
-    {
-        if (Vector3.Distance(transform.position, _lastPosition) < _stuckResetDistance)
-        {
-            _stuckTimer += Time.deltaTime;
-        }
-        else
-        {
-            _stuckTimer = 0f;
-            _lastPosition = transform.position;
-        }
-
-        if (_stuckTimer >= _stuckDetectionTime)
-        {
-            AdjustEnemyPosition();
-            _stuckTimer = 0f;
-        }
-
-        if (_agent.velocity.sqrMagnitude < Mathf.Epsilon && !_agent.pathPending)
-        {
-            _stuckTimer += Time.deltaTime;
-            if (_stuckTimer >= _stuckDetectionTime)
-            {
-                AdjustEnemyPosition();
-                _stuckTimer = 0f;
-            }
-        }
-        else
-        {
-            _stuckTimer = 0f;
-        }
-    }
-
-    private void AdjustEnemyPosition()
-    {
-        if (_currentState == State.Patrol)
-        {
-            PatrolNextPoint();
-        }
-        else if (_currentState == State.Chase)
-        {
-            _agent.SetDestination(_lastKnownPlayerPosition);
-            if (Vector3.Distance(transform.position, _lastKnownPlayerPosition) < _stuckResetDistance)
-            {
-                Debug.Log("Enemy is stuck while chasing! Trying a random nearby position.");
-                TryRandomPositionNearby();
-            }
-        }
-    }
-
-    private void TryRandomPositionNearby()
-    {
-        Vector3 randomDirection = Random.insideUnitSphere * _stuckResetDistance;
-        randomDirection += transform.position;
-        NavMeshHit hit;
-
-        if (NavMesh.SamplePosition(randomDirection, out hit, _stuckResetDistance, 1))
-        {
-            _agent.SetDestination(hit.position);
-        }
-    }
-
 
     private void HandlePatrol()
     {
@@ -202,62 +135,55 @@ public class Enemy : MonoBehaviour
     private void PatrolNextPoint()
     {
         if (!_agent.enabled) return;
-        _currentPatrolIndex = Random.Range(0, _patrolPoints.Length);
-        _agent.SetDestination(_patrolPoints[_currentPatrolIndex].position);
+
+        int randomIndex = Random.Range(0, _patrolPoints.Length);
+        _agent.SetDestination(_patrolPoints[randomIndex].position);
     }
 
     private IEnumerator LookAround()
     {
+        if (_isPlayerDetected) yield break;
+    
         _agent.isStopped = true;
         _currentState = State.LookAround;
-
         _animator.SetBool("IsLook", true);
-
+    
         for (int i = 0; i < Random.Range(_minLookAroundTurn, _maxLookAroundTurn); i++)
         {
             float direction = Random.value > 0.5f ? 1f : -1f;
             Quaternion targetRotation = Quaternion.Euler(0, transform.eulerAngles.y + direction * _lookAroundAngle, 0);
             float elapsedTime = 0f;
-
+    
             while (elapsedTime < _lookAroundDuration)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, elapsedTime / _lookAroundDuration);
                 elapsedTime += Time.deltaTime;
                 yield return null;
-
+    
                 CheckForPlayerDetection();
                 if (_isPlayerDetected)
                 {
                     _animator.SetBool("IsLook", false);
-                    HandleChase();
+                    _currentState = State.Chase;
                     yield break;
                 }
             }
         }
-
+    
         _animator.SetBool("IsLook", false);
-
         _agent.isStopped = false;
-
-        if (_isPlayerDetected)
-        {
-            _currentState = State.Chase;
-        }
-        else
-        {
-            _agent.speed = _patrolSpeed;
-            _currentState = State.Patrol;
-            PatrolNextPoint();
-        }
+        _currentState = State.Patrol;
+        PatrolNextPoint();
     }
+
 
     private void HandleInteractions()
     {
-        if (_isInteracting || !_canAttack) return;  
+        if (_isInteracting) return;
 
         Collider[] hits = Physics.OverlapSphere(transform.position, _detectionRadius);
         Interactive closestInteractive = null;
-        float closestDistance = Mathf.Infinity; 
+        float closestDistance = Mathf.Infinity;
 
         foreach (Collider hit in hits)
         {
@@ -270,7 +196,7 @@ public class Enemy : MonoBehaviour
                     closestInteractive = interactive;
                 }
             }
-        }   
+        }
 
         if (closestInteractive != null && closestDistance <= _interactRadius)
         {
@@ -286,13 +212,13 @@ public class Enemy : MonoBehaviour
 
         _isInteracting = true;
         _agent.isStopped = true;
-        _animator.SetTrigger("Interact");
+        _animator.SetBool("IsInteract", true);
 
         yield return new WaitForSeconds(_interactDuration);
 
-        _animator.SetTrigger("Interact");
-
         interactive.Interact();
+
+        _animator.SetBool("IsInteract", false);
 
         _isInteracting = false;
         _agent.isStopped = false;
@@ -300,13 +226,25 @@ public class Enemy : MonoBehaviour
 
     private void CheckForPlayerDetection()
     {
-        _isPlayerDetected = IsPlayerInDetectionCone(transform.forward, _frontDetectionRadius, _frontDetectionAngle) || IsPlayerInDetectionCone(-transform.forward, _detectionRadius, 180f);
+        bool isPlayerInCone = IsPlayerInDetectionCone(transform.forward, _frontDetectionRadius, _frontDetectionAngle) ||
+                              IsPlayerInDetectionCone(-transform.forward, _detectionRadius, 180f);
 
         if (_currentState == State.Chase)
         {
-            _isPlayerDetected = IsPlayerInDetectionCone(transform.forward, _chaseDetectionRadius, 180f);
+            isPlayerInCone = IsPlayerInDetectionCone(transform.forward, _chaseDetectionRadius, 180f);
+        }
+
+        if (isPlayerInCone)
+        {
+            _isPlayerDetected = true;
+            _lastKnownPlayerPosition = _player.transform.position;
+        }
+        else
+        {
+            _isPlayerDetected = false;
         }
     }
+
 
     private bool IsPlayerInDetectionCone(Vector3 direction, float radius, float angle)
     {
@@ -319,13 +257,31 @@ public class Enemy : MonoBehaviour
 
                 if (Vector3.Angle(direction, playerDirection) < angle)
                 {
-                    _currentState = State.Chase;
-                    return true;
+                    if (IsPlayerVisible(player))
+                    {
+                        _currentState = State.Chase;
+                        return true;
+                    }
                 }
             }
         }
         return false;
     }
+
+    private bool IsPlayerVisible(PlayerController player)
+    {
+        Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
+        RaycastHit hit;
+        if (Physics.Raycast(transform.position, directionToPlayer, out hit, _chaseDetectionRadius))
+        {
+            if (hit.collider.GetComponent<PlayerController>() != null)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     private void HandleChase()
     {
@@ -333,18 +289,15 @@ public class Enemy : MonoBehaviour
         {
             _isSurprised = true;
             _currentState = State.Surprised;
-
-            LookAtPlayer();
-
             _animator.SetTrigger("Surprised");
-
-            SoundManager.Instance.PlaySound(_surprisedSound, transform, 1f, false);
+            SoundManager.Instance.PlaySound(_surprisedSound, transform, 1f);
             StartCoroutine(Surprised());
         }
 
         if (_isPlayerDetected)
         {
             _agent.stoppingDistance = _interactRadius;
+            _agent.speed = _chaseSpeed;
 
             float distanceToPlayer = Vector3.Distance(transform.position, _player.transform.position);
             if (distanceToPlayer <= _interactRadius && _canAttack && !_player.IsDead)
@@ -354,9 +307,7 @@ public class Enemy : MonoBehaviour
             else
             {
                 _animator.SetBool("IsRun", true);
-                _agent.speed = _chaseSpeed;
-                _lastKnownPlayerPosition = _player.transform.position;
-                _agent.SetDestination(_lastKnownPlayerPosition);
+                _agent.SetDestination(_player.transform.position);
             }
         }
         else
@@ -369,6 +320,7 @@ public class Enemy : MonoBehaviour
             _agent.SetDestination(_lastKnownPlayerPosition);
         }
     }
+
 
     private IEnumerator AttackPlayer()
     {
@@ -386,7 +338,7 @@ public class Enemy : MonoBehaviour
             _player.TakeDamage(_attackDamage);
         }
 
-        SoundManager.Instance.PlaySound(_attackSound, transform, 1f, false);
+        SoundManager.Instance.PlaySound(_attackSound, transform, 1f);
 
         yield return new WaitForSeconds(_endAttackCooldown);
 
@@ -415,6 +367,8 @@ public class Enemy : MonoBehaviour
     private IEnumerator Surprised()
     {
         _agent.isStopped = true;
+        _animator.SetBool("IsRun", false);
+        _animator.SetBool("IsLook", false);
 
         Vector3 directionToPlayer = (_player.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToPlayer.x, 0, directionToPlayer.z));
@@ -434,11 +388,12 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator LostPlayer()
     {
+        _lostPlayer = true;
         yield return new WaitForSeconds(_lostPlayerCooldown);
-        _lostPlayer = false;
-        _animator.SetBool("IsRun", false);
-        StartCoroutine(LookAround());
+        _agent.SetDestination(_lastKnownPlayerPosition);
+        _currentState = State.Patrol;
     }
+
 
     private IEnumerator Waiting() {
         yield return new WaitForSeconds(_timeWarning);

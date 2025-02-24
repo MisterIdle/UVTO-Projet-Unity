@@ -15,4 +15,4 @@ MonoBehaviour:
   Prefab: {fileID: 7460172432023373366, guid: 8679d993649aad14292fd7af0b708cef, type: 3}
   Name: Stereo Speaker
   Score: 100
-  Mass: 20
+  Mass: 3

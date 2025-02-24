@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 293836108271901942, guid: 030237373f668e645a229936adccbc43, type: 3}
   Name: ToolBox
-  Score: 100
-  Mass: 20
+  Score: 587
+  Mass: 1

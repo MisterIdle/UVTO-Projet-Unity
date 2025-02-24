@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3456370163527749646, guid: 978d9909a94ac9441af9228785e8398f, type: 3}
   Name: Screen
-  Score: 500
-  Mass: 20
+  Score: 1000
+  Mass: 10

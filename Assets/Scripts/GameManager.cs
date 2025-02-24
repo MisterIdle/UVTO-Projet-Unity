@@ -53,6 +53,10 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
+    public void StopGame()
+    {
+        Application.Quit();
+    }
 
     public bool CanBorrowMore()
     {

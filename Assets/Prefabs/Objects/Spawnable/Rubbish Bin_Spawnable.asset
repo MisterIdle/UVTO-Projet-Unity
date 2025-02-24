@@ -15,4 +15,4 @@ MonoBehaviour:
   Prefab: {fileID: 604883268867509192, guid: 3a37a720e0b8d384f82e656130b1c014, type: 3}
   Name: Rubbish Bin
   Score: 5
-  Mass: 20
+  Mass: 2

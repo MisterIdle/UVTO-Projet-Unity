@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7221157207504343604, guid: 0f04e85f31138bd4daccd89a569b4295, type: 3}
   Name: BabyCot
-  Score: 0
-  Mass: 0
-  RandomizeRotationChance: 0
-  RandomizePositionChance: 0
+  Score: 50
+  Mass: 10

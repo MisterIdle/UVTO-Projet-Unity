@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: ToyTrain_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 25796378309897948, guid: 93fcaca1c1812aa49b96b9266bbae2c9, type: 3}
-  Name: ToyTrain
-  Score: 100
-  Mass: 20
+  Name: Toy Train
+  Score: 9999
+  Mass: 1

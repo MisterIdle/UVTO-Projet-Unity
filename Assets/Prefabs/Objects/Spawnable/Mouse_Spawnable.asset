@@ -14,7 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 20591609356103315, guid: 9c59669d30d841d489437d4ad9ffa6ed, type: 3}
   Name: Mouse
-  Score: 0
-  Mass: 0
-  RandomizeRotationChance: 0
-  RandomizePositionChance: 0
+  Score: 255
+  Mass: 1

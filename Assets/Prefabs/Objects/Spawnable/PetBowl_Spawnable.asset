@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: PetBowl_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 397155119809161398, guid: 69432807046000541ad863d9462395fd, type: 3}
-  Name: PetBowl
+  Name: Pet Bowl
   Score: 5
   Mass: 1

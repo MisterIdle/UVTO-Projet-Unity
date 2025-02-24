@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 6523255467058226309, guid: 6486e048c0dfa85418f803e5f87f93d5, type: 3}
   Name: Controller
-  Score: 200
+  Score: 100
   Mass: 1

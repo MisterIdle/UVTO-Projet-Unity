@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: CuttingBoard_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 8652795554161739215, guid: 568f1f89372306347a12314f66847149, type: 3}
-  Name: CuttingBoard
+  Name: Cutting Board
   Score: 20
   Mass: 1

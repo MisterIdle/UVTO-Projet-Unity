@@ -548,10 +548,10 @@ MonoBehaviour:
   _vignette: {fileID: 0}
   _damageCooldown: 1
   _enemy: {fileID: 0}
-  _footstepSound: {fileID: 8300000, guid: dbea663c3e22d2e458feedf589cf08c6, type: 3}
+  _footstepSound: {fileID: 8300000, guid: 7983062ea00c98e4ea33f2f7a14cf1b0, type: 3}
   _hitSound: {fileID: 8300000, guid: b34bfe2234e7ff94eb647e57e012d814, type: 3}
-  GrabSound: {fileID: 8300000, guid: 53d181b7a1dda684b9e492f2a8889f70, type: 3}
   CollisionSound: {fileID: 8300000, guid: cac05fd478f891b448f3f6c1d38c141a, type: 3}
+  BorrowSound: {fileID: 8300000, guid: eecc051f631d95f4980c30edd09fb5ce, type: 3}
 --- !u!114 &5843736679195042698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -702,6 +702,22 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 2e68e22d-cc70-4491-a5b0-0c219c44d1b5
     m_ActionName: 'Player/Reset[/Keyboard/r]'
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 4619739999166144482}
+        m_TargetAssemblyTypeName: PlayerController, Assembly-CSharp
+        m_MethodName: OnQuit
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: c77ae3b9-4ab0-4546-994d-16f6141099c7
+    m_ActionName: 'Player/Quit[/Keyboard/escape]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

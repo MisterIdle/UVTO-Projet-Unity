@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: TrashBag_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3271528522780300063, guid: 7b374f06fc8ad1b48a72831d682c53f0, type: 3}
-  Name: TrashBag
-  Score: 100
+  Name: Trash Bag
+  Score: 10
   Mass: 20

@@ -12,7 +12,7 @@ public class WasherMachine : MonoBehaviour
     {
         if (IsWashing)
         {
-            SoundManager.Instance.PlayLoopSound(_washerSound, transform, 0.5f);
+            SoundManager.Instance.PlayLoopSound(_washerSound, transform, 1f);
         }
     }
 
@@ -25,7 +25,7 @@ public class WasherMachine : MonoBehaviour
         else
         {
             SoundManager.Instance.StopSound(_washerSound);
-            SoundManager.Instance.PlaySound(_washerEndSound, transform, 0.5f);
+            SoundManager.Instance.PlaySound(_washerEndSound, transform, 1f);
             enabled = false;
         }
     }

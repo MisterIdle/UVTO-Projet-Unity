@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Stereo_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 7952165427107821847, guid: cd55c50f4fcb0d04a8f7e5263182e9e0, type: 3}
-  Name: Stereo
+  Name: Sound Speaker
   Score: 100
   Mass: 20

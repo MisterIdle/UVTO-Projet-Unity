@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 6645574670413210507, guid: b6d8568fc66b60142b85c33958b0d520, type: 3}
   Name: Cart
-  Score: 50
-  Mass: 10
+  Score: 10
+  Mass: 3

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Sausage_Raw_Spawnable
   m_EditorClassIdentifier: 
   Prefab: {fileID: 3268295224335695090, guid: 48d5303806ad6b14e88247d09175cb18, type: 3}
-  Name: Sausage_Raw
-  Score: 9999
+  Name: Sausage Raw
+  Score: 100
   Mass: 1

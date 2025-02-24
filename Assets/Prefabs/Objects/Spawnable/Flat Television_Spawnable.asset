@@ -15,4 +15,4 @@ MonoBehaviour:
   Prefab: {fileID: 2074432872782463958, guid: cc7f54bcf1daeef45a3ac8410396b5bd, type: 3}
   Name: Flat Television
   Score: 1500
-  Mass: 25
+  Mass: 10
