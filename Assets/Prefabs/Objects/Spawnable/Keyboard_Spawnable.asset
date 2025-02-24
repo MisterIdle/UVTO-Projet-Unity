@@ -15,4 +15,4 @@ MonoBehaviour:
   Prefab: {fileID: 3674923370884076100, guid: d7783f17f2690ee44966a9bbe74bd0bf, type: 3}
   Name: Keyboard
   Score: 250
-  Mass: 5
+  Mass: 2

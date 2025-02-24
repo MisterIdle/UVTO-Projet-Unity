@@ -315,7 +315,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsActivated: 0
-  IgnoreBot: 1
+  IgnoreBot: 0
   _openDuration: 1
   _moveDistance: -0.1
   _openAngle: 90
