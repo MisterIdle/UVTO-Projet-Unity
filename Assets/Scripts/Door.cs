@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using UnityEngine.AI;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(NavMeshObstacle), typeof(MeshCollider))]
 public class Door : Interactive
@@ -12,6 +13,8 @@ public class Door : Interactive
     [SerializeField] private bool _isLocked = false;
     [SerializeField] private float _lockedAnimationDuration = 0.5f;
     [SerializeField] private float _lockedAnimationAngle = 10f;
+    [SerializeField] private AudioClip _openSound;
+    [SerializeField] private AudioClip _lockedSound;
 
     private Quaternion _initialRotation;
     private Vector3 _initialPosition;
@@ -42,6 +45,8 @@ public class Door : Interactive
 
         _isOpen = !_isOpen;
         _currentCoroutine = StartCoroutine(AnimateDoor(_isOpen));
+
+        SoundManager.Instance.PlaySound(_isOpen ? _openSound : _lockedSound, transform, 0.5f);
 
         IsActivated = _isOpen;
     }

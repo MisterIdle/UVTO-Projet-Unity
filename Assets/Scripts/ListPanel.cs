@@ -7,8 +7,8 @@ public class ListPanel : MonoBehaviour
 {
     public GameObject listPanel;
     public TMP_Text ListText;
-
-    public PlayerController PlayerController;
+    private PlayerController PlayerController;
+    [SerializeField] AudioClip PaperSound;
 
     private void Start()
     {
@@ -25,12 +25,14 @@ public class ListPanel : MonoBehaviour
         if (listPanel != null)
         {
             listPanel.SetActive(!listPanel.activeSelf);
+            SoundManager.Instance.PlaySound(PaperSound, transform, 0.5f);
         }
     }
 
     public void Hide()
     {
         listPanel.SetActive(false);
+        SoundManager.Instance.PlaySound(PaperSound, transform, 0.5f);
     }
 
     public void UpdateList(List<Borrowable> borrowedObjects)

@@ -2,23 +2,23 @@ using UnityEngine;
 
 public class EndGame : MonoBehaviour
 {
-    public PlayerController _playerController;
-    public Enemy _enemy;
-    public UIManager _uiManager;
+    private UIManager _uiManager;
+    private PlayerController _playerController;
 
-    public void Start()
+    private void Start()
     {
-        _playerController = FindFirstObjectByType<PlayerController>();
         _uiManager = FindFirstObjectByType<UIManager>();
+        _playerController = FindFirstObjectByType<PlayerController>();
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.GetComponent<PlayerController>() != null)
         {
-            _uiManager.ShowEndGameText();
-            _playerController.enabled = false;
             _playerController.IsDead = true;
+
+            _uiManager.ShowEndGameText();
+            _uiManager.SetGameOverText("You escaped!");
         }
     }
 }

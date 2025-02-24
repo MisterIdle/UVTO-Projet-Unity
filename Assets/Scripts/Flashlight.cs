@@ -4,7 +4,8 @@ using UnityEngine.InputSystem;
 public class Flashlight : MonoBehaviour
 {
     public Light flashlight;
-    public PlayerController PlayerController;
+    private PlayerController PlayerController;
+    [SerializeField] AudioClip flashlightSound;
 
     private void Start()
     {
@@ -21,6 +22,7 @@ public class Flashlight : MonoBehaviour
         if (flashlight != null)
         {
             flashlight.enabled = !flashlight.enabled;
+            SoundManager.Instance.PlaySound(flashlightSound, transform, 0.5f);
         }
     }
 

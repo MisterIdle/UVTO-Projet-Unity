@@ -124,6 +124,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   IsActivated: 0
   IgnoreBot: 0
+  _switchSoundOn: {fileID: 8300000, guid: d57dd6a9b71eeb1469888fe773017de7, type: 3}
+  _switchSoundOff: {fileID: 8300000, guid: 05fae639182835d4cb2e5fb9e2549f72, type: 3}
   lights:
   - {fileID: 0}
   - {fileID: 0}

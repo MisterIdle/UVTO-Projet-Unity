@@ -1,15 +1,22 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
 
 public class UIManager : MonoBehaviour
 {
     public Image BaseCrosshair;
+    public RawImage StartGamePanel;
     public Sprite CrosshairsNormal;
     public Sprite CrosshairsInteract;
     public TMP_Text InteractionText;
     public TMP_Text ScoreText;
     public TMP_Text EndGameText;
+
+    private void Start()
+    {
+        StartCoroutine(FadeOut(StartGamePanel, 3f));
+    }
 
     public void SetCrosshair(bool isInteracting)
     {
@@ -28,11 +35,34 @@ public class UIManager : MonoBehaviour
 
     public void ShowEndGameText()
     {
+        BaseCrosshair.gameObject.SetActive(false);
+        InteractionText.gameObject.SetActive(false);
         EndGameText.gameObject.SetActive(true);
+    }
+
+    public void HideEndGameText()
+    {
+        EndGameText.gameObject.SetActive(false);
     }
 
     public void SetGameOverText(string text)
     {
         EndGameText.text = text;
+    }
+
+    private IEnumerator FadeOut(RawImage image, float duration)
+    {
+        float time = 0;
+        Color initialColor = image.color;
+
+        while (time < duration)
+        {
+            time += Time.deltaTime;
+            float alpha = Mathf.Lerp(1, 0, time / duration);
+            image.color = new Color(initialColor.r, initialColor.g, initialColor.b, alpha);
+            yield return null;
+        }
+
+        image.gameObject.SetActive(false);
     }
 }

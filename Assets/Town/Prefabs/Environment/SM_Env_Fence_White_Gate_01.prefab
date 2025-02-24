@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4546273639728410}
   - component: {fileID: 33051369124925876}
   - component: {fileID: 23308889354196786}
-  - component: {fileID: 64541169101744596}
+  - component: {fileID: 1048742511705862689}
   - component: {fileID: 2242866177255865093}
   m_Layer: 0
   m_Name: SM_Env_Fence_White_Gate_01
@@ -89,7 +89,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &64541169101744596
+--- !u!64 &1048742511705862689
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -110,7 +110,7 @@ MeshCollider:
   serializedVersion: 5
   m_Convex: 1
   m_CookingOptions: 30
-  m_Mesh: {fileID: 43001172064574022, guid: 26d8c1a68cb5e604eb574dc869262b36, type: 2}
+  m_Mesh: {fileID: 4300000, guid: 6b34281a9318d8e4d868d40e0cd62251, type: 3}
 --- !u!114 &2242866177255865093
 MonoBehaviour:
   m_ObjectHideFlags: 0

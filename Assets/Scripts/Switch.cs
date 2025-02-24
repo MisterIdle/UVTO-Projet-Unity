@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class Switch : Interactive
 {
+    [SerializeField] private AudioClip _switchSoundOn;
+    [SerializeField] private AudioClip _switchSoundOff;
+
     public Light[] lights;
 
     private void Start()
@@ -19,6 +22,8 @@ public class Switch : Interactive
     {
         if (IsActivated == !IsActivated)
             return;
+
+        SoundManager.Instance.PlaySound(IsActivated ? _switchSoundOff : _switchSoundOn, transform, 0.5f);
 
         IsActivated = !IsActivated;
         StartCoroutine(ToggleLights(IsActivated));
@@ -42,5 +47,4 @@ public class Switch : Interactive
             Gizmos.DrawLine(transform.position, light.transform.position);
         }
     }
-
 }

@@ -71,4 +71,9 @@ public class Grabbable : Collectible
         Vector3 releaseForce = _playerController.CameraTransform.forward * _releaseForceMultiplier + _velocity;
         _rigidbody.AddForce(releaseForce, ForceMode.Impulse);
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        SoundManager.Instance.PlaySound(_playerController.CollisionSound, transform, 0.1f);
+    }
 }

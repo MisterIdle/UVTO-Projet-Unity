@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour
     public bool IsDead;
 
     [Header("Movement Settings")]
+    public bool isWalking;
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _acceleration = 10f;
     [SerializeField] private float _deceleration = 10f;
@@ -20,35 +21,37 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _crouchHeight = 1f;
     [SerializeField] private float _crouchSpeed = 2.5f;
     [SerializeField] private float _crouchDuration = 2f;
+    public bool IsCrouching;
+    public Grabbable CurrentGrabbable;
 
     [Header("Interaction Settings")]
     public Transform GrabPoint;
     [SerializeField] private float _interactionDistance = 2f;
     [SerializeField] private float _grabMaxDistance = 2f;
+    public bool IsGrabbing;
 
     [Header("Camera Settings")]
     public Transform CameraTransform;
     public Transform CameraHeadTransform;
     public Transform HeadTransform;
-    public Transform DeathCameraTransform;
+    public Transform Model;
 
     [Header("Damage Settings")]
     [SerializeField] private Volume _vignette;
     [SerializeField] private float _damageCooldown = 1f;
 
-    [Header("Character Model")]
-    [SerializeField] public GameObject _model;
-    [SerializeField] public Animator _animator;
-
     [Header("Enemy Settings")]
     [SerializeField] public Enemy _enemy;
+
+    [Header("Audio Settings")]
+    [SerializeField] private AudioClip _footstepSound;
+    [SerializeField] private AudioClip _hitSound;
+    [SerializeField] public AudioClip GrabSound;
+    [SerializeField] public AudioClip CollisionSound;
 
     private Rigidbody _rb;
     private Vector2 _movementInput;
     private Vector3 _velocity;
-    public Grabbable CurrentGrabbable;
-    public bool IsCrouching;
-    public bool IsGrabbing;
 
     private UIManager _uiManager;
     private ListPanel _listPanel;
@@ -75,17 +78,15 @@ public class PlayerController : MonoBehaviour
     private void Update()
     {
         if (IsDead) return;
-
-        UpdateHeadPosition();
-        UpdateCharacterModelDirection();
-
         _listPanel.UpdateList(GameManager.Instance.BorrowedObjectsList);
+
+        UpdateCharacterModelDirection();
+        UpdateHeadPosition();
     }
 
     private void LateUpdate()
     {
         if (IsDead) return;
-
         CheckGrabbableDistance();
     }
 
@@ -104,8 +105,8 @@ public class PlayerController : MonoBehaviour
 
     private void UpdateCharacterModelDirection()
     {
-        Vector3 targetDirection = new Vector3(CameraTransform.forward.x, 0, CameraTransform.forward.z);
-        _model.transform.forward = Vector3.Lerp(_model.transform.forward, targetDirection, Time.deltaTime * _acceleration);
+        Vector3 targetDirection = new Vector3(CameraTransform.forward.x, 0, CameraTransform.forward.z).normalized;
+        Model.transform.forward = Vector3.Slerp(Model.transform.forward, targetDirection, Time.deltaTime * _acceleration);
     }
 
     private void MovePlayer()
@@ -113,27 +114,36 @@ public class PlayerController : MonoBehaviour
         Vector3 direction = new Vector3(_movementInput.x, 0f, _movementInput.y).normalized;
         float currentSpeed = IsCrouching ? _crouchSpeed : _speed;
         Vector3 targetVelocity = direction * currentSpeed;
-        _velocity = Vector3.Lerp(_velocity, targetVelocity, Time.deltaTime * (_velocity == Vector3.zero ? _acceleration : _deceleration));
+        _velocity = Vector3.Lerp(_velocity, targetVelocity, Time.deltaTime * (_velocity == Vector3.zero ? _acceleration : _deceleration));  
 
-        _animator.SetFloat("Speed", _velocity.magnitude);
+        isWalking = _velocity.magnitude > 0.1f;  
 
         Vector3 moveDirection = CameraTransform.TransformDirection(_velocity);
-        moveDirection.y = _rb.linearVelocity.y;
+        moveDirection.y = _rb.linearVelocity.y; 
 
         if (_rb.linearVelocity.y < 0)
         {
             moveDirection.y += Physics.gravity.y * 2f * Time.deltaTime;
+        }   
+
+        _rb.linearVelocity = moveDirection; 
+
+        HeadTransform.rotation = Quaternion.Lerp(HeadTransform.rotation, CameraTransform.rotation, Time.deltaTime * _acceleration); 
+
+        PlayFootstepSound();
+    }
+
+    private void PlayFootstepSound()
+    {
+        if (isWalking)
+        {
+            SoundManager.Instance.PlaySound(_footstepSound, transform, 1f, true);
         }
-
-        _rb.linearVelocity = moveDirection;
-
-        HeadTransform.rotation = Quaternion.Lerp(HeadTransform.rotation, CameraTransform.rotation, Time.deltaTime * _acceleration);
     }
 
     private void Crouch()
     {
         IsCrouching = !IsCrouching;
-        _animator.SetBool("IsCrouch", IsCrouching);
 
         StopAllCoroutines();
         StartCoroutine(LerpCrouch(IsCrouching ? _crouchHeight : _normalHeight));
@@ -156,7 +166,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Interact()
-    {
+    {        
         if (Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, _interactionDistance))
         {
             if (hit.collider.TryGetComponent(out Interactive interactive))
@@ -166,6 +176,7 @@ public class PlayerController : MonoBehaviour
             else if (hit.collider.TryGetComponent(out Collectible collectible))
             {
                 collectible.Collect();
+                SoundManager.Instance.PlaySound(GrabSound, transform, 1f, true);
             }
         }
     }
@@ -175,7 +186,6 @@ public class PlayerController : MonoBehaviour
         CurrentGrabbable?.Drop();
         IsGrabbing = false;
     }
-
 
     private void UpdateInteractionUI()
     {
@@ -228,6 +238,7 @@ public class PlayerController : MonoBehaviour
 
         Health -= damage;
         HitEffect();
+        SoundManager.Instance.PlaySound(_hitSound, transform, 1f, true);
 
         if (Health <= 0)
             Die();
@@ -258,8 +269,6 @@ public class PlayerController : MonoBehaviour
         if (IsDead) return;
 
         IsDead = true;
-        _animator.applyRootMotion = true;
-        _animator.SetTrigger("Die");
 
         if (IsGrabbing)
             DropAll();

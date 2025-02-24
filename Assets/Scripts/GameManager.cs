@@ -1,16 +1,17 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class GameManager : MonoBehaviour
 {
     public float Score;
     public int MaxBorrowedObjects = 10;
     public int BorrowedObjectsCount;
+    public float freeEnemyTimer = 10f;
+    public float warningEnemyTimer = 5f;
 
     public List<Borrowable> BorrowedObjectsList = new List<Borrowable>();
-
     private static GameManager _instance;
-
     public static GameManager Instance
     {
         get
@@ -51,6 +52,7 @@ public class GameManager : MonoBehaviour
 
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
+
 
     public bool CanBorrowMore()
     {
