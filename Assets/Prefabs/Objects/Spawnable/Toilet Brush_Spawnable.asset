@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Prefab: {fileID: 5815635033053750911, guid: 8da18f3625f867747b4eb437c69f0a08, type: 3}
   Name: Toilet Brush
-  Score: 1000
-  Mass: 30
+  Score: 10
+  Mass: 1
