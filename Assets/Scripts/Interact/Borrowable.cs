@@ -15,19 +15,21 @@ public class Borrowable : Collectible
 
     private void Awake()
     {
+        // Initialize components
         _renderer = GetComponent<Renderer>();
         _meshCollider = GetComponent<MeshCollider>();
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = FindFirstObjectByType<PlayerController>();
         _navMeshObstacle = GetComponent<NavMeshObstacle>();
 
+        // Configure components
         _meshCollider.convex = true;
         _navMeshObstacle.carving = true;
-
     }
 
     public override void Collect()
     {
+        // Mark as borrowed and update score
         IsBorrowed = true;
         _playerController.AddScore(ScoreValue);
         SoundManager.Instance.PlaySound(_playerController.BorrowSound, transform, 1f);
@@ -36,11 +38,13 @@ public class Borrowable : Collectible
 
     public void UpdateScore(float score)
     {
+        // Update the score value
         ScoreValue = score;
     }
 
     private IEnumerator DisappearAnimation()
     {
+        // Animate disappearance
         float duration = 0.5f;
         float time = 0;
         Vector3 initialScale = transform.localScale;
@@ -61,6 +65,7 @@ public class Borrowable : Collectible
             yield return null;
         }
 
+        // Deactivate the object
         gameObject.SetActive(false);
     }
 }

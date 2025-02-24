@@ -13,7 +13,6 @@ public class Enemy : MonoBehaviour
     [Header("Detection Settings")]
     [SerializeField] private bool _isPlayerDetected = false;
     [SerializeField] private float _frontDetectionRadius = 7f;
-
     [SerializeField] private float _frontDetectionAngle = 30f;
     [SerializeField] private float _detectionRadius = 4f;
     [SerializeField] private float _chaseDetectionRadius = 10f;
@@ -61,6 +60,7 @@ public class Enemy : MonoBehaviour
 
     private void Awake()
     {
+        // Initialize components and variables
         _agent = GetComponent<NavMeshAgent>();
         _player = FindFirstObjectByType<PlayerController>();
         _animator = GetComponentInChildren<Animator>();
@@ -80,31 +80,29 @@ public class Enemy : MonoBehaviour
     private void Update()
     {
         if (_isInteracting) return;
-    
+
         HandleInteractions();
         CheckForPlayerDetection();
-    
+
         _agent.stoppingDistance = 0;
-    
+
         switch (_currentState)
         {
             case State.Patrol:
                 HandlePatrol();
                 break;
-    
+
             case State.Chase:
                 HandleChase();
                 break;
         }
-    
+
         isWalking = _agent.velocity.sqrMagnitude > 0.1;
         PlayFootstepSound();
 
         _agent.updatePosition = true;
         _agent.updateRotation = true;
-
     }
-
 
     private void PlayFootstepSound()
     {
@@ -124,6 +122,7 @@ public class Enemy : MonoBehaviour
 
     private void GetAllPoints()
     {
+        // Get all patrol points from the global patrol points object
         _patrolPoints = new Transform[_globalPatrolPoints.childCount];
         for (int i = 0; i < _globalPatrolPoints.childCount; i++)
         {
@@ -136,6 +135,7 @@ public class Enemy : MonoBehaviour
     {
         if (!_agent.enabled) return;
 
+        // Set a random patrol point as the next destination
         int randomIndex = Random.Range(0, _patrolPoints.Length);
         _agent.SetDestination(_patrolPoints[randomIndex].position);
     }
@@ -143,23 +143,23 @@ public class Enemy : MonoBehaviour
     private IEnumerator LookAround()
     {
         if (_isPlayerDetected) yield break;
-    
+
         _agent.isStopped = true;
         _currentState = State.LookAround;
         _animator.SetBool("IsLook", true);
-    
+
         for (int i = 0; i < Random.Range(_minLookAroundTurn, _maxLookAroundTurn); i++)
         {
             float direction = Random.value > 0.5f ? 1f : -1f;
             Quaternion targetRotation = Quaternion.Euler(0, transform.eulerAngles.y + direction * _lookAroundAngle, 0);
             float elapsedTime = 0f;
-    
+
             while (elapsedTime < _lookAroundDuration)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, elapsedTime / _lookAroundDuration);
                 elapsedTime += Time.deltaTime;
                 yield return null;
-    
+
                 CheckForPlayerDetection();
                 if (_isPlayerDetected)
                 {
@@ -169,18 +169,18 @@ public class Enemy : MonoBehaviour
                 }
             }
         }
-    
+
         _animator.SetBool("IsLook", false);
         _agent.isStopped = false;
         _currentState = State.Patrol;
         PatrolNextPoint();
     }
 
-
     private void HandleInteractions()
     {
         if (_isInteracting) return;
 
+        // Check for nearby interactable objects
         Collider[] hits = Physics.OverlapSphere(transform.position, _detectionRadius);
         Interactive closestInteractive = null;
         float closestDistance = Mathf.Infinity;
@@ -205,7 +205,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     private IEnumerator InteractWithObject(Interactive interactive)
     {
         if (_isInteracting || !_canAttack) yield break;
@@ -226,6 +225,7 @@ public class Enemy : MonoBehaviour
 
     private void CheckForPlayerDetection()
     {
+        // Check if the player is within detection range
         bool isPlayerInCone = IsPlayerInDetectionCone(transform.forward, _frontDetectionRadius, _frontDetectionAngle) ||
                               IsPlayerInDetectionCone(-transform.forward, _detectionRadius, 180f);
 
@@ -245,9 +245,9 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     private bool IsPlayerInDetectionCone(Vector3 direction, float radius, float angle)
     {
+        // Check if the player is within the detection cone
         Collider[] hits = Physics.OverlapSphere(transform.position, radius);
         foreach (Collider hit in hits)
         {
@@ -270,6 +270,7 @@ public class Enemy : MonoBehaviour
 
     private bool IsPlayerVisible(PlayerController player)
     {
+        // Check if the player is visible (not obstructed by obstacles)
         Vector3 directionToPlayer = (player.transform.position - transform.position).normalized;
         RaycastHit hit;
         if (Physics.Raycast(transform.position, directionToPlayer, out hit, _chaseDetectionRadius))
@@ -281,7 +282,6 @@ public class Enemy : MonoBehaviour
         }
         return false;
     }
-
 
     private void HandleChase()
     {
@@ -321,7 +321,6 @@ public class Enemy : MonoBehaviour
         }
     }
 
-
     private IEnumerator AttackPlayer()
     {
         _canAttack = false;
@@ -353,6 +352,7 @@ public class Enemy : MonoBehaviour
 
     public void LookAtPlayer()
     {
+        // Rotate to face the player
         Vector3 directionToPlayer = (_player.transform.position - transform.position).normalized;
         Quaternion lookRotation = Quaternion.LookRotation(new Vector3(directionToPlayer.x, 0, directionToPlayer.z));
         transform.rotation = lookRotation;
@@ -360,12 +360,14 @@ public class Enemy : MonoBehaviour
 
     private void Win()
     {
+        // Trigger win animation
         _agent.isStopped = true;
         _animator.SetTrigger("Win");
     }
 
     private IEnumerator Surprised()
     {
+        // Handle surprised state
         _agent.isStopped = true;
         _animator.SetBool("IsRun", false);
         _animator.SetBool("IsLook", false);
@@ -388,14 +390,16 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator LostPlayer()
     {
+        // Handle lost player state
         _lostPlayer = true;
         yield return new WaitForSeconds(_lostPlayerCooldown);
         _agent.SetDestination(_lastKnownPlayerPosition);
         _currentState = State.Patrol;
     }
 
-
-    private IEnumerator Waiting() {
+    private IEnumerator Waiting()
+    {
+        // Wait for a certain time before activating the enemy
         yield return new WaitForSeconds(_timeWarning);
         _washerMachine.IsWashing = false;
         yield return new WaitForSeconds(_timeFree);
@@ -405,6 +409,7 @@ public class Enemy : MonoBehaviour
 
     private void ActivateEnemy()
     {
+        // Activate the enemy and start patrolling
         _agent.enabled = true;
         _currentState = State.Patrol;
         PatrolNextPoint();
@@ -412,6 +417,7 @@ public class Enemy : MonoBehaviour
 
     private void OnDrawGizmos()
     {
+        // Draw gizmos for debugging detection ranges
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, _frontDetectionRadius);
 

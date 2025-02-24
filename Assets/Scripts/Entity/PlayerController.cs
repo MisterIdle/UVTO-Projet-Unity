@@ -59,9 +59,11 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        // Lock the cursor and hide it
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        // Ensure the Rigidbody component is present
         if (!TryGetComponent(out _rb))
         {
             Debug.LogError("Rigidbody component missing from the player.");
@@ -69,18 +71,23 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
+        // Initialize references to other components
         _uiManager = FindFirstObjectByType<UIManager>();
         _listPanel = FindFirstObjectByType<ListPanel>();
         _enemy = FindFirstObjectByType<Enemy>();
 
+        // Set the camera transform
         CameraTransform = Camera.main.transform;
     }
 
     private void Update()
     {
         if (IsDead) return;
+
+        // Update the list panel with borrowed objects
         _listPanel.UpdateList(GameManager.Instance.BorrowedObjectsList);
 
+        // Update the character's model direction and head position
         UpdateCharacterModelDirection();
         UpdateHeadPosition();
     }
@@ -88,6 +95,8 @@ public class PlayerController : MonoBehaviour
     private void LateUpdate()
     {
         if (IsDead) return;
+
+        // Check the distance to the currently grabbed object
         CheckGrabbableDistance();
     }
 
@@ -95,42 +104,50 @@ public class PlayerController : MonoBehaviour
     {
         if (IsDead) return;
 
+        // Update the interaction UI and move the player
         UpdateInteractionUI();
         MovePlayer();
     }
 
     private void UpdateHeadPosition()
-    {  
+    {
+        // Sync the head position with the camera head transform
         HeadTransform.position = CameraHeadTransform.position;
     }
 
     private void UpdateCharacterModelDirection()
     {
+        // Rotate the character model to face the camera's forward direction
         Vector3 targetDirection = new Vector3(CameraTransform.forward.x, 0, CameraTransform.forward.z).normalized;
         Model.transform.forward = Vector3.Slerp(Model.transform.forward, targetDirection, Time.deltaTime * _acceleration);
     }
 
     private void MovePlayer()
     {
+        // Calculate movement direction and speed
         Vector3 direction = new Vector3(_movementInput.x, 0f, _movementInput.y).normalized;
         float currentSpeed = IsCrouching ? _crouchSpeed : _speed;
         Vector3 targetVelocity = direction * currentSpeed;
-        _velocity = Vector3.Lerp(_velocity, targetVelocity, Time.deltaTime * (_velocity == Vector3.zero ? _acceleration : _deceleration));  
+        _velocity = Vector3.Lerp(_velocity, targetVelocity, Time.deltaTime * (_velocity == Vector3.zero ? _acceleration : _deceleration));
 
-        isWalking = _velocity.magnitude > 0.1f;  
+        // Check if the player is walking
+        isWalking = _velocity.magnitude > 0.1f;
 
+        // Apply movement to the Rigidbody
         Vector3 moveDirection = CameraTransform.TransformDirection(_velocity);
-        moveDirection.y = _rb.linearVelocity.y; 
+        moveDirection.y = _rb.linearVelocity.y;
 
         if (_rb.linearVelocity.y < 0)
         {
             moveDirection.y += Physics.gravity.y * 2f * Time.deltaTime;
         }
 
-        _rb.linearVelocity = moveDirection; 
+        _rb.linearVelocity = moveDirection;
 
-        HeadTransform.rotation = Quaternion.Lerp(HeadTransform.rotation, CameraTransform.rotation, Time.deltaTime * _acceleration); 
+        // Rotate the head to match the camera's rotation
+        HeadTransform.rotation = Quaternion.Lerp(HeadTransform.rotation, CameraTransform.rotation, Time.deltaTime * _acceleration);
 
+        // Play footstep sound if walking
         PlayFootstepSound();
     }
 
@@ -142,14 +159,15 @@ public class PlayerController : MonoBehaviour
 
     private void Crouch()
     {
+        // Toggle crouching state and start the crouch coroutine
         IsCrouching = !IsCrouching;
-
         StopAllCoroutines();
         StartCoroutine(LerpCrouch(IsCrouching ? _crouchHeight : _normalHeight));
     }
 
     private IEnumerator LerpCrouch(float targetHeight)
     {
+        // Smoothly transition the camera height for crouching
         float startHeight = CameraHeadTransform.localPosition.y;
         float elapsedTime = 0f;
 
@@ -165,7 +183,8 @@ public class PlayerController : MonoBehaviour
     }
 
     private void Interact()
-    {        
+    {
+        // Perform a raycast to interact with objects
         if (Physics.Raycast(CameraTransform.position, CameraTransform.forward, out RaycastHit hit, _interactionDistance))
         {
             if (hit.collider.TryGetComponent(out Interactive interactive))
@@ -181,12 +200,14 @@ public class PlayerController : MonoBehaviour
 
     private void DropAll()
     {
+        // Drop the currently grabbed object
         CurrentGrabbable?.Drop();
         IsGrabbing = false;
     }
 
     private void UpdateInteractionUI()
     {
+        // Update the UI based on interaction state
         if (IsGrabbing)
         {
             _uiManager.SetCrosshair(true);
@@ -213,18 +234,21 @@ public class PlayerController : MonoBehaviour
 
     private void SetUI(string text)
     {
+        // Set the interaction text and show the crosshair
         _uiManager.SetCrosshair(true);
         _uiManager.SetInteractionText(text);
     }
 
     private void ClearUI()
     {
+        // Clear the interaction text and hide the crosshair
         _uiManager.SetCrosshair(false);
         _uiManager.SetInteractionText("");
     }
 
     public void AddScore(float score)
     {
+        // Add score and update the UI
         GameManager.Instance.Score += score;
         _uiManager.UpdateScore(GameManager.Instance.Score);
     }
@@ -234,6 +258,7 @@ public class PlayerController : MonoBehaviour
         if (IsDead)
             return;
 
+        // Reduce health and play hit effects
         Health -= damage;
         HitEffect();
         SoundManager.Instance.PlaySound(_hitSound, transform, 1f);
@@ -244,6 +269,7 @@ public class PlayerController : MonoBehaviour
 
     private void HitEffect()
     {
+        // Play vignette effect on hit
         if (_vignette.profile.TryGet(out Vignette vignette))
         {
             StartCoroutine(LerpVignetteIntensity(vignette, 1, 0, _damageCooldown));
@@ -252,6 +278,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator LerpVignetteIntensity(Vignette vignette, float startIntensity, float endIntensity, float duration)
     {
+        // Smoothly transition vignette intensity
         float elapsedTime = 0f;
         while (elapsedTime < duration)
         {
@@ -266,6 +293,7 @@ public class PlayerController : MonoBehaviour
     {
         if (IsDead) return;
 
+        // Handle player death
         IsDead = true;
 
         if (IsGrabbing)
@@ -279,6 +307,7 @@ public class PlayerController : MonoBehaviour
 
     private void CheckGrabbableDistance()
     {
+        // Drop the object if it's too far away
         if (IsGrabbing && CurrentGrabbable != null && Vector3.Distance(GrabPoint.position, CurrentGrabbable.transform.position) > _grabMaxDistance)
         {
             DropAll();
@@ -333,6 +362,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator QuitCountdown()
     {
+        // Countdown before quitting the game
         for (int i = 3; i > 0; i--)
         {
             _uiManager.SetQuitText("Quitting in " + i);

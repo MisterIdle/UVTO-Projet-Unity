@@ -6,6 +6,8 @@ public class SoundManager : MonoBehaviour
     [SerializeField] private AudioSource _audioSource;
     private bool _isPlayingOneTimeSound = false;
     private static SoundManager _instance;
+
+    // Singleton instance
     public static SoundManager Instance
     {
         get
@@ -38,6 +40,7 @@ public class SoundManager : MonoBehaviour
         }
     }
 
+    // Play a sound once
     public void PlaySound(AudioClip audioSource, Transform transform, float volume)
     {
         AudioSource audio = Instantiate(_audioSource, transform.position, Quaternion.identity);
@@ -49,6 +52,7 @@ public class SoundManager : MonoBehaviour
         Destroy(audio.gameObject, duration);
     }
 
+    // Play a one-time sound, ensuring no overlap
     public void PlayOneTimeSound(AudioClip audioSource, Transform transform, float volume)
     {
         if (_isPlayingOneTimeSound)
@@ -66,12 +70,14 @@ public class SoundManager : MonoBehaviour
         StartCoroutine(ResetOneTimeSoundFlag(duration));
     }
 
+    // Reset the one-time sound flag after duration
     private IEnumerator ResetOneTimeSoundFlag(float duration)
     {
         yield return new WaitForSeconds(duration);
         _isPlayingOneTimeSound = false;
     }
 
+    // Play a looping sound
     public void PlayLoopSound(AudioClip audioSource, Transform transform, float volume)
     {
         AudioSource audio = Instantiate(_audioSource, transform.position, Quaternion.identity);
@@ -81,6 +87,7 @@ public class SoundManager : MonoBehaviour
         audio.Play();
     }
 
+    // Stop a specific sound
     public void StopSound(AudioClip audioSource)
     {
         AudioSource[] allAudioSources = FindObjectsByType<AudioSource>(FindObjectsSortMode.None);
@@ -94,14 +101,5 @@ public class SoundManager : MonoBehaviour
                 break;
             }
         }
-    }
-
-    public void PlayerAmbientSound(AudioClip audioSource, float volume)
-    {
-        AudioSource audio = Instantiate(_audioSource, Vector3.zero, Quaternion.identity);
-        audio.clip = audioSource;
-        audio.volume = volume;
-        audio.loop = true;
-        audio.Play();
     }
 }

@@ -10,7 +10,9 @@ public class GameManager : MonoBehaviour
     public float freeEnemyTimer = 10f;
     public float warningEnemyTimer = 5f;
 
+    // List to keep track of borrowed objects
     public List<Borrowable> BorrowedObjectsList = new List<Borrowable>();
+
     private static GameManager _instance;
     public static GameManager Instance
     {
@@ -22,6 +24,7 @@ public class GameManager : MonoBehaviour
 
                 if (_instance == null)
                 {
+                    // Create a new GameManager if one doesn't exist
                     GameObject singleton = new GameObject(nameof(GameManager));
                     _instance = singleton.AddComponent<GameManager>();
                     DontDestroyOnLoad(singleton);
@@ -44,6 +47,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    // Restart the game by resetting variables and reloading the scene
     public void RestartGame()
     {
         Score = 0;
@@ -53,16 +57,19 @@ public class GameManager : MonoBehaviour
         UnityEngine.SceneManagement.SceneManager.LoadScene(0);
     }
 
+    // Stop the game by quitting the application
     public void StopGame()
     {
         Application.Quit();
     }
 
+    // Check if more objects can be borrowed
     public bool CanBorrowMore()
     {
         return BorrowedObjectsCount < MaxBorrowedObjects;
     }
 
+    // Add a borrowed object to the list if the limit is not reached
     public void AddBorrowedObject(Borrowable obj)
     {
         if (CanBorrowMore())

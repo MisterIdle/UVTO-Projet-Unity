@@ -18,11 +18,13 @@ public class Grabbable : Collectible
 
     private void Awake()
     {
+        // Get required components
         _meshCollider = GetComponent<MeshCollider>();
         _rigidbody = GetComponent<Rigidbody>();
         _playerController = FindFirstObjectByType<PlayerController>();
         _navMeshObstacle = GetComponent<NavMeshObstacle>();
 
+        // Configure components
         _meshCollider.convex = true;
         _navMeshObstacle.carving = true;
 
@@ -32,6 +34,7 @@ public class Grabbable : Collectible
 
     private void FixedUpdate()
     {
+        // Move object towards grab point if grabbed
         if (_grabPoint != null)
         {
             Vector3 targetPosition = _grabPoint.position;
@@ -42,6 +45,7 @@ public class Grabbable : Collectible
 
     public override void Collect()
     {
+        // Toggle grabbing state
         _playerController.IsGrabbing = _grabPoint == null;
 
         if (_playerController.IsGrabbing)
@@ -52,28 +56,33 @@ public class Grabbable : Collectible
 
     public void Grab(Transform grabPoint)
     {
+        // Set grab point and disable gravity
         _grabPoint = grabPoint;
         _rigidbody.useGravity = false;
 
         _playerController.CurrentGrabbable = this;
 
+        // Reset velocities
         _rigidbody.linearVelocity = Vector3.zero;
         _rigidbody.angularVelocity = Vector3.zero;
     }
 
     public void Drop()
     {
+        // Clear grab point and enable gravity
         _grabPoint = null;
         _rigidbody.useGravity = true;
 
         _playerController.CurrentGrabbable = null;
 
+        // Apply release force
         Vector3 releaseForce = _playerController.CameraTransform.forward * _releaseForceMultiplier + _velocity;
         _rigidbody.AddForce(releaseForce, ForceMode.Impulse);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        // Play collision sound
         SoundManager.Instance.PlaySound(_playerController.CollisionSound, transform, 0.1f);
     }
 }

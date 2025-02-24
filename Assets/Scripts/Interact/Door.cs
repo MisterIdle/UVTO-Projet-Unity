@@ -28,6 +28,7 @@ public class Door : Interactive
 
     private void Start()
     {
+        // Store initial rotation and position
         _initialRotation = transform.localRotation;
         _initialPosition = transform.localPosition;
         _navMeshObstacle = GetComponent<NavMeshObstacle>();
@@ -36,6 +37,7 @@ public class Door : Interactive
 
     public override void Interact()
     {
+        // Stop any ongoing animation
         if (_currentCoroutine != null)
         {
             StopCoroutine(_currentCoroutine);
@@ -43,11 +45,13 @@ public class Door : Interactive
 
         if (_isLocked)
         {
+            // Play locked door animation and sound
             _currentCoroutine = StartCoroutine(AnimateLockedDoor());
             SoundManager.Instance.PlaySound(_lockedSound, transform, 0.5f);
         }
         else
         {
+            // Toggle door state and play corresponding animation and sound
             _isOpen = !_isOpen;
             _currentCoroutine = StartCoroutine(AnimateDoor(_isOpen));
             SoundManager.Instance.PlaySound(_isOpen ? _openSound : _closeSound, transform, 0.5f);
@@ -67,6 +71,7 @@ public class Door : Interactive
         Vector3 direction = Quaternion.Euler(0, _openToRight ? _openAngle : -_openAngle, 0) * Vector3.forward;
         Vector3 targetPosition = open ? _initialPosition + direction * _moveDistance : _initialPosition;
 
+        // Animate door opening/closing
         while (elapsedTime < _openDuration)
         {
             float t = Mathf.SmoothStep(0f, 1f, elapsedTime / _openDuration);
@@ -91,6 +96,7 @@ public class Door : Interactive
         Quaternion targetRotationPositive = _initialRotation * Quaternion.Euler(0, _lockedAnimationAngle, 0);
         Quaternion targetRotationNegative = _initialRotation * Quaternion.Euler(0, -_lockedAnimationAngle, 0);
 
+        // Animate locked door shaking
         while (elapsedTime < _lockedAnimationDuration)
         {
             float t = Mathf.PingPong(elapsedTime / _lockedAnimationDuration, 1f);
@@ -104,6 +110,7 @@ public class Door : Interactive
         }
 
         elapsedTime = 0f;
+        // Animate door returning to initial position
         while (elapsedTime < _lockedAnimationDuration)
         {
             float t = Mathf.SmoothStep(0f, 1f, elapsedTime / _lockedAnimationDuration);
