@@ -2,7 +2,7 @@
 
 ## 📖 About the Game
 
-UVTO is a first-person exploration game where you must search and collect specific objects in a house. Navigate through the environment, use your flashlight wisely, and uncover hidden items.
+UVTO is a first-person exploration game where you must search and collect specific objects in a house. Navigate through the environment without getting caught by the owner!
 
 🎮 **Play Now:** [UVTO on itch.io](https://misteridle.itch.io/uvto)
 
